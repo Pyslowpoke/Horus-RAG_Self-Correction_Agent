@@ -1,0 +1,48 @@
+# ===== 敏感信息 =====
+.env
+*.env
+.env.local
+
+# ===== Python =====
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+*.egg
+
+# ===== 虚拟环境 =====
+venv/
+.venv/
+
+# ===== 向量数据库（运行时生成，体积大） =====
+chroma_db/
+gold_memory_db/
+
+# ===== 模型缓存（运行时下载，体积大） =====
+models/
+
+# ===== 用户数据 =====
+user_preferences.json
+knowledge_base/
+
+# ===== 日志 =====
+*.log
+
+# ===== IDE =====
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ===== 操作系统 =====
+.DS_Store
+Thumbs.db
+
+# ===== Streamlit =====
+.streamlit/
+
+# ===== 项目管理工具 =====
+.mimocode/
+
+# ===== 内部文档 =====
+项目指导.md

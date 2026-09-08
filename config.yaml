@@ -1,0 +1,48 @@
+# ============================================================
+# RAG-2.0-Self-Correction 项目配置文件
+# 修改任何参数后，重启程序即可生效，无需改代码
+# ============================================================
+
+#数据库
+db:
+  chroma_persist_dir: "./chroma_db"    # 向量库持久化目录（自动创建）
+  docs_dir: "./knowledge_base"         # 存放原始文档的文件夹（.txt / .pdf）
+
+#embedding
+embedding:
+  model_name: "all-MiniLM-L6-v2"
+  device: "cpu"
+
+#检索
+retrieval:
+  chunk_size: 500                      # 分块大小（字符数）
+  chunk_overlap: 50                    # 块与块之间的重叠字符数
+  top_k: 5                             # 最终返回给LLM的文档块数量
+  rrf_k: 60                            # RRF融合常数（保持60即可）
+
+
+llm:
+  primary:
+    provider: "deepseek"
+    api_base: "https://api.deepseek.com/v1"
+    model: "deepseek-chat"
+    api_key_env: "DEEPSEEK_API_KEY"    # 从环境变量读取
+    timeout: 10                        # 超时时间（秒）
+
+  fallback:
+    provider: "siliconflow"
+    api_base: "https://api.siliconflow.cn/v1"
+    model: "Qwen/Qwen2.5-7B-Instruct"
+    api_key_env: "SILICONFLOW_API_KEY"
+    timeout: 10
+
+#生成
+generation:
+  temperature: 0.1                     # 越低越保守，推荐0.1-0.3
+  max_tokens: 512                      # 单次生成最大输出长度
+  max_retries: 3                       # 事实核查重写最多循环次数
+
+#日志
+logging:
+  level: "INFO"                        # DEBUG / INFO / WARNING / ERROR
+  save_verification_logs: true         # 是否保存事实核查的详细日志

@@ -1,0 +1,41 @@
+"""
+Router Agent
+
+职责：分析用户意图，决定搜索模式
+- 自我认知类问题 → 直接用 system_identity 回答，跳过检索
+- 用户显式选择的模式 → 尊重用户选择
+- 其他 → 根据关键词自动判断
+"""
+
+from src.agents.interfaces import AgentState
+
+# 自我认知类关键词
+SELF_AWARE_KEYWORDS = [
+    "你是谁", "你是什么", "你的名字", "你叫什么",
+    "你能做什么", "你可以做什么", "你的功能", "你的能力",
+    "你有什么用", "你的作用", "你擅长什么",
+    "介绍一下你", "关于你", "说说你",
+    "你可以为我做什么", "你能为我做什么", "你会什么",
+]
+
+
+def router_agent(state: AgentState) -> dict:
+    query = state["query"]
+    current_mode = state.get("search_mode", "")
+
+    # 自我认知类问题：直接用 system_identity 回答，跳过检索
+    if any(keyword in query for keyword in SELF_AWARE_KEYWORDS):
+        return {"search_mode": "self_aware"}
+
+    # 用户已在前端显式选择了模式，直接保留
+    if current_mode in ("local", "web", "hybrid"):
+        return {}
+
+    # 未指定模式时，根据查询内容自动判断
+    if any(keyword in query for keyword in ["最新", "新闻", "实时", "今天", "最近"]):
+        return {"search_mode": "web"}
+
+    if any(keyword in query for keyword in ["联网", "搜索", "查找"]):
+        return {"search_mode": "hybrid"}
+
+    return {"search_mode": "local"}

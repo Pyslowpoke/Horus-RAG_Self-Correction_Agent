@@ -1,0 +1,11 @@
+Q: 什么是RAG？
+Wrong: RAG是一种数据库技术。
+Correct: RAG是检索增强生成（Retrieval-Augmented Generation）技术，通过在生成前检索外部知识库来提高答案质量。
+
+Q: Embedding有什么作用？
+Wrong: Embedding用于存储数据。
+Correct: Embedding是把文字转换成向量的技术，可以表示文字的语义信息，用于相似度检索。
+
+Q: BM25是什么？
+Wrong: BM25是一种深度学习模型。
+Correct: BM25是基于词频和逆文档频率的检索方法，是一种传统的关键词匹配算法。
