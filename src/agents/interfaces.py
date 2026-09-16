@@ -11,7 +11,7 @@ from langchain_core.documents import Document
 class AgentState(TypedDict, total=False):
     # 用户输入
     query: str
-    search_mode: Literal["local", "web", "hybrid"]
+    search_mode: Literal["local", "web", "hybrid", "self_aware"]
     chat_history: List[Dict[str, str]]  # {"role": "user/assistant", "content": "..."}
     preferences: Dict[str, str]
 
@@ -39,6 +39,11 @@ class AgentState(TypedDict, total=False):
 
     # 事实核查与自纠正
     verification_log: List[Dict[str, str]]  # [{claim, verdict, evidence}]
+    verification_history: list
+    verification_status: str
+    retrieval_error: str
+    generation_error: str
+    web_error: str
     failed_claims: List[Dict[str, str]]
     retry_count: int
     max_retries: int

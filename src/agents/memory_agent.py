@@ -8,6 +8,7 @@ import logging
 from typing import Dict, Any
 
 from src.agents.interfaces import AgentState
+from src.runtime import RequestTimeout
 
 logger = logging.getLogger(__name__)
 
@@ -29,6 +30,8 @@ def make_memory_agent(memory_bank, max_memory_chars: int = 500):
 
             logger.info("[MemoryAgent] 检索完成: len=%s", len(memory_context))
             return {"memory_context": memory_context}
+        except RequestTimeout:
+            raise
         except Exception as e:
             logger.error("[MemoryAgent] 检索失败: %s", str(e), exc_info=True)
             return {"memory_context": ""}

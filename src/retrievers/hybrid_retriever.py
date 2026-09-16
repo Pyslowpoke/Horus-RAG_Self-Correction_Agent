@@ -1,137 +1,115 @@
-"""
-混合检索器 - 向量检索 + BM25 关键词检索 + Reranker 重排序
-
-流程：
-1. 向量检索（取 top_k * 4 个候选）
-2. BM25 检索（取 top_k * 4 个候选）
-3. RRF 融合 → 取 top_k * 2 个候选
-4. Reranker 重排序 → 取最终 top_k
-"""
-
-import numpy as np
+"""Hybrid retrieval with stable identity, observable scores and evidence filtering."""
 import logging
-from typing import List
+import numpy as np
 from langchain_core.documents import Document
-import jieba
+from src.documents import chunk_id, unique_docs, tokenize, lexical_relevance
+from src.runtime import timed, check_budget, RequestTimeout
 
 logger = logging.getLogger(__name__)
 
 
 class HybridRetriever:
-    def __init__(self, chroma_db, bm25_index, all_docs, reranker_model=None):
-        """
-        参数:
-            chroma_db: ChromaDB 实例
-            bm25_index: BM25 索引
-            all_docs: 所有文档列表
-            reranker_model: Reranker 模型实例（可选）
-        """
+    def __init__(self, chroma_db, bm25_index, all_docs, reranker_model=None,
+                 candidate_k=20, rerank_k=10, rrf_k=60, min_lexical_score=0.3,
+                 max_vector_distance=None, min_rerank_score=0.3, **kwargs):
         self.chroma_db = chroma_db
         self.bm25_index = bm25_index
         self.all_docs = all_docs
         self.reranker_model = reranker_model
+        self.candidate_k = candidate_k
+        self.rerank_k = rerank_k
+        self.rrf_k = rrf_k
+        self.min_lexical_score = min_lexical_score
+        self.max_vector_distance = max_vector_distance
+        self.min_rerank_score = min_rerank_score
+        if bm25_index is not None and len(all_docs) != bm25_index.corpus_size:
+            raise ValueError('BM25 文档数与索引不一致')
+        self.doc_terms = [set(tokenize(doc.page_content)) for doc in all_docs]
 
-        if len(all_docs) != bm25_index.corpus_size:
-            logger.warning(f"[HybridRetriever] all_docs({len(all_docs)}) != bm25_index({bm25_index.corpus_size})")
+    def _get_doc_id(self, doc):
+        return chunk_id(doc)
 
-    def _get_doc_id(self, doc: Document) -> str:
-        if "id" in doc.metadata:
-            return doc.metadata["id"]
-        source = doc.metadata.get("source", "unknown")
-        idx = doc.metadata.get("chunk_index", 0)
-        return f"{source}_{idx}"
-
-    def retrieve(self, query: str, top_k: int = 5) -> list:
-        """
-        执行混合检索 + Reranker 重排序
-
-        流程：
-        1. 向量检索（取 candidate_k 个候选）
-        2. BM25 检索（取 candidate_k 个候选）
-        3. RRF 融合 → 取 rerank_k 个候选
-        4. Reranker 重排序 → 取最终 top_k
-        """
-        candidate_k = top_k * 4  # 扩大召回池
-        rerank_k = top_k * 2     # Reranker 候选数
-
-        # ---- 1. 向量检索 ----
-        vector_results = self.chroma_db.similarity_search(query, k=candidate_k)
-
-        # ---- 2. BM25 检索 ----
-        query_tokens = jieba.lcut(query)
-        bm25_scores = self.bm25_index.get_scores(query_tokens)
-        top_indices = np.argsort(bm25_scores)[::-1][:candidate_k]
-        bm25_results = [self.all_docs[i] for i in top_indices]
-
-        # ---- 3. RRF 融合 ----
-        rrf_k = 60
-        rrf_scores = {}
-
-        for rank, doc in enumerate(vector_results):
-            doc_id = self._get_doc_id(doc)
-            if doc_id not in rrf_scores:
-                rrf_scores[doc_id] = {"score": 0.0, "doc": doc}
-            rrf_scores[doc_id]["score"] += 1.0 / (rrf_k + rank + 1)
-
-        for rank, doc in enumerate(bm25_results):
-            doc_id = self._get_doc_id(doc)
-            if doc_id not in rrf_scores:
-                rrf_scores[doc_id] = {"score": 0.0, "doc": doc}
-            rrf_scores[doc_id]["score"] += 1.0 / (rrf_k + rank + 1)
-
-        # 取 rerank_k 个候选，准备给 Reranker
-        sorted_items = sorted(rrf_scores.values(), key=lambda x: x["score"], reverse=True)
-        candidate_docs = [item["doc"] for item in sorted_items[:rerank_k]]
-
-        if not candidate_docs:
+    def retrieve(self, query, top_k=5, extra_docs=None):
+        if not query.strip() or top_k < 1 or not self.all_docs:
             return []
+        candidate_k = min(self.candidate_k, len(self.all_docs))
+        with timed('vector_search'):
+            vector_results = []
+            for doc, distance in self.chroma_db.similarity_search_with_score(query, k=candidate_k):
+                if self.max_vector_distance is None or distance <= self.max_vector_distance:
+                    vector_results.append(Document(page_content=doc.page_content,
+                        metadata={**doc.metadata, 'vector_distance': float(distance)}))
+        with timed('bm25_search'):
+            tokens = tokenize(query)
+            terms = set(tokens)
+            scores = self.bm25_index.get_scores(tokens) if self.bm25_index is not None else []
+            # Match presence is separate from score: BM25 can produce zero/negative IDF.
+            matching = [i for i, words in enumerate(self.doc_terms) if terms.intersection(words)]
+            matching.sort(key=lambda i: (-float(scores[i]), chunk_id(self.all_docs[i])))
+            bm25_results = [Document(page_content=self.all_docs[i].page_content,
+                metadata={**self.all_docs[i].metadata, 'bm25_score': float(scores[i])})
+                for i in matching[:candidate_k]]
+        with timed('rrf_fusion'):
+            fused = {}
+            lists = [vector_results, bm25_results]
+            if extra_docs:
+                lists.append(extra_docs)
+            for documents in lists:
+                for rank, doc in enumerate(unique_docs(documents), 1):
+                    identity = chunk_id(doc)
+                    item = fused.setdefault(identity, {'score': 0.0, 'doc': doc})
+                    item['score'] += 1.0 / (self.rrf_k + rank)
+                    item['doc'].metadata.update(doc.metadata)
+            ranked = sorted(fused.values(), key=lambda item: (-item['score'], chunk_id(item['doc'])))
+            candidates = []
+            for item in ranked[:self.rerank_k]:
+                doc = item['doc']
+                doc.metadata['rrf_score'] = item['score']
+                candidates.append(doc)
+        return self.rank_and_filter(query, candidates, top_k)
 
-        # ---- 4. Reranker 重排序 ----
-        if self.reranker_model is not None:
-            reranked_docs = self._rerank(query, candidate_docs, top_k)
-            return reranked_docs
-        else:
-            # 没有 Reranker，直接返回 RRF 结果
-            return candidate_docs[:top_k]
-
-    def _rerank(self, query: str, docs: List[Document], top_k: int) -> List[Document]:
-        """用 Reranker 对文档重新排序"""
+    def rank_and_filter(self, query, docs, top_k=5):
+        docs = unique_docs(docs)
         if not docs:
             return []
+        if self.reranker_model is not None:
+            try:
+                with timed('reranker'):
+                    scores = self._rerank_scores(query, docs)
+                scored = []
+                for doc, score in zip(docs, scores):
+                    doc.metadata.update(rerank_score=float(score), relevance_score=float(score),
+                                        relevance_method='reranker')
+                    if score >= self.min_rerank_score:
+                        scored.append(doc)
+                return sorted(scored, key=lambda d: d.metadata['rerank_score'], reverse=True)[:top_k]
+            except RequestTimeout:
+                raise
+            except Exception:
+                logger.exception('重排序失败，使用词项匹配过滤')
+        selected = []
+        for doc in docs:
+            score = lexical_relevance(query, doc)
+            doc.metadata.update(relevance_score=score, relevance_method='lexical_fallback')
+            if score >= self.min_lexical_score and score > 0:
+                selected.append(doc)
+        return selected[:top_k]
 
-        try:
-            import torch
-            from transformers import AutoTokenizer, AutoModelForSequenceClassification
-
-            # 构建 (query, doc) 对
-            pairs = [[query, doc.page_content] for doc in docs]
-
-            # Tokenize
-            inputs = self.reranker_model["tokenizer"](
-                pairs,
-                padding=True,
-                truncation=True,
-                max_length=512,
-                return_tensors="pt"
-            )
-
-            # 推理
-            with torch.no_grad():
-                outputs = self.reranker_model["model"](**inputs)
-                scores = outputs.logits.squeeze().tolist()
-
-            # 如果只有一个文档，scores 可能是 float
-            if isinstance(scores, float):
-                scores = [scores]
-
-            # 按分数排序
-            doc_score_pairs = list(zip(docs, scores))
-            doc_score_pairs.sort(key=lambda x: x[1], reverse=True)
-
-            logger.info(f"[Reranker] 重排序完成: {len(docs)} 个候选 → {top_k} 个结果")
-
-            return [doc for doc, _ in doc_score_pairs[:top_k]]
-
-        except Exception as e:
-            logger.error(f"[Reranker] 重排序失败: {e}，返回原始结果")
-            return docs[:top_k]
+    def _rerank_scores(self, query, docs):
+        import torch
+        resource = self.reranker_model
+        batch_size = resource.get('batch_size', 4)
+        device = resource.get('device', 'cpu')
+        scores = []
+        # Cached models are shared across sessions; avoid concurrent CPU/GPU oversubscription.
+        with resource['lock']:
+            for start in range(0, len(docs), batch_size):
+                check_budget()
+                pairs = [[query, doc.page_content] for doc in docs[start:start + batch_size]]
+                inputs = resource['tokenizer'](pairs, padding=True, truncation=True,
+                    max_length=resource.get('max_length', 512), return_tensors='pt')
+                inputs = {key: value.to(device) for key, value in inputs.items()}
+                with torch.inference_mode():
+                    logits = resource['model'](**inputs).logits.reshape(-1).float()
+                    scores.extend(torch.sigmoid(logits).cpu().tolist())
+        return scores

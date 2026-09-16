@@ -10,6 +10,7 @@ import logging
 import requests
 from typing import List, Optional, Dict
 from langchain_core.documents import Document
+from src.runtime import bounded_timeout, check_budget
 
 logger = logging.getLogger(__name__)
 
@@ -46,26 +47,20 @@ class WebSearchRetriever:
 
         last_exception = None
         for attempt in range(2):
+            check_budget()
             try:
-                resp = requests.post(url, headers=headers, json=payload, timeout=self.timeout)
-                print(f"[百度搜索] HTTP状态码: {resp.status_code}")
-                print(f"[百度搜索] 响应体: {resp.text[:500]}")
-
-                if resp.status_code != 200:
-                    print(f"[百度搜索] 请求失败，状态码: {resp.status_code}")
-                    return []
+                resp = requests.post(url, headers=headers, json=payload, timeout=bounded_timeout(self.timeout))
+                check_budget()
 
                 resp.raise_for_status()
                 data = resp.json()
 
                 if data.get("code") not in (None, 0):
                     logger.warning("[百度搜索] 业务错误: %s", data.get("message"))
-                    print(f"[百度搜索] 业务错误: {data.get('message')}")
-                    return []
+                    raise ValueError('搜索服务返回业务错误')
 
                 references = data.get("references", [])
                 if not references:
-                    print("[百度搜索] 无搜索结果")
                     return []
 
                 parsed = []
@@ -83,11 +78,13 @@ class WebSearchRetriever:
             except requests.exceptions.RequestException as e:
                 last_exception = e
                 logger.warning("[百度搜索] 尝试 %s/2 失败: %s", attempt + 1, e)
+                if isinstance(e, requests.HTTPError) and e.response is not None and 400 <= e.response.status_code < 500 and e.response.status_code not in (408, 429):
+                    raise
                 if attempt == 0:
-                    time.sleep(1)
+                    time.sleep(bounded_timeout(1))
 
         logger.error("[百度搜索] 所有重试失败: %s", last_exception)
-        return []
+        raise RuntimeError('联网搜索请求失败') from last_exception
 
     def retrieve(self, query: str, max_results: Optional[int] = None) -> List[Document]:
         """执行互联网搜索，返回 Document 列表"""

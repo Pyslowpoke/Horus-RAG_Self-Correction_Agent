@@ -15,6 +15,7 @@ import time
 from pathlib import Path
 from typing import List, Dict, Set
 from dataclasses import dataclass
+from watchdog.events import FileSystemEventHandler
 
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import HuggingFaceEmbeddings
@@ -40,12 +41,14 @@ class GoldMemoryBank:
         results = bank.retrieve_preferences("RAG技术", top_k=3)
     """
 
-    def __init__(self, persist_dir=None, embedding_model="all-MiniLM-L6-v2", device="cpu", embeddings=None):
+    def __init__(self, persist_dir=None, embedding_model="all-MiniLM-L6-v2", device="cpu", embeddings=None,
+                 distance_threshold=0.65):
         if persist_dir is None:
             project_root = Path(__file__).parent.parent.parent
             persist_dir = str(project_root / "gold_memory_db")
 
         self.persist_dir = persist_dir
+        self.distance_threshold = distance_threshold
         self.embeddings = embeddings or HuggingFaceEmbeddings(
             model_name=embedding_model, model_kwargs={"device": device}
         )
@@ -97,7 +100,9 @@ class GoldMemoryBank:
 
         return mem_id
 
-    def retrieve_preferences(self, query, top_k=3, distance_threshold=0.65) -> List[Dict]:
+    def retrieve_preferences(self, query, top_k=3, distance_threshold=None) -> List[Dict]:
+        if distance_threshold is None:
+            distance_threshold = self.distance_threshold
         results = self.db.similarity_search_with_score(query, k=top_k * 2)
         seen_ids: Set[str] = set()
         memories = []
@@ -189,8 +194,9 @@ class GoldMemoryBank:
 
 # ============ 文件监控 ============
 
-class CorrectionFileHandler:
+class CorrectionFileHandler(FileSystemEventHandler):
     def __init__(self, memory_bank):
+        super().__init__()
         self.memory_bank = memory_bank
         self._processed_files: Set[str] = set()
 

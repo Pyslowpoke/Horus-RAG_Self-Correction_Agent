@@ -1,145 +1,93 @@
+"""Offline retrieval evaluation using annotated evidence IDs or snippets.
+Example: python -m experiments.evaluate_accuracy --cases experiments/retrieval_cases.example.json --output evaluation.json
+No LLM calls. Source snippets are matched against the actual returned chunks.
 """
-评估实验脚本
-
-对比三种方案：纯向量检索 / 混合检索 / 混合检索+事实核查
-指标：答案忠实度、幻觉率
-"""
-
-import os
-os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
-import sys
+import argparse
+import json
 from pathlib import Path
-
-PROJECT_ROOT = Path(__file__).parent.parent
-sys.path.insert(0, str(PROJECT_ROOT))
-
-from dotenv import load_dotenv
-load_dotenv(PROJECT_ROOT / ".env")
-
-from langchain_community.vectorstores import Chroma
-from langchain_community.embeddings import HuggingFaceEmbeddings
-from langchain_core.documents import Document
-from rank_bm25 import BM25Okapi
-import jieba
-
-from src.generators.llm_client import FaultTolerantLLM
-from src.generators.prompt_templates import GENERATION_PROMPT
-from src.retrievers.hybrid_retriever import HybridRetriever
-from src.verifiers.fact_checker import FactChecker
-from src.graph.rag_graph import build_rag_graph
-from src.retrievers.hyde_retriever import HyDERetriever
-
-from experiments.test_data import TEST_CASES
-
-# 加载系统身份
-SYSTEM_IDENTITY = ""
-try:
-    with open(PROJECT_ROOT / "knowledge_base" / "system_profile.txt", encoding="utf-8") as f:
-        SYSTEM_IDENTITY = f.read()
-except FileNotFoundError:
-    SYSTEM_IDENTITY = "系统名称：Horus（荷鲁斯）\nSlogan：Insight, not imagination."
+import statistics
+import time
+from src.config import load_config
+from src.components import load_embeddings, load_db, build_bm25, load_reranker, make_retriever
+from src.documents import chunk_id
+from src.runtime import RequestBudget, request_scope
 
 
-def init_components():
-    embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2", model_kwargs={'device': 'cpu'})
-    db = Chroma(persist_directory=str(PROJECT_ROOT / "chroma_db"), embedding_function=embeddings)
-
-    primary_config = {"api_key": os.getenv("DEEPSEEK_API_KEY"), "api_base": "https://api.deepseek.com/v1", "model": "deepseek-chat"}
-    fallback_config = {"api_key": os.getenv("SILICONFLOW_API_KEY"), "api_base": "https://api.siliconflow.cn/v1", "model": "Qwen/Qwen2.5-7B-Instruct"}
-    llm = FaultTolerantLLM(primary_config, fallback_config)
-
-    all_docs_list = db.get()["documents"]
-    all_docs = [Document(page_content=doc) for doc in all_docs_list]
-    tokenized_docs = [jieba.lcut(doc) for doc in all_docs_list]
-    bm25_index = BM25Okapi(tokenized_docs)
-
-    hybrid_retriever = HybridRetriever(db, bm25_index, all_docs)
-    fact_checker = FactChecker(llm_client=llm, retriever=None, system_identity=SYSTEM_IDENTITY)
-    hyde_retriever = HyDERetriever(llm, db)
-
-    return db, llm, hybrid_retriever, fact_checker, hyde_retriever
+def matching_ids(case, docs):
+    if 'relevant_ids' in case:
+        return set(case['relevant_ids'])
+    snippets = case.get('evidence_contains', [])
+    return {chunk_id(doc) for doc in docs if any(snippet in doc.page_content for snippet in snippets)}
 
 
-def evaluate_baseline_vector(db, llm, query):
-    """基线：纯向量检索 + 普通生成"""
-    docs = db.similarity_search(query, k=3)
-    context = "\n".join([f"[{i+1}] {doc.page_content}" for i, doc in enumerate(docs)])
-    messages = [{"role": "user", "content": GENERATION_PROMPT.format(system_identity=SYSTEM_IDENTITY, context=context, query=query)}]
-    return llm.generate(messages), docs
+def evaluate(retriever, cases, all_docs, top_k=5):
+    rows = []
+    for case in cases:
+        expected = matching_ids(case, all_docs)
+        answerable = case.get('answerable', True)
+        if answerable and not expected:
+            raise ValueError(f"评测证据不在当前索引中: {case['query']}")
+        if not answerable and expected:
+            raise ValueError('无答案问题不能配置相关证据')
+        with request_scope(RequestBudget(120)) as budget:
+            started = time.perf_counter()
+            docs = retriever.retrieve(case['query'], top_k=top_k)
+            elapsed = time.perf_counter() - started
+        hits = [chunk_id(doc) in expected for doc in docs]
+        first = next((i for i, hit in enumerate(hits, 1) if hit), None)
+        rows.append({'query': case['query'], 'answerable': answerable,
+            'precision_at_k': sum(hits) / top_k,
+            'returned_precision': sum(hits) / len(docs) if docs else 0,
+            'recall_at_k': sum(hits) / len(expected) if expected else None,
+            'reciprocal_rank': 1 / first if first else 0,
+            'correct_abstention': not docs if not answerable else None,
+            'seconds': elapsed, 'returned': len(docs), 'timings': budget.metrics['timings'],
+            'results': [{'chunk_id': chunk_id(d), 'source': d.metadata.get('source'),
+                         'score': d.metadata.get('relevance_score')} for d in docs]})
+    import numpy as np
+    answerable_rows = [r for r in rows if r['answerable']]
+    negative_rows = [r for r in rows if not r['answerable']]
+    average = lambda values: statistics.mean(values) if values else None
+    return {'summary': {
+        'count': len(rows),
+        'precision_at_k_answerable': average([r['precision_at_k'] for r in answerable_rows]),
+        'recall_at_k': average([r['recall_at_k'] for r in answerable_rows]),
+        'returned_precision_answerable': average([r['returned_precision'] for r in answerable_rows]),
+        'mrr': average([r['reciprocal_rank'] for r in answerable_rows]),
+        'correct_abstention_rate': average([r['correct_abstention'] for r in negative_rows]),
+        'p50_seconds': float(np.percentile([r['seconds'] for r in rows], 50)),
+        'p95_seconds': float(np.percentile([r['seconds'] for r in rows], 95))}, 'cases': rows}
 
 
-def evaluate_hybrid(hybrid_retriever, llm, query):
-    """改进A：混合检索 + 普通生成"""
-    docs = hybrid_retriever.retrieve(query, top_k=3)
-    context = "\n".join([f"[{i+1}] {doc.page_content}" for i, doc in enumerate(docs)])
-    messages = [{"role": "user", "content": GENERATION_PROMPT.format(system_identity=SYSTEM_IDENTITY, context=context, query=query)}]
-    return llm.generate(messages), docs
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--cases', required=True)
+    parser.add_argument('--config', default='config.yaml')
+    parser.add_argument('--output', default='retrieval_evaluation.json')
+    parser.add_argument('--no-reranker', action='store_true')
+    args = parser.parse_args()
+    config = load_config(args.config)
+    start = time.perf_counter()
+    embeddings = load_embeddings(config)
+    db = load_db(config, embeddings)
+    bm25, docs = build_bm25(db)
+    reranker = None if args.no_reranker else load_reranker(config)
+    retriever = make_retriever(config, db, bm25, docs, reranker)
+    initialization = time.perf_counter() - start
+    # Warm-up is reported separately from the measured queries.
+    start = time.perf_counter()
+    retriever.retrieve('检索', top_k=config['retrieval']['top_k'])
+    warmup = time.perf_counter() - start
+    cases = json.loads(Path(args.cases).read_text(encoding='utf-8-sig'))
+    if not cases:
+        raise ValueError('评测集不能为空')
+    result = evaluate(retriever, cases, docs, config['retrieval']['top_k'])
+    result.update(initialization_seconds=initialization, warmup_seconds=warmup,
+                  reranker_active=reranker is not None, embedding_model=config['embedding']['model_name'])
+    Path(args.output).write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding='utf-8')
+    print(json.dumps({**result['summary'], 'initialization_seconds': initialization,
+                      'reranker_active': result['reranker_active']}, ensure_ascii=False, indent=2))
 
 
-def evaluate_hybrid_fact_check(rag_graph, query):
-    """改进B：混合检索 + 事实核查"""
-    result = rag_graph.invoke({"query": query})
-    return result["answer"], result.get("retrieved_docs", []), result.get("verification_log", [])
-
-
-def calculate_metrics(answer, expected_claims):
-    """计算评估指标（简化版：检查关键词是否出现）"""
-    supported = sum(1 for claim in expected_claims if claim in answer)
-    faithfulness = supported / len(expected_claims) if expected_claims else 0
-    return {"faithfulness": faithfulness, "hallucination": 1 - faithfulness}
-
-
-def run_evaluation():
-    print("=" * 60)
-    print("RAG-2.0 评估实验")
-    print("=" * 60)
-
-    db, llm, hybrid_retriever, fact_checker, hyde_retriever = init_components()
-    rag_graph = build_rag_graph(hyde_retriever, hybrid_retriever, fact_checker)
-
-    results = {
-        "baseline": {"faithfulness": [], "hallucination": []},
-        "hybrid": {"faithfulness": [], "hallucination": []},
-        "hybrid_fact_check": {"faithfulness": [], "hallucination": []}
-    }
-
-    for i, test_case in enumerate(TEST_CASES):
-        query = test_case["query"]
-        expected = test_case["expected_claims"]
-        print(f"\n--- 测试 {i+1}/{len(TEST_CASES)}: {query} ---")
-
-        # 方案1：纯向量检索
-        answer1, _ = evaluate_baseline_vector(db, llm, query)
-        m1 = calculate_metrics(answer1, expected)
-        results["baseline"]["faithfulness"].append(m1["faithfulness"])
-        results["baseline"]["hallucination"].append(m1["hallucination"])
-        print(f"  基线     - 忠实度: {m1['faithfulness']:.2f}, 幻觉率: {m1['hallucination']:.2f}")
-
-        # 方案2：混合检索
-        answer2, _ = evaluate_hybrid(hybrid_retriever, llm, query)
-        m2 = calculate_metrics(answer2, expected)
-        results["hybrid"]["faithfulness"].append(m2["faithfulness"])
-        results["hybrid"]["hallucination"].append(m2["hallucination"])
-        print(f"  混合检索 - 忠实度: {m2['faithfulness']:.2f}, 幻觉率: {m2['hallucination']:.2f}")
-
-        # 方案3：混合检索 + 事实核查
-        answer3, _, _ = evaluate_hybrid_fact_check(rag_graph, query)
-        m3 = calculate_metrics(answer3, expected)
-        results["hybrid_fact_check"]["faithfulness"].append(m3["faithfulness"])
-        results["hybrid_fact_check"]["hallucination"].append(m3["hallucination"])
-        print(f"  混合+核查 - 忠实度: {m3['faithfulness']:.2f}, 幻觉率: {m3['hallucination']:.2f}")
-
-    # 总结
-    print("\n" + "=" * 60)
-    print("评估总结")
-    print("=" * 60)
-    for method in ["baseline", "hybrid", "hybrid_fact_check"]:
-        avg_faith = sum(results[method]["faithfulness"]) / len(results[method]["faithfulness"])
-        avg_hall = sum(results[method]["hallucination"]) / len(results[method]["hallucination"])
-        print(f"\n{method}:")
-        print(f"  平均忠实度: {avg_faith:.2f}")
-        print(f"  平均幻觉率: {avg_hall:.2f}")
-
-
-if __name__ == "__main__":
-    run_evaluation()
+if __name__ == '__main__':
+    main()

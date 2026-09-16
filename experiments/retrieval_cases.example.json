@@ -1,0 +1,5 @@
+[
+  {"query": "替换为知识库中有答案的真实问题", "answerable": true,
+   "relevant_ids": ["替换为正确证据的 chunk_id"]},
+  {"query": "替换为知识库中没有答案的问题", "answerable": false, "relevant_ids": []}
+]

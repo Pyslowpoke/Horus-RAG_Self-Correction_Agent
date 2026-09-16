@@ -9,11 +9,12 @@ from typing import Dict, Any
 
 from src.agents.interfaces import AgentState
 from src.generators.prompt_templates import GENERATION_PROMPT, WEB_SEARCH_PROMPT
+from src.runtime import RequestTimeout
 
 logger = logging.getLogger(__name__)
 
 
-def make_generation_agent(llm, system_identity: str = ""):
+def make_generation_agent(llm, system_identity: str = "", streaming=False):
     def generation_agent(state: AgentState) -> Dict[str, Any]:
         query = state.get("query", "")
         search_mode = state.get("search_mode", "local")
@@ -36,8 +37,8 @@ def make_generation_agent(llm, system_identity: str = ""):
             prefs_parts.append(f"- 输出格式：{preferences['output_format']}")
         prefs_context = "\n".join(prefs_parts) if prefs_parts else ""
 
-        if not context or context == "未找到相关文档。":
-            logger.info("[GenerationAgent] context 为空，仍继续生成")
+        if search_mode != "self_aware" and (not context or context == "未找到相关文档。"):
+            return {"answer": "根据现有资料无法回答该问题。", "verification_status": "skipped"}
 
         # 构建 Prompt
         if search_mode == "self_aware":
@@ -68,11 +69,16 @@ def make_generation_agent(llm, system_identity: str = ""):
 
         # 生成回答
         try:
-            answer = llm.generate([{"role": "user", "content": prompt}])
+            options = {"stream": True} if streaming else {}
+            answer = llm.generate([{"role": "user", "content": prompt}], **options)
+            if not answer.strip():
+                raise ValueError('模型返回空回答')
             logger.info("[GenerationAgent] 生成完成: mode=%s, len=%s", search_mode, len(answer))
             return {"answer": answer}
+        except RequestTimeout:
+            raise
         except Exception as e:
             logger.error("[GenerationAgent] 生成失败: %s", str(e), exc_info=True)
-            return {"answer": f"生成回答时出现异常：{str(e)[:100]}。请稍后重试。"}
+            return {"answer": "生成回答时出现异常，请稍后重试。", "generation_error": "生成失败"}
 
     return generation_agent

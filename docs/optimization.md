@@ -1,0 +1,99 @@
+# 检索与响应优化说明
+
+## 本次修改
+
+- 使用统一的 `chunk_id`，完整保留来源、页码与存储 ID；RRF 每条召回列表内先去重。
+- BM25 只纳入实际词项命中的候选。保留 BM25、向量距离、RRF、重排及过滤分数。
+- 重排后应用可配置门槛；无重排器时使用显式词项过滤，不把非空结果当作相关。
+- 默认禁用 HyDE 和外部查询改写。启用 HyDE 后仅在原问题无有效证据时触发，补充候选仍按原问题统一重排。
+- 本地与联网结果的引用编号、显示顺序、核查上下文保持一致。联网错误与空结果分开处理。
+- 图统一控制核查循环，默认最多重写一次；历史失败不再污染当前状态。JSON 解析失败和不存在于上下文的证据不能视为核查通过。
+- 无证据时直接拒答，不再为无关资料调用生成和核查模型。
+- 流式显示生成草稿，核查完成后显示最终答案。记录首 token、各节点、向量/BM25/RRF/重排耗时和每次请求的模型调用/token 数。
+- SDK 内置重试关闭；只由应用配置重试。主备模型去重，调用超时不超过请求剩余时间。
+- 前端共享线程池不在每次请求结束时等待关闭；后台只接收普通 Python 数据，不读取会话状态。超时后取消后续节点和网络调用。
+- 缓存键包含对话、偏好、索引版本和配置；结果有 TTL 和容量上限，错误/核查失败结果不缓存。
+- 分块改为 tokenizer token 计数，中文标点优先。稳定 ID 使重复入库不增加记录；新增向量成功后才删除旧块。
+- 启动校验索引中的 Embedding 签名，避免新旧向量混用。
+
+## 配置与运行
+
+所有命令在项目根目录执行，推荐使用已验证的 `.venv` 环境：
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m streamlit run app.py
+```
+
+修改 `config.yaml` 后重启应用。新机器首次下载模型时，把相应 `local_files_only` 改为 `false`；下载完成后可恢复为 `true`。
+
+重点参数：
+
+| 参数 | 当前含义 |
+|---|---|
+| `retrieval.candidate_k` | 向量/BM25 各自召回上限 |
+| `retrieval.rerank_k` | 融合后重排的候选上限 |
+| `retrieval.top_k` | 最终证据数量上限，允许不足或为空 |
+| `reranker.min_score` | sigmoid 重排分数门槛；不是校准概率 |
+| `retrieval.min_lexical_score` | 无重排器及纯联网模式的词项覆盖门槛 |
+| `retrieval.max_vector_distance` | 可选距离上限，必须按模型和距离度量校准 |
+| `generation.max_retries` | 整个图最多重写次数 |
+| `generation.verification_enabled` | 是否核查；关闭时界面明确标注未验证 |
+| `generation.streaming` | 是否流式显示初始草稿 |
+| `runtime.request_timeout` | 请求预算，包括初始化和网络查询 |
+
+需要更快响应时，可比较关闭重排序后的速度与召回质量；不要只根据耗时关闭过滤。重排门槛应在业务验证集上校准，不能把演示问题的通过率当作真实准确率。
+
+## 索引迁移与备份
+
+旧索引目录 `chroma_db` 保留；额外快照位于 `backups`。当前应用使用 `chroma_db_zh_bge_small_v15`，MiniLM 索引 `chroma_db_v2` 同样保留。
+
+迁移脚本只接受不存在的目标目录，并复用旧向量。它读取根目录的 `config.yaml`，没有 `--config` 参数。下面的旧 MiniLM 索引示例必须先使用与源索引一致的旧模型配置；当前默认中文 BGE 配置不能直接执行该迁移。更换模型请使用下方的原文入库流程：
+
+```powershell
+.\.venv\Scripts\python.exe scripts/migrate_index.py --source chroma_db --target chroma_db_copy
+```
+
+迁移不能更换 Embedding。旧索引没有 manifest 时，脚本仅接受原项目的 MiniLM 配置。
+
+增量重建：
+
+```powershell
+.\.venv\Scripts\python.exe -m src.data_ingestion
+```
+
+入库失败时不会先删除旧块。当前过程不是数据库级原子发布；若需要多用户持续查询期间更新大量知识，应进一步采用独立 collection 构建完成后切换。
+
+更换中文 Embedding 时，设置新的模型、归一化方式、可选 `query_prefix` 和新索引目录，再从原始文档入库。不要复制旧向量并更改模型签名。纠偏记忆也必须重新向量化；可运行 `python scripts/reembed_memory.py --config config.yaml`，旧记忆保留，目标按模型签名隔离。
+
+## 验证
+
+```powershell
+.\.venv\Scripts\python.exe -m unittest discover -s tests -v
+.\.venv\Scripts\python.exe -m compileall -q src app.py experiments scripts
+.\.venv\Scripts\python.exe -m pip check
+```
+
+测试使用假模型和假网络，不消耗 API 额度；覆盖文档 ID、融合、无关结果、HyDE、核查循环、非法 JSON、引用证据、幂等入库、重试、流式输出、时间预算和 Streamlit 完整请求流程。
+
+## 业务评测
+
+复制 `experiments/retrieval_cases.example.json`，填入真实问题及正确证据 `chunk_id`，也可使用 `evidence_contains` 指定原文片段。标注无答案问题时设置 `answerable: false`。
+
+```powershell
+.\.venv\Scripts\python.exe -m experiments.evaluate_accuracy --cases your_cases.json --output with_reranker.json
+.\.venv\Scripts\python.exe -m experiments.evaluate_accuracy --cases your_cases.json --output without_reranker.json --no-reranker
+```
+
+脚本只评估检索，不调用 LLM；输出 Precision@K、返回文档精度、Recall@K、MRR、无答案拒答率及 P50/P95。未找到标注证据时直接报错，避免把错误标注当作模型失误。初始化和预热耗时单独记录。
+
+答案是否正确、是否忠实于证据，需要另行人工标注或独立评审；关键词命中率不能充当幻觉率。
+
+## 实际限制
+
+- 当前已切换 BAAI/bge-small-zh-v1.5，启用查询指令和归一化。小样本结果见 [中文模型验证](chinese_embedding.md)，不能外推为业务准确率。
+- 纯联网模式为了省去本地模型加载，使用词项覆盖过滤，可能漏掉同义表述。
+- 本地模型推理无法被 Python 线程强制中断。超时后界面返回，已在执行的计算结束后会检查取消标志；正在等待网络读取时受其 timeout 约束。
+- 重排推理降级会保留词项过滤，并通过文档 metadata 的 `relevance_method` 记录；模型加载失败会在界面提示。
+- 运行时 token 指标记录成功返回的 usage，服务端未返回 usage 的失败请求无法精确计费。
+- 原知识库中的系统说明是用户数据，不会自动改写；其中提及的旧重试次数等描述应由维护者同步更新。

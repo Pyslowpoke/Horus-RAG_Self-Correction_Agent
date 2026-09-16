@@ -2,9 +2,6 @@
 #终端运行代码↑
 
 import os
-os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
-os.environ["HF_HUB_OFFLINE"] = "1"
-os.environ["TRANSFORMERS_OFFLINE"] = "1"
 import sys
 from pathlib import Path
 
@@ -15,28 +12,25 @@ from dotenv import load_dotenv
 load_dotenv(PROJECT_ROOT / ".env")
 
 import streamlit as st
-from langchain_community.vectorstores import Chroma
-from langchain_community.embeddings import HuggingFaceEmbeddings
-from langchain_core.documents import Document
-from rank_bm25 import BM25Okapi
-import jieba
 import time
 import json
-import threading
-import queue
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutureTimeoutError
 
-from src.generators.llm_client import FaultTolerantLLM
-from src.generators.prompt_templates import GENERATION_PROMPT, WEB_SEARCH_PROMPT
 from src.retrievers.hyde_retriever import HyDERetriever
-from src.retrievers.hybrid_retriever import HybridRetriever
 from src.retrievers.web_search_retriever import WebSearchRetriever
 from src.verifiers.fact_checker import FactChecker
-from src.graph.rag_graph import build_rag_graph
-from src.graph.multi_agent_graph import build_multi_agent_rag_graph, NullHybridRetriever
+from src.graph.multi_agent_graph import build_multi_agent_rag_graph
 from src.memory.conversation_memory import ConversationMemory
 from src.memory.gold_memory_bank import GoldMemoryBank, start_watcher, import_all_corrections
+
+from src.config import load_config, index_version, fingerprint, embedding_signature
+from src import components
+from src.runtime import RequestBudget, RequestTimeout, request_scope, timed
+
+CONFIG = load_config()
+import logging
+logging.basicConfig(level=getattr(logging, CONFIG["logging"]["level"], logging.INFO))
 
 # 用户偏好管理
 PREFERENCES_FILE = PROJECT_ROOT / "user_preferences.json"
@@ -78,48 +72,6 @@ def get_time_greeting():
         return "晚上好"
     else:
         return "夜深了"
-
-# 百度 Query 改写（指代消解）
-def rewrite_query_with_baidu(query: str) -> str:
-    """
-    调用百度 Query 改写 API 进行指代消解
-    返回改写后的 query，失败时返回原 query
-    """
-    import requests
-    import hashlib
-
-    token = os.getenv("BAIDU_API_KEY")
-    if not token:
-        return query
-
-    # 缓存检查
-    if "rewrite_cache" not in st.session_state:
-        st.session_state.rewrite_cache = {}
-
-    cache_key = hashlib.md5(query.encode()).hexdigest()
-    if cache_key in st.session_state.rewrite_cache:
-        return st.session_state.rewrite_cache[cache_key]
-
-    try:
-        url = "https://qianfan.baidubce.com/v2/tools/query_rewrite"
-        headers = {
-            "Authorization": f"Bearer {token}",
-            "Content-Type": "application/json",
-        }
-        payload = {"query": query}
-
-        response = requests.post(url, headers=headers, json=payload, timeout=10)
-        response.raise_for_status()
-        data = response.json()
-
-        if data.get("code") == 0:
-            altered = data.get("altered_query", query)
-            st.session_state.rewrite_cache[cache_key] = altered
-            return altered
-        else:
-            return query
-    except Exception:
-        return query
 
 # 初始化用户偏好
 def get_preferences():
@@ -164,164 +116,80 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# 分步缓存初始化
+# Models are cached across requests; index-dependent resources use the manifest version.
 @st.cache_resource
 def load_embeddings():
-    """加载 Embedding 模型（带预热）"""
-    embeddings = HuggingFaceEmbeddings(
-        model_name="all-MiniLM-L6-v2",
-        model_kwargs={'device': 'cpu'}
-    )
-    # 预热：强制完成初始化
-    _ = embeddings.embed_query("warm up")
-    return embeddings
+    return components.load_embeddings(CONFIG)
 
 @st.cache_resource
-def load_chroma_db(_embeddings):
-    return Chroma(
-        persist_directory=str(PROJECT_ROOT / "chroma_db"),
-        embedding_function=_embeddings
-    )
+def load_chroma_db(_embeddings, version):
+    return components.load_db(CONFIG, _embeddings)
 
 @st.cache_resource
-def build_bm25_index(_db):
-    all_docs_list = _db.get()["documents"]
-    tokenized_docs = [jieba.lcut(doc) for doc in all_docs_list]
-    return BM25Okapi(tokenized_docs), all_docs_list
+def build_bm25_index(_db, version):
+    return components.build_bm25(_db)
 
 @st.cache_resource
 def load_llm():
-    primary_config = {
-        "api_key": os.getenv("DEEPSEEK_API_KEY"),
-        "api_base": "https://api.deepseek.com/v1",
-        "model": "deepseek-chat"
-    }
-    fallback_config = {
-        "api_key": os.getenv("SILICONFLOW_API_KEY"),
-        "api_base": "https://api.siliconflow.cn/v1",
-        "model": "Qwen/Qwen2.5-7B-Instruct"
-    }
-    return FaultTolerantLLM(primary_config, fallback_config)
+    return components.make_llm(CONFIG)
 
 @st.cache_resource
 def load_light_llm():
-    light_config = {
-        "api_key": os.getenv("SILICONFLOW_API_KEY"),
-        "api_base": "https://api.siliconflow.cn/v1",
-        "model": "Qwen/Qwen2.5-7B-Instruct"
-    }
-    fallback_config = {
-        "api_key": os.getenv("SILICONFLOW_API_KEY"),
-        "api_base": "https://api.siliconflow.cn/v1",
-        "model": "Qwen/Qwen2.5-7B-Instruct"
-    }
-    return FaultTolerantLLM(light_config, fallback_config)
+    return components.make_llm(CONFIG, light=True)
 
 @st.cache_resource
 def load_reranker():
-    """加载 Reranker 模型（只加载一次）"""
-    try:
-        from transformers import AutoTokenizer, AutoModelForSequenceClassification
-        import torch
-
-        model_name = "BAAI/bge-reranker-v2-m3"
-        tokenizer = AutoTokenizer.from_pretrained(model_name)
-        model = AutoModelForSequenceClassification.from_pretrained(model_name)
-        model.eval()
-
-        return {"tokenizer": tokenizer, "model": model}
-    except Exception as e:
-        print(f"[Reranker] 加载失败: {e}")
-        return None
+    return components.load_reranker(CONFIG)
 
 @st.cache_resource
 def load_memory_bank(_embeddings):
-    memory_bank = GoldMemoryBank(embeddings=_embeddings)
+    # Separate memory vectors when changing the embedding model.
+    signature = fingerprint(embedding_signature(CONFIG))[:12]
+    legacy = (CONFIG['embedding']['model_name'] == 'all-MiniLM-L6-v2'
+              and not CONFIG['embedding']['normalize_embeddings']
+              and not CONFIG['embedding']['query_prefix'])
+    memory_bank = GoldMemoryBank(embeddings=_embeddings,
+        persist_dir=str(PROJECT_ROOT / 'gold_memory_db' if legacy else PROJECT_ROOT / 'gold_memory_db' / signature),
+        distance_threshold=CONFIG.get('memory', {}).get('distance_threshold', 0.65))
     import_all_corrections(memory_bank)
     start_watcher(memory_bank)
     return memory_bank
 
-# 延迟初始化（按需加载）
-def get_pipeline(search_mode="local"):
-    """
-    延迟获取流水线组件，根据搜索模式按需加载
-    - web 模式：只加载 LLM（秒开）
-    - local/hybrid 模式：加载全部组件
-    """
-    cache_key = f"pipeline_{search_mode}"
+@st.cache_resource
+def get_executor():
+    return ThreadPoolExecutor(max_workers=2, thread_name_prefix='rag')
 
-    if cache_key in st.session_state:
-        return st.session_state[cache_key]
-
-    # web 模式：只加载 LLM + WebSearch
-    if search_mode == "web":
-        heavy_llm = load_llm()
-        light_llm = load_light_llm()
-
+@st.cache_resource
+def get_pipeline(search_mode='local', version=''):
+    heavy_llm, light_llm = load_llm(), load_light_llm()
+    web = None
+    if search_mode in ('web', 'hybrid'):
         try:
-            web_search_retriever = WebSearchRetriever(max_results=5)
-        except ValueError as e:
-            st.error(f"❌ {e}")
-            st.stop()
-
-        hybrid_retriever = NullHybridRetriever()
-        fact_checker = FactChecker(llm_client=light_llm, retriever=None, system_identity=SYSTEM_IDENTITY)
-
-        multi_agent_graph = build_multi_agent_rag_graph(
-            heavy_llm=heavy_llm,
-            light_llm=light_llm,
-            hybrid_retriever=hybrid_retriever,
-            web_search_retriever=web_search_retriever,
-            fact_checker=fact_checker,
-            memory_bank=None,
-            hyde_retriever=None,
-        )
-
-        result = (None, multi_agent_graph, heavy_llm, fact_checker, web_search_retriever, None)
-        st.session_state[cache_key] = result
-        return result
-
-    # local/hybrid 模式：加载全部组件
-    progress = st.progress(0, text="正在加载 Embedding 模型...")
-    embeddings = load_embeddings()
-    progress.progress(25, text="正在加载 ChromaDB...")
-    
-    db = load_chroma_db(embeddings)
-    progress.progress(50, text="正在构建 BM25 索引...")
-    
-    bm25_index, all_docs_list = build_bm25_index(db)
-    all_docs = [Document(page_content=doc) for doc in all_docs_list]
-    progress.progress(75, text="正在加载 LLM 客户端...")
-    
-    heavy_llm = load_llm()
-    light_llm = load_light_llm()
-    memory_bank = load_memory_bank(embeddings)
-    reranker_model = load_reranker()  # 加载 Reranker 模型
-    progress.progress(100, text="加载完成！")
-
-    hyde_retriever = HyDERetriever(heavy_llm, db)
-    hybrid_retriever = HybridRetriever(db, bm25_index, all_docs, reranker_model=reranker_model)
-    fact_checker = FactChecker(llm_client=light_llm, retriever=None, system_identity=SYSTEM_IDENTITY)
-
-    try:
-        web_search_retriever = WebSearchRetriever(max_results=5)
-    except ValueError:
-        web_search_retriever = None
-
-    rag_graph = build_rag_graph(hyde_retriever, hybrid_retriever, fact_checker)
-    multi_agent_graph = build_multi_agent_rag_graph(
-        heavy_llm=heavy_llm,
-        light_llm=light_llm,
-        hybrid_retriever=hybrid_retriever,
-        web_search_retriever=web_search_retriever,
-        fact_checker=fact_checker,
-        memory_bank=memory_bank,
-        hyde_retriever=hyde_retriever,
-    )
-
-    result = (rag_graph, multi_agent_graph, heavy_llm, fact_checker, web_search_retriever, memory_bank)
-    st.session_state[cache_key] = result
-    return result
+            web = WebSearchRetriever(max_results=CONFIG['web']['max_results'], timeout=CONFIG['web']['timeout'])
+        except ValueError:
+            if search_mode == 'web':
+                raise
+    retriever, memory_bank, hyde = None, None, None
+    if search_mode not in ('web', 'self_aware'):
+        with timed('load_embeddings'):
+            embeddings = load_embeddings()
+        with timed('load_index'):
+            db = load_chroma_db(embeddings, version)
+            bm25, docs = build_bm25_index(db, version)
+        with timed('load_reranker'):
+            reranker = load_reranker()
+        retriever = components.make_retriever(CONFIG, db, bm25, docs, reranker)
+        with timed('load_memory'):
+            memory_bank = load_memory_bank(embeddings)
+        if CONFIG['retrieval']['hyde_enabled']:
+            hyde = HyDERetriever(light_llm, db, max_tokens=CONFIG['retrieval']['hyde_max_tokens'])
+    checker = FactChecker(light_llm, max_retries=CONFIG['generation']['max_retries'])
+    graph = build_multi_agent_rag_graph(heavy_llm, light_llm, retriever, web, checker, memory_bank,
+        hyde_retriever=hyde, max_retries=CONFIG['generation']['max_retries'],
+        verification_enabled=CONFIG['generation']['verification_enabled'],
+        context_max_chars=CONFIG['generation']['context_max_chars'], top_k=CONFIG['retrieval']['top_k'],
+        streaming=CONFIG['generation']['streaming'], web_min_lexical_score=CONFIG['retrieval']['min_lexical_score'])
+    return graph, bool(retriever and retriever.reranker_model)
 
 # 加载系统身份
 def load_system_identity():
@@ -410,7 +278,7 @@ with st.sidebar:
         )
     )
 
-    if st.sidebar.button("💾 保存设置", use_container_width=True):
+    if st.sidebar.button("💾 保存设置", width="stretch"):
         new_prefs = {
             "nickname": nickname,
             "disliked_content": disliked,
@@ -427,13 +295,13 @@ with st.sidebar:
     st.markdown("---")
     st.markdown("### 📚 知识库管理")
 
-    if st.sidebar.button("🔄 重建知识库", use_container_width=True):
+    if st.sidebar.button("🔄 重建知识库", width="stretch"):
         with st.spinner("正在重建向量数据库..."):
             try:
                 from src.data_ingestion import load_and_index_documents
                 load_and_index_documents()
                 # 清除缓存，让下次查询用新数据
-                st.cache_resource.clear()
+                st.session_state.query_cache = {}
                 st.sidebar.success("✅ 知识库重建完成！请刷新页面。")
             except Exception as e:
                 st.sidebar.error(f"❌ 重建失败：{str(e)}")
@@ -469,7 +337,7 @@ def show_input_page():
     </div>
     """, unsafe_allow_html=True)
 
-    query = st.text_input("", placeholder="请输入您的问题...", label_visibility="collapsed")
+    query = st.text_input("问题", placeholder="请输入您的问题...", label_visibility="collapsed")
 
     st.markdown("<br>", unsafe_allow_html=True)
     search_mode = st.radio(
@@ -490,7 +358,7 @@ def show_input_page():
 
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
-        if st.button("🚀 开始研究", use_container_width=True, type="primary"):
+        if st.button("🚀 开始研究", width="stretch", type="primary"):
             if query:
                 st.session_state.query = query
                 st.session_state.use_web_search = use_web_search
@@ -527,172 +395,101 @@ if "query_cache" not in st.session_state:
 
 # 页面 2：研究过程
 def show_processing_page():
-    original_query = st.session_state.get("query", "")
-    use_web_search = st.session_state.get("use_web_search", False)
-    use_hybrid = st.session_state.get("use_hybrid", False)
-
-    if use_hybrid:
-        initial_mode = "hybrid"
-    elif use_web_search:
-        initial_mode = "web"
-    else:
-        initial_mode = "local"
-
-    # ========== 强制日期替换（在进入检索之前） ==========
-    from datetime import datetime, timedelta
-
-    def replace_relative_dates(text: str) -> str:
-        """把相对时间词替换成绝对日期"""
-        now = datetime.now()
-        replacements = [
-            ("昨天", (now - timedelta(days=1)).strftime("%Y年%m月%d日")),
-            ("前天", (now - timedelta(days=2)).strftime("%Y年%m月%d日")),
-            ("大前天", (now - timedelta(days=3)).strftime("%Y年%m月%d日")),
-            ("明天", (now + timedelta(days=1)).strftime("%Y年%m月%d日")),
-            ("后天", (now + timedelta(days=2)).strftime("%Y年%m月%d日")),
-            ("大后天", (now + timedelta(days=3)).strftime("%Y年%m月%d日")),
-        ]
-        for keyword, replacement in replacements:
-            if keyword in text:
-                text = text.replace(keyword, replacement)
-        return text
-
-    # 替换后的 query（搜索引擎永远看不到“昨天”这个词）
-    query = replace_relative_dates(original_query)
-
-    # 百度 Query 改写（指代消解）
-    rewritten_query = query  # 默认没有改写
+    original_query = st.session_state.get('query', '')
+    mode = 'hybrid' if st.session_state.get('use_hybrid') else ('web' if st.session_state.get('use_web_search') else 'local')
     memory = get_memory()
-    if len(memory) > 0:
-        rewritten = rewrite_query_with_baidu(query)
-        if rewritten != query:
-            rewritten_query = rewritten  # 保存改写后的查询
-            query = rewritten            # 用改写后的查询去搜索
-
-    # 查询结果缓存：相同查询直接返回
-    cache_key = f"{query}_{initial_mode}"
-    if cache_key in st.session_state.query_cache:
-        cached = st.session_state.query_cache[cache_key]
-        st.session_state.result = cached["result"]
-        memory = get_memory()
-        memory.add_user_message(original_query)
-        memory.add_assistant_message(cached["result"].get("answer", ""), metadata={"search_mode": initial_mode, "cached": True})
-        st.session_state.trigger_result = True
-        st.rerun()
-        return
-
-    st.markdown(f"<h2>🔍 正在研究：{query}</h2>", unsafe_allow_html=True)
-    st.markdown(f"<p style='color:#666;'>搜索模式：{initial_mode}</p>", unsafe_allow_html=True)
-    st.markdown("<hr>", unsafe_allow_html=True)
-
-    progress_bar = st.progress(0)
-    status_text = st.empty()
-    step_times = []
-
-    def show_step(icon, title, desc, progress):
-        status_text.markdown(f"{icon} **{title}**\n\n{desc}")
-        progress_bar.progress(progress)
-
-    if st.session_state.timeout_counter >= 3:
-        st.error("⛔ 连续超时已达 3 次，请切换至互联网搜索模式或简化问题后重试。")
-        st.stop()
-
-    t0 = time.time()
-    if initial_mode == "web":
-        show_step("🤖", "正在初始化...", "加载 LLM 客户端（无需加载 Embedding 模型）", 20)
+    history = memory.get_history()
+    preferences = dict(get_preferences())
+    version = index_version(CONFIG)
+    from src.query import replace_relative_dates, contextual_query, cache_key_for
+    query = replace_relative_dates(original_query)
+    search_query = contextual_query(query, history)
+    key = cache_key_for(query, mode, history, preferences, version, CONFIG)
+    cache = st.session_state.query_cache
+    cached = cache.get(key)
+    if cached and time.time() - cached['timestamp'] < CONFIG['runtime']['query_cache_ttl']:
+        result = cached['result']
     else:
-        show_step("📥", "正在加载模型...", "首次加载 Embedding 模型（约 25 秒），后续会快很多", 10)
+        previous = st.session_state.get('active_future')
+        if previous is not None and not previous.done():
+            st.info('上一个请求正在停止，请稍后重试。')
+            if st.button('检查任务状态'):
+                st.rerun()
+            return
+        budget = RequestBudget(CONFIG['runtime']['request_timeout'])
+        state = {'query': query, 'optimized_query': search_query, 'search_mode': mode,
+                 'chat_history': history, 'preferences': preferences,
+                 'enhanced_context': '最近对话（仅用于理解指代，不作为事实依据）：\n' + str(history[-4:])[:2000],
+                 'top_k': CONFIG['retrieval']['top_k'], 'retry_count': 0,
+                 'verification_status': 'disabled' if not CONFIG['generation']['verification_enabled'] else 'pending'}
 
-    try:
-        _, multi_agent_graph, _, _, _, _ = get_pipeline(search_mode=initial_mode)
-    except ValueError as e:
-        if "BAIDU_API_KEY" in str(e):
-            st.error("❌ 互联网搜索未配置 API Key，请检查 .env 文件中的 BAIDU_API_KEY")
-            st.stop()
-        raise
+        def run_pipeline():
+            with request_scope(budget):
+                with timed('initialization'):
+                    from src.agents.router_agent import router_agent
+                    effective_mode = router_agent(state).get('search_mode', mode)
+                    graph, reranker_active = get_pipeline(effective_mode, version)
+                if CONFIG['web']['query_rewrite_enabled']:
+                    from src.query import rewrite_query
+                    state['optimized_query'] = rewrite_query(search_query, CONFIG['web']['timeout'])
+                output = graph.invoke(state, config={'recursion_limit': 12 + 2 * CONFIG['generation']['max_retries']})
+                output['metrics'] = budget.metrics
+                output['metrics']['total_seconds'] = time.monotonic() - budget.started
+                output['reranker_active'] = reranker_active
+                return output
 
-    step_times.append(f"初始化: {time.time()-t0:.1f}s")
-
-    t0 = time.time()
-    show_step("🔍", "正在优化搜索词...", "指代消解 + 关键词提炼", 40)
-
-    show_step("⚡", "正在执行 Multi-Agent 流水线...", "检索 → 生成 → 核查", 60)
-
-    TIMEOUT_SECONDS = 60
-
-    def run_pipeline():
-        current_prefs = get_preferences()
-        memory = get_memory()
-        chat_history = memory.get_history()
-
-        return multi_agent_graph.invoke({
-            "query": query,
-            "chat_history": chat_history,
-            "search_mode": initial_mode,
-            "optimized_query": "",
-            "retrieved_docs": [],
-            "web_docs": [],
-            "context": "",
-            "answer": "",
-            "verification_log": [],
-            "retry_count": 0,
-            "memory_context": "",
-            "preferences": current_prefs,
-        })
-
-    with st.spinner("🤖 **正在执行 Multi-Agent 流水线...**"):
-        with ThreadPoolExecutor(max_workers=1) as executor:
-            future = executor.submit(run_pipeline)
+        future = get_executor().submit(run_pipeline)
+        st.session_state.active_future = future
+        stage = st.empty()
+        draft = st.empty()
+        draft_text = ''
+        stage_labels = {'initialization': '正在加载模型', 'node.retrieval': '正在查找相关资料',
+                        'node.generation': '正在组织回答', 'node.fact_check': '正在核对证据',
+                        'node.rewrite': '正在修正回答', 'node.web_search': '正在搜索互联网'}
+        with st.spinner('正在处理…'):
             try:
-                result = future.result(timeout=TIMEOUT_SECONDS)
+                while True:
+                    while not budget.events.empty():
+                        kind, value = budget.events.get_nowait()
+                        if kind == 'stage' and value in stage_labels:
+                            stage.info(stage_labels[value])
+                        elif kind == 'draft_reset':
+                            draft_text = ''
+                            draft.empty()
+                        elif kind == 'token':
+                            draft_text += value
+                            draft.markdown('**回答草稿（完成证据核查后显示最终结果）**\n\n' + draft_text)
+                    try:
+                        result = future.result(timeout=min(0.15, budget.remaining()))
+                        break
+                    except FutureTimeoutError:
+                        if future.done():
+                            raise
+
                 st.session_state.timeout_counter = 0
-            except FutureTimeoutError:
+            except (FutureTimeoutError, RequestTimeout):
+                budget.cancelled.set()
                 future.cancel()
                 st.session_state.timeout_counter += 1
-                st.session_state.result = {
-                    "answer": f"⏱️ 请求处理超时（{TIMEOUT_SECONDS}秒），请尝试简化问题。剩余重试次数：{3 - st.session_state.timeout_counter}",
-                    "retrieved_docs": [],
-                    "verification_log": [],
-                    "retry_count": 0,
-                }
-                st.session_state.trigger_result = True
-                st.rerun()
-                return
-            except Exception as e:
-                st.session_state.result = {
-                    "answer": f"处理过程中出错：{str(e)}",
-                    "retrieved_docs": [],
-                    "verification_log": [],
-                    "retry_count": 0,
-                }
-                st.session_state.trigger_result = True
-                st.rerun()
-                return
-
+                result = {'answer': '请求超时，请稍后重试。首次模型加载可能需要更长时间。',
+                          'verification_status': 'timeout', 'error': True}
+            except Exception:
+                logging.exception('RAG 请求失败')
+                result = {'answer': '请求处理失败，请检查模型、索引及 API 配置。',
+                          'verification_status': 'error', 'error': True}
+        # Cache only successful, fully evaluated results, with a bounded lifetime/size.
+        if not result.get('error') and not any(result.get(k) for k in ('generation_error', 'retrieval_error', 'web_error')) and result.get('verification_status') not in ('error', 'failed', 'pending'):
+            cache[key] = {'result': result, 'timestamp': time.time()}
+            while len(cache) > CONFIG['runtime']['query_cache_max_entries']:
+                del cache[next(iter(cache))]
     st.session_state.result = result
-    # 记录查询改写信息，供结果页面展示
-    st.session_state.query_rewrite_info = {
-        "original_query": original_query,
-        "rewritten_query": rewritten_query,
-        "optimized_query": result.get("optimized_query", ""),
-    }
-    step_times.append(f"流水线: {time.time()-t0:.1f}s")
-
-    st.session_state.query_cache[cache_key] = {
-        "result": result,
-        "timestamp": time.time()
-    }
-
-    memory = get_memory()
+    st.session_state.query_rewrite_info = {'original_query': original_query,
+        'rewritten_query': query, 'optimized_query': result.get('optimized_query', search_query)}
     memory.add_user_message(original_query)
-    memory.add_assistant_message(result.get("answer", ""), metadata={"search_mode": initial_mode})
-
-    progress_bar.progress(100)
-    total_time = sum(float(t.split(": ")[1].rstrip("s")) for t in step_times)
-    status_text.markdown(f"✅ **研究完成！** 总耗时 {total_time:.1f}s（{' → '.join(step_times)}）")
-
+    memory.add_assistant_message(result.get('answer', ''), metadata={'search_mode': mode})
     st.session_state.trigger_result = True
     st.rerun()
+
 # 页面 3：最终结果
 def show_result_page():
     result = st.session_state.get("result", {})
@@ -720,11 +517,22 @@ def show_result_page():
     </div>
     """, unsafe_allow_html=True)
 
-    retry_count = result.get("retry_count", 0)
-    if retry_count > 0:
-        st.info(f"ℹ️ 经过 {retry_count} 次修正后得出最终答案")
+    status = result.get('verification_status', 'skipped')
+    labels = {'passed': '核查通过', 'failed': '仍有陈述缺少证据，请结合下方核查结果阅读',
+              'error': '核查或请求失败，本次结果未验证', 'disabled': '本次未启用核查',
+              'skipped': '本次未执行事实核查', 'no_claims': '未提取到可核查陈述',
+              'timeout': '请求已超时'}
+    if status == 'passed':
+        st.success(labels[status])
     else:
-        st.success("✅ 一次通过，无需修正")
+        st.info(labels.get(status, '核查状态未知'))
+    if result.get('retry_count'):
+        st.caption(f"已修正 {result['retry_count']} 次")
+    if not result.get('reranker_active') and search_mode != '互联网搜索' and result.get('search_mode') != 'self_aware':
+        st.caption('本地检索使用词项过滤；重排序未启用或加载失败。')
+    if result.get('metrics'):
+        with st.expander('耗时与调用统计'):
+            st.json(result['metrics'])
 
     # 显示查询改写信息（仅互联网搜索模式）
     query_rewrite_info = st.session_state.get("query_rewrite_info", {})
@@ -788,14 +596,14 @@ def show_result_page():
     else:
         st.markdown("""
         <div style="text-align:center; padding:30px; color:#999;">
-            <p>📋 无核查日志（回答直接通过）</p>
+            <p>📋 无核查日志（不代表核查通过）</p>
         </div>
         """, unsafe_allow_html=True)
 
     st.markdown("<hr>", unsafe_allow_html=True)
     st.markdown(f"<h3>📚 检索到的文档（来源：{search_mode}）</h3>", unsafe_allow_html=True)
     # 兼容本地检索和互联网搜索两种模式
-    docs = result.get("retrieved_docs", []) or result.get("web_docs", []) or result.get("all_docs", [])
+    docs = result.get("all_docs", [])
     if docs:
         for i, doc in enumerate(docs):
             source = doc.metadata.get("source", "未知")
@@ -832,7 +640,7 @@ def show_result_page():
     st.markdown("<hr>", unsafe_allow_html=True)
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
-        if st.button("🔄 返回重新研究", use_container_width=True):
+        if st.button("🔄 返回重新研究", width="stretch"):
             st.session_state.page = "input"
             st.rerun()
 

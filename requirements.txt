@@ -8,17 +8,13 @@ langgraph>=0.2.0
 chromadb>=0.5.0
 
 # Embedding 模型
-sentence-transformers>=3.0.0
+sentence-transformers==5.2.0
 
 # Reranker 模型
-transformers>=4.30.0
-torch>=2.0.0
+transformers==4.51.3
+torch>=2.6.0
 sentencepiece>=0.2.0
 
-# Reranker 模型
-transformers>=4.30.0
-torch>=2.0.0
-sentencepiece>=0.2.0
 
 # 关键词检索
 rank-bm25>=0.2.0
@@ -28,7 +24,7 @@ jieba>=0.42.0
 openai>=1.0.0
 
 # 前端
-streamlit>=1.35.0
+streamlit>=1.57,<2
 
 # 文档加载
 pypdf>=3.0.0
@@ -50,3 +46,7 @@ python-dotenv>=1.0.0
 
 # 其他
 tiktoken>=0.5.0
+
+PyYAML>=6.0
+
+langchain-text-splitters>=0.3.0

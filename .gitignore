@@ -16,6 +16,8 @@ venv/
 
 # ===== 向量数据库（运行时生成，体积大） =====
 chroma_db/
+chroma_db_*/
+backups/
 gold_memory_db/
 
 # ===== 模型缓存（运行时下载，体积大） =====
@@ -46,3 +48,5 @@ Thumbs.db
 
 # ===== 内部文档 =====
 项目指导.md
+
+.evaluation/
