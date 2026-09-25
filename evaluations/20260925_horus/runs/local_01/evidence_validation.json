@@ -1,0 +1,542 @@
+[
+  {
+    "question_id": "single_01",
+    "quote": "`BAAI/bge-small-zh-v1.5`，512 维",
+    "chunk_ids": [
+      "e93d5fa599b6d76d94711882b44c476045def72384cd64edafb7aea5ce28ddab"
+    ]
+  },
+  {
+    "question_id": "single_02",
+    "quote": "使用 Streamlit 与 LangGraph 编排检索",
+    "chunk_ids": [
+      "b7186846cbfd52f3f6598242e2c1ca9e5735c70cdbee2a6d52c0be03a7894a9a"
+    ]
+  },
+  {
+    "question_id": "single_03",
+    "quote": "默认使用 `BAAI/bge-reranker-base`",
+    "chunk_ids": [
+      "e93d5fa599b6d76d94711882b44c476045def72384cd64edafb7aea5ce28ddab"
+    ]
+  },
+  {
+    "question_id": "single_04",
+    "quote": "支持 UTF-8 TXT 和可提取文字的 PDF",
+    "chunk_ids": [
+      "dfa29fed46696535bf007008a6c97e66181d53dff55a01019790d8ac2e0dd804"
+    ]
+  },
+  {
+    "question_id": "single_05",
+    "quote": "监听 `data/correction_inbox/`",
+    "chunk_ids": [
+      "dfa29fed46696535bf007008a6c97e66181d53dff55a01019790d8ac2e0dd804"
+    ]
+  },
+  {
+    "question_id": "single_06",
+    "quote": "默认主生成模型是 `deepseek-chat`",
+    "chunk_ids": [
+      "6aa5a7d8aa448170687cfcfcd17e1035cf00c13502567696a9f94af5a9b3e87f"
+    ]
+  },
+  {
+    "question_id": "single_07",
+    "quote": "联网：百度千帆搜索",
+    "chunk_ids": [
+      "98bfdf5ab8be1afced966c1e00d61b87a7f5ea53189d217daf023e83524701d7"
+    ]
+  },
+  {
+    "question_id": "single_08",
+    "quote": "python -m src.data_ingestion",
+    "chunk_ids": [
+      "20cfe19a12f9c61c3fda8aa888611116cb7cdcd17822cd56c8ae65c058bf08b6"
+    ]
+  },
+  {
+    "question_id": "single_09",
+    "quote": "本机验证环境为 **Python 3.12**",
+    "chunk_ids": [
+      "fac0fe7007b0c49a4d71a0564bc0cf8cec2842f715e99a8a52c0cf14a2f15798"
+    ]
+  },
+  {
+    "question_id": "single_10",
+    "quote": "[MIT](LICENSE)",
+    "chunk_ids": [
+      "661a4d86e09ed23f73ce57d6289429dc3af65302dcce729955a5dcbafb64f297"
+    ]
+  },
+  {
+    "question_id": "integration_01",
+    "quote": "**新机器必须先下载模型**",
+    "chunk_ids": [
+      "b9816962bf119f03803aaf943d37833253f1f6b85488be5b837d6d7192a2d19c"
+    ]
+  },
+  {
+    "question_id": "integration_01",
+    "quote": "创建 `knowledge_base/`，放入自己的 `.txt` 或 `.pdf` 文件",
+    "chunk_ids": [
+      "20cfe19a12f9c61c3fda8aa888611116cb7cdcd17822cd56c8ae65c058bf08b6"
+    ]
+  },
+  {
+    "question_id": "integration_02",
+    "quote": "统一证据编号与上下文",
+    "chunk_ids": [
+      "98bfdf5ab8be1afced966c1e00d61b87a7f5ea53189d217daf023e83524701d7"
+    ]
+  },
+  {
+    "question_id": "integration_02",
+    "quote": "本地与联网结果的引用编号、显示顺序、核查上下文保持一致。",
+    "chunk_ids": [
+      "24034206278b5fac8cac1142e95ebab4580ed6428d527851c4cca6eac673a888"
+    ]
+  },
+  {
+    "question_id": "integration_03",
+    "quote": "应选择新索引目录并重新入库",
+    "chunk_ids": [
+      "28e85ac0d1ec69225f2edeced89408aa74fd736d4a29a4cf09adab58e4939c7d"
+    ]
+  },
+  {
+    "question_id": "integration_03",
+    "quote": "纠偏记忆也必须重新向量化",
+    "chunk_ids": [
+      "57cef6eb4317853ebfc005cc34b49e3a28ffbd32b4cd2c082aaa2dbdad1e0b37"
+    ]
+  },
+  {
+    "question_id": "integration_04",
+    "quote": "向量与 BM25 各召回最多 20 条",
+    "chunk_ids": [
+      "e93d5fa599b6d76d94711882b44c476045def72384cd64edafb7aea5ce28ddab"
+    ]
+  },
+  {
+    "question_id": "integration_04",
+    "quote": "RRF 每条召回列表内先去重。",
+    "chunk_ids": [
+      "24034206278b5fac8cac1142e95ebab4580ed6428d527851c4cca6eac673a888"
+    ]
+  },
+  {
+    "question_id": "integration_05",
+    "quote": "SDK 内置重试关闭；只由应用配置重试。",
+    "chunk_ids": [
+      "24404a426883dffe475f1b3efa3f1ac9bdc514b9315690ee586fc4e71bedecd0"
+    ]
+  },
+  {
+    "question_id": "integration_05",
+    "quote": "图统一控制核查循环，默认最多重写一次",
+    "chunk_ids": [
+      "24404a426883dffe475f1b3efa3f1ac9bdc514b9315690ee586fc4e71bedecd0"
+    ]
+  },
+  {
+    "question_id": "integration_06",
+    "quote": "TXT/PDF 入库和离线检索评测不调用远程 LLM",
+    "chunk_ids": [
+      "6aa5a7d8aa448170687cfcfcd17e1035cf00c13502567696a9f94af5a9b3e87f"
+    ]
+  },
+  {
+    "question_id": "integration_06",
+    "quote": "至少配置 DeepSeek 或 SiliconFlow 中的一路",
+    "chunk_ids": [
+      "6aa5a7d8aa448170687cfcfcd17e1035cf00c13502567696a9f94af5a9b3e87f"
+    ]
+  },
+  {
+    "question_id": "integration_07",
+    "quote": "缓存键包含对话、偏好、索引版本和配置",
+    "chunk_ids": [
+      "9026b6dde3708249932cacefed20fdf448a8fc14cee040e95c9135b2ba7d63ed"
+    ]
+  },
+  {
+    "question_id": "integration_07",
+    "quote": "结果有 TTL 和容量上限",
+    "chunk_ids": [
+      "9026b6dde3708249932cacefed20fdf448a8fc14cee040e95c9135b2ba7d63ed"
+    ]
+  },
+  {
+    "question_id": "integration_08",
+    "quote": "稳定 ID 使重复入库不增加记录",
+    "chunk_ids": [
+      "9026b6dde3708249932cacefed20fdf448a8fc14cee040e95c9135b2ba7d63ed"
+    ]
+  },
+  {
+    "question_id": "integration_08",
+    "quote": "新增向量成功后才删除旧块。",
+    "chunk_ids": [
+      "9026b6dde3708249932cacefed20fdf448a8fc14cee040e95c9135b2ba7d63ed"
+    ]
+  },
+  {
+    "question_id": "integration_09",
+    "quote": "默认禁用 HyDE 和外部查询改写。",
+    "chunk_ids": [
+      "24034206278b5fac8cac1142e95ebab4580ed6428d527851c4cca6eac673a888"
+    ]
+  },
+  {
+    "question_id": "integration_09",
+    "quote": "无证据时直接拒答",
+    "chunk_ids": [
+      "24404a426883dffe475f1b3efa3f1ac9bdc514b9315690ee586fc4e71bedecd0"
+    ]
+  },
+  {
+    "question_id": "integration_10",
+    "quote": "关键词命中率不能充当幻觉率。",
+    "chunk_ids": [
+      "bcbc99ae0f8d1fe933735e22ef3f028efd4b1b83d0fa0f1bcc787a9bc82aa9af"
+    ]
+  },
+  {
+    "question_id": "integration_10",
+    "quote": "答案是否正确、是否忠实于证据，需要另行人工标注或独立评审",
+    "chunk_ids": [
+      "bcbc99ae0f8d1fe933735e22ef3f028efd4b1b83d0fa0f1bcc787a9bc82aa9af"
+    ]
+  },
+  {
+    "question_id": "constraint_01",
+    "quote": "默认 220 token、重叠 30 token",
+    "chunk_ids": [
+      "dfa29fed46696535bf007008a6c97e66181d53dff55a01019790d8ac2e0dd804"
+    ]
+  },
+  {
+    "question_id": "constraint_02",
+    "quote": "各召回最多 20 条",
+    "chunk_ids": [
+      "e93d5fa599b6d76d94711882b44c476045def72384cd64edafb7aea5ce28ddab"
+    ]
+  },
+  {
+    "question_id": "constraint_02",
+    "quote": "最多重排 10 条",
+    "chunk_ids": [
+      "e93d5fa599b6d76d94711882b44c476045def72384cd64edafb7aea5ce28ddab"
+    ]
+  },
+  {
+    "question_id": "constraint_02",
+    "quote": "返回最多 5 条有效证据",
+    "chunk_ids": [
+      "e93d5fa599b6d76d94711882b44c476045def72384cd64edafb7aea5ce28ddab"
+    ]
+  },
+  {
+    "question_id": "constraint_03",
+    "quote": "`60` 秒 | 包括初始化的请求时间预算",
+    "chunk_ids": [
+      "673b42f74c4b081ae5a39b5f9664b9e73e964af3965871b2e016c94c48b1213d",
+      "0761f842198c78a46cd1bd4e448565f391ecd8b34ac005cea7217512e8df46e3"
+    ]
+  },
+  {
+    "question_id": "constraint_04",
+    "quote": "`300` 秒 / `64` | 会话内结果缓存",
+    "chunk_ids": [
+      "0761f842198c78a46cd1bd4e448565f391ecd8b34ac005cea7217512e8df46e3"
+    ]
+  },
+  {
+    "question_id": "constraint_05",
+    "quote": "无有效证据且已配置搜索服务时联网",
+    "chunk_ids": [
+      "98bfdf5ab8be1afced966c1e00d61b87a7f5ea53189d217daf023e83524701d7"
+    ]
+  },
+  {
+    "question_id": "constraint_06",
+    "quote": "仅在原问题没有有效证据时补充候选，仍按原问题重排",
+    "chunk_ids": [
+      "fac0fe7007b0c49a4d71a0564bc0cf8cec2842f715e99a8a52c0cf14a2f15798"
+    ]
+  },
+  {
+    "question_id": "constraint_07",
+    "quote": "`0.3` | sigmoid 重排分数门槛，不是校准概率",
+    "chunk_ids": [
+      "76172f8d878f098860f00e9f232a571909949e9dd11e2483b06821bfc214debe"
+    ]
+  },
+  {
+    "question_id": "constraint_08",
+    "quote": "`0.35` | 纠偏记忆平方 L2 距离上限",
+    "chunk_ids": [
+      "0761f842198c78a46cd1bd4e448565f391ecd8b34ac005cea7217512e8df46e3"
+    ]
+  },
+  {
+    "question_id": "constraint_09",
+    "quote": "`512` | 单次 LLM 输出上限",
+    "chunk_ids": [
+      "673b42f74c4b081ae5a39b5f9664b9e73e964af3965871b2e016c94c48b1213d"
+    ]
+  },
+  {
+    "question_id": "constraint_10",
+    "quote": "旧索引没有 manifest 时，脚本仅接受原项目的 MiniLM 配置。",
+    "chunk_ids": [
+      "f510ae4ea21349fad224a733b23a9e1ab8ee92eaa44ff3ab0a6e3e81506821e6"
+    ]
+  },
+  {
+    "question_id": "false_premise_01",
+    "quote": "当前入库程序不包含 OCR",
+    "chunk_ids": [
+      "20cfe19a12f9c61c3fda8aa888611116cb7cdcd17822cd56c8ae65c058bf08b6"
+    ]
+  },
+  {
+    "question_id": "false_premise_02",
+    "quote": "解析失败不算通过",
+    "chunk_ids": [
+      "dfa29fed46696535bf007008a6c97e66181d53dff55a01019790d8ac2e0dd804"
+    ]
+  },
+  {
+    "question_id": "false_premise_03",
+    "quote": "身份类问题直接生成并跳过检索和核查",
+    "chunk_ids": [
+      "fac0fe7007b0c49a4d71a0564bc0cf8cec2842f715e99a8a52c0cf14a2f15798"
+    ]
+  },
+  {
+    "question_id": "false_premise_04",
+    "quote": "仅查询添加中文检索指令",
+    "chunk_ids": [
+      "e93d5fa599b6d76d94711882b44c476045def72384cd64edafb7aea5ce28ddab"
+    ]
+  },
+  {
+    "question_id": "false_premise_05",
+    "quote": "不可用它更换 Embedding",
+    "chunk_ids": [
+      "1484a96036107eff28fe2963707ae89c39f32f0c59a008bb6945c8cfa4c9b612"
+    ]
+  },
+  {
+    "question_id": "false_premise_06",
+    "quote": "未启用或加载失败时使用词项覆盖过滤",
+    "chunk_ids": [
+      "e93d5fa599b6d76d94711882b44c476045def72384cd64edafb7aea5ce28ddab"
+    ]
+  },
+  {
+    "question_id": "false_premise_07",
+    "quote": "无法强制中断已在运行的本地模型计算",
+    "chunk_ids": [
+      "6a07fbd882140f4aa52e408228a5eb29feebbdb5f55b7a20de0f4586064622f3"
+    ]
+  },
+  {
+    "question_id": "false_premise_08",
+    "quote": "当前入库不是完整的事务发布流程",
+    "chunk_ids": [
+      "6a07fbd882140f4aa52e408228a5eb29feebbdb5f55b7a20de0f4586064622f3"
+    ]
+  },
+  {
+    "question_id": "false_premise_09",
+    "quote": "搜索结果使用摘要，不包含自动抓取全文",
+    "chunk_ids": [
+      "6a07fbd882140f4aa52e408228a5eb29feebbdb5f55b7a20de0f4586064622f3"
+    ]
+  },
+  {
+    "question_id": "false_premise_10",
+    "quote": "真实 LLM/API 的端到端耗时未实测",
+    "chunk_ids": [
+      "f14d235f3fd9ee6eb16c2824ae36aa5e70a76cb84f1812a5f998b52aff661080"
+    ]
+  },
+  {
+    "question_id": "conflict_01",
+    "quote": "每日住宿报销上限为600元",
+    "chunk_ids": [
+      "3ad2c44b1906826b00fc3faadece5b27aaffadf8db1f4d24a961ece6ebe63b9e"
+    ]
+  },
+  {
+    "question_id": "conflict_01",
+    "quote": "每日住宿报销上限为800元",
+    "chunk_ids": [
+      "f6bd8f6abf9abc12faede31d79127211c40fa9bcbbc714df6cb97a452578a937"
+    ]
+  },
+  {
+    "question_id": "conflict_02",
+    "quote": "年假申请提前时间为3个工作日",
+    "chunk_ids": [
+      "4e0ee1356536153e272d2119cbc0fc7a8148cf7384d4479fc943017effd8acb4"
+    ]
+  },
+  {
+    "question_id": "conflict_02",
+    "quote": "年假申请提前时间为5个工作日",
+    "chunk_ids": [
+      "913d56835e26e18a5ab4bb8ae170d7296eeba8de4ebc9d54f81a8f9f096f9888"
+    ]
+  },
+  {
+    "question_id": "conflict_03",
+    "quote": "完整备份间隔为12小时",
+    "chunk_ids": [
+      "8b31eb502aeef2519a1872df46ed3e90df0a1b027a6f028f52dfdb81f30bb48b"
+    ]
+  },
+  {
+    "question_id": "conflict_03",
+    "quote": "完整备份间隔为24小时",
+    "chunk_ids": [
+      "54367083fadb917feba212fb5eed2e8afce9fb2f4234f67210c2db64cea1b319"
+    ]
+  },
+  {
+    "question_id": "conflict_04",
+    "quote": "免审批采购金额上限为2000元",
+    "chunk_ids": [
+      "c7c96d98024e211fc7582236a6b6e17b66d2d77771da4f344ae276408ee0e4fc"
+    ]
+  },
+  {
+    "question_id": "conflict_04",
+    "quote": "免审批采购金额上限为3000元",
+    "chunk_ids": [
+      "eb337f48c1c542c9a76fc44017a4d930a140f255bb45e8a4575f560e46255831"
+    ]
+  },
+  {
+    "question_id": "conflict_05",
+    "quote": "首次响应时限为2小时",
+    "chunk_ids": [
+      "6199ba68b5fe17fedbcdda860bd54d63b01580dd15bfa9b179e695044f9a1edf"
+    ]
+  },
+  {
+    "question_id": "conflict_05",
+    "quote": "首次响应时限为4小时",
+    "chunk_ids": [
+      "807588bf7e672a231e217264a6b59cbd8ae6300f321d33e0bfe1d0429e57f699"
+    ]
+  },
+  {
+    "question_id": "conflict_06",
+    "quote": "库存盘点频次为每周一次",
+    "chunk_ids": [
+      "f729dc2fb74706b4c5cd43007c695d3102a6e9ff1c0a07193adbf5285dc17830"
+    ]
+  },
+  {
+    "question_id": "conflict_06",
+    "quote": "库存盘点频次为每月一次",
+    "chunk_ids": [
+      "763e5dac519d09bdf0d26cb8959bd5f68ffb52fd4dea14e1d069255c4afc2d94"
+    ]
+  },
+  {
+    "question_id": "conflict_07",
+    "quote": "年度必修课时为16小时",
+    "chunk_ids": [
+      "638c7bf9f2a4e52bbb9e70fa929c06acee686b457fbbea82c9f9959b7d69b82d"
+    ]
+  },
+  {
+    "question_id": "conflict_07",
+    "quote": "年度必修课时为24小时",
+    "chunk_ids": [
+      "6f79faa2543764fb29081a628cfa6b71a07d255d62ddaccd9b3478a5077a30cd"
+    ]
+  },
+  {
+    "question_id": "conflict_08",
+    "quote": "借用最长期限为7天",
+    "chunk_ids": [
+      "7ab531648a23a315efbd6bcee0bd1423325d6794b40b170bba2537e6d313020a"
+    ]
+  },
+  {
+    "question_id": "conflict_08",
+    "quote": "借用最长期限为14天",
+    "chunk_ids": [
+      "4615276fe245ea3d3b61384a35d66c4e83568d71efe75af3682ffea767e55881"
+    ]
+  },
+  {
+    "question_id": "conflict_09",
+    "quote": "档案保存期限为3年",
+    "chunk_ids": [
+      "ccaa6435cadc8da92c51ee0d65de4d23b9a0b615416967d9199781ba2689aeed"
+    ]
+  },
+  {
+    "question_id": "conflict_09",
+    "quote": "档案保存期限为5年",
+    "chunk_ids": [
+      "7034bd92e48e17ec73166ee4de5ed80ce973014e47ccde608b49369bd3f37e06"
+    ]
+  },
+  {
+    "question_id": "conflict_10",
+    "quote": "来访预约提前时间为1天",
+    "chunk_ids": [
+      "17cb8a09019e5551e718d1c54534aa04a0f377e508a6e8ffe3d12871e7fa1e73"
+    ]
+  },
+  {
+    "question_id": "conflict_10",
+    "quote": "来访预约提前时间为2天",
+    "chunk_ids": [
+      "80ab337fbfc8645133b6c88739a01df68ce6638dd8a7ff72f928424763726a34"
+    ]
+  },
+  {
+    "question_id": "dev_1",
+    "quote": "测试灯塔的颜色为蓝色。",
+    "chunk_ids": [
+      "7a6622aad8f29d239978e7bfa03e15dea5177d7fe81dc6436637cd645358bf65"
+    ]
+  },
+  {
+    "question_id": "dev_2",
+    "quote": "测试列车从甲站出发。测试列车在乙站终到。",
+    "chunk_ids": [
+      "c967adde9acf3c71913ce169b524c16983e7ab1416a5c255e1dd9342abc53f91"
+    ]
+  },
+  {
+    "question_id": "dev_3",
+    "quote": "测试图书馆周日上午9点开放。",
+    "chunk_ids": [
+      "a74de6f9b69effe05a7f6cc3d9fba7de9c5dd52f08f69ddb700375896144ede9"
+    ]
+  },
+  {
+    "question_id": "dev_5",
+    "quote": "测试展厅资料甲票价20元。测试展厅资料乙票价30元。两者无优先级。",
+    "chunk_ids": [
+      "704311a5910c113d719813bc77f2b1321cfc556c9e39dfebbe220dcfad85fe3a"
+    ]
+  },
+  {
+    "question_id": "dev_6",
+    "quote": "测试湖泊是淡水湖。",
+    "chunk_ids": [
+      "da1ce4fd086758552f3655946a7f590ebb3f0fdc57fc0440af24766cf27a4112"
+    ]
+  }
+]

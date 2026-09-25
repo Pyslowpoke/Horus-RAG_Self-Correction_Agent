@@ -1,0 +1,11 @@
+﻿comparison,metric,n,difference,ci_low,ci_high
+B-A,fully_correct,60,0.08333333333333333,-0.03333333333333333,0.2
+B-A,correctness,60,0.05,-0.05,0.15833333333333333
+B-A,availability_adjusted_correctness,60,0.05,-0.05,0.15
+B-A,completeness,50,0.06,-0.06,0.18
+B-A,fixed_evidence_pipeline_seconds,60,-0.872409326674339,-1.3726825812927563,-0.5490450531885532
+C-B,fully_correct,60,-0.016666666666666666,-0.05,0.0
+C-B,correctness,60,-0.016666666666666666,-0.05,0.0
+C-B,availability_adjusted_correctness,60,-0.38333333333333336,-0.5,-0.26666666666666666
+C-B,completeness,50,-0.02,-0.06,0.0
+C-B,fixed_evidence_pipeline_seconds,60,7.602503065006264,6.324188626629378,8.872612572539994

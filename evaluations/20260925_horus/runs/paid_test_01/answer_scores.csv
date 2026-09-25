@@ -1,0 +1,422 @@
+﻿question_id,question_type,origin,arm,answer_id,answerable,correctness,fully_correct,availability_adjusted_correctness,reference_facts,covered_facts,completeness,refused,conflict_handled,factual_claims,supported,contradicted,insufficient,claims_with_citations,citation_supported_claims,citation_occurrences,valid_citation_occurrences,answer_failure,workflow_failure,verification_status,rewrite_count,rewrite_attempted,api_calls,api_failures,input_tokens_known,output_tokens_known,calls_missing_usage,fixed_evidence_pipeline_seconds,composed_with_retrieval_seconds,answer,review_notes
+constraint_04,constraint,repository_natural,A,anon_090,True,1,1,1,2,2,1.0,False,,2,2,0,0,2,2,1,1,False,False,disabled,0,False,1,0,557,20,0,3.2653889000648633,3.3005405000876635,结果缓存的过期时间为 300 秒，容量上限为 64 条。[2],按匿名回答与所给原文核对；待人工复核。
+constraint_04,constraint,repository_natural,B,anon_012,True,0,0,0,2,0,0.0,True,,2,2,0,0,2,2,1,1,False,False,disabled,0,False,1,0,149,26,0,1.099545000004582,7.075428200070746,根据现有资料，只能确认结果缓存有有效期和容量限制，但未给出具体的过期时间和容量上限数值。[1],完整库有300秒/64条；本次上下文缺数值，整体未回答。
+constraint_04,constraint,repository_natural,C,anon_012,True,0,0,0,2,0,0.0,True,,2,2,0,0,2,2,1,1,False,False,passed,0,False,2,0,382,58,0,3.9270104999886826,9.902893700054847,根据现有资料，只能确认结果缓存有有效期和容量限制，但未给出具体的过期时间和容量上限数值。[1],完整库有300秒/64条；本次上下文缺数值，整体未回答。
+integration_10,integration,repository_natural,A,anon_087,True,1,1,1,2,2,1.0,False,,6,6,0,0,6,6,7,7,False,False,disabled,0,False,1,0,764,250,0,2.278720200061798,2.314991799998097,"仅看关键词命中率和检索耗时不足以判断回答可靠，原因如下：
+
+1. **关键词命中率不能代表忠实度或幻觉率**：资料明确指出，“关键词命中率不能充当幻觉率”[1]，且“关键词命中率不再被当作‘忠实度’或‘幻觉率’”[2]。
+
+2. **检索指标只评估检索环节**：脚本“只评估检索，不调用 LLM”，输出的是 Precision@K、Recall@K、MRR 等检索指标[1]，并不评估答案本身是否正确。
+
+3. **答案正确性与忠实性需另行评估**：“答案是否正确、是否忠实于证据，需要另行人工标注或独立评审”[1]。
+
+4. **检索结果不代表业务准确率或幻觉率**：现有结果被明确限定为“小样本检索结果，不代表一般业务准确率或答案幻觉率”[3]。
+
+5. **耗时方面**：“真实 LLM/API 的端到端耗时未实测”[3]，因此检索耗时也不能反映完整链路的实际表现。
+
+综上，关键词命中率与检索耗时只覆盖检索层面的部分信号，无法反映答案正确性、忠实度或幻觉情况，需结合人工标注或独立评审[1]。",按匿名回答与所给原文核对；待人工复核。
+integration_10,integration,repository_natural,B,anon_037,True,1,1,1,2,2,1.0,False,,7,7,0,0,7,7,4,4,False,False,disabled,0,False,1,0,632,152,0,1.9909406000515446,6.9953631000826135,"仅看关键词命中率和检索耗时不足以判断回答可靠，原因有：
+
+- 关键词命中率不能充当幻觉率或忠实度指标；答案是否正确、是否忠实于证据，需要另行人工标注或独立评审。[1][2]
+- 检索耗时只反映速度，不能反映召回质量；关闭重排序等提速手段可能影响召回质量，重排门槛也应在业务验证集上校准，不能把演示问题的通过率当作真实准确率。[4]
+- 现有小样本检索结果本身也不代表一般业务准确率或答案幻觉率，且真实 LLM/API 的端到端耗时未实测。[3]
+
+因此，关键词命中率和检索耗时只能说明部分检索表现，无法单独证明回答可靠。",按匿名回答与所给原文核对；待人工复核。
+integration_10,integration,repository_natural,C,anon_037,True,1,1,0,2,2,1.0,False,,7,7,0,0,7,7,4,4,False,True,error,0,False,2,0,1527,562,0,10.745432600029744,15.749855100060813,"仅看关键词命中率和检索耗时不足以判断回答可靠，原因有：
+
+- 关键词命中率不能充当幻觉率或忠实度指标；答案是否正确、是否忠实于证据，需要另行人工标注或独立评审。[1][2]
+- 检索耗时只反映速度，不能反映召回质量；关闭重排序等提速手段可能影响召回质量，重排门槛也应在业务验证集上校准，不能把演示问题的通过率当作真实准确率。[4]
+- 现有小样本检索结果本身也不代表一般业务准确率或答案幻觉率，且真实 LLM/API 的端到端耗时未实测。[3]
+
+因此，关键词命中率和检索耗时只能说明部分检索表现，无法单独证明回答可靠。",按匿名回答与所给原文核对；待人工复核。
+single_02,single,repository_natural,A,anon_001,True,1,1,1,1,1,1.0,False,,1,1,0,0,1,1,1,1,False,False,disabled,0,False,1,0,713,16,0,1.9550252000335604,1.9630566999549046,Horus 的图流程使用 **LangGraph** 编排。[4],按匿名回答与所给原文核对；待人工复核。
+single_02,single,repository_natural,B,anon_034,True,1,1,1,1,1,1.0,False,,1,1,0,0,1,1,1,1,False,False,disabled,0,False,1,0,196,14,0,1.3280386000405997,2.5652884000446647,Horus 的图流程使用 LangGraph 编排。[1],按匿名回答与所给原文核对；待人工复核。
+single_02,single,repository_natural,C,anon_034,True,1,1,0,1,1,1.0,False,,1,1,0,0,1,1,1,1,False,True,error,0,False,2,0,459,526,0,11.404979799990542,12.642229599994607,Horus 的图流程使用 LangGraph 编排。[1],按匿名回答与所给原文核对；待人工复核。
+integration_02,integration,repository_natural,A,anon_107,True,0,0,0,2,0,0.0,True,,3,3,0,0,2,2,2,2,False,False,disabled,0,False,1,0,745,56,0,1.8198437999235466,1.827810899936594,"根据现有资料无法回答该问题。
+
+现有资料只说明生成回答时要求“每个事实性结论引用对应的 [编号]”[2]，事实核查时要求 evidence “逐字摘录资料中的连续原文”[3]，但没有说明两者为何能使用一致的证据编号。",未回答共享证据编号和上下文机制；附带引用规则正确。
+integration_02,integration,repository_natural,B,anon_128,True,1,1,1,2,2,1.0,False,,5,5,0,0,4,4,3,3,False,False,disabled,0,False,1,0,811,142,0,1.491873100050725,2.3868120000697672,"根据现有资料，可以说明两点：
+
+1. 检索与回答流程中，在生成草稿前会先进行“统一证据编号与上下文”，随后才“生成草稿 → 单次核查”，因此生成和核查使用的是同一套已编号的证据。[2]
+2. 生成规则要求每个事实性结论引用对应的 [编号]；核查规则要求逐条核对回答中的事实性陈述，并以参考资料为唯一证据来源，返回 claim、verdict、evidence。[1][4]
+
+因此，一致的证据编号使生成阶段产生的 [编号] 引用能够在核查阶段对应到同一批参考资料，从而便于逐条核对。资料未进一步说明编号的具体实现方式。",按匿名回答与所给原文核对；待人工复核。
+integration_02,integration,repository_natural,C,anon_128,True,1,1,0,2,2,1.0,False,,5,5,0,0,4,4,3,3,False,True,error,0,False,2,0,1855,654,0,10.558611600077711,11.453550500096753,"根据现有资料，可以说明两点：
+
+1. 检索与回答流程中，在生成草稿前会先进行“统一证据编号与上下文”，随后才“生成草稿 → 单次核查”，因此生成和核查使用的是同一套已编号的证据。[2]
+2. 生成规则要求每个事实性结论引用对应的 [编号]；核查规则要求逐条核对回答中的事实性陈述，并以参考资料为唯一证据来源，返回 claim、verdict、evidence。[1][4]
+
+因此，一致的证据编号使生成阶段产生的 [编号] 引用能够在核查阶段对应到同一批参考资料，从而便于逐条核对。资料未进一步说明编号的具体实现方式。",按匿名回答与所给原文核对；待人工复核。
+unanswerable_09,unanswerable,synthetic_missing_attribute,A,anon_109,False,1,1,1,0,0,,True,,2,2,0,0,2,2,2,2,False,False,disabled,0,False,1,0,367,29,0,1.705203099991195,1.7142181999515742,根据现有资料无法回答该问题。资料中只提到海棠合同的档案保存期限，未提供法务负责人电话。[1][2],按匿名回答与所给原文核对；待人工复核。
+unanswerable_09,unanswerable,synthetic_missing_attribute,B,anon_030,False,1,1,1,0,0,,True,,0,0,0,0,0,0,0,0,False,False,skipped,0,False,0,0,0,0,0,0.007203000015579164,0.4473523999331519,根据现有资料无法回答该问题。,按匿名回答与所给原文核对；待人工复核。
+unanswerable_09,unanswerable,synthetic_missing_attribute,C,anon_030,False,1,1,1,0,0,,True,,0,0,0,0,0,0,0,0,False,False,skipped,0,False,0,0,0,0,0,0.015422699972987175,0.4555720998905599,根据现有资料无法回答该问题。,按匿名回答与所给原文核对；待人工复核。
+single_04,single,repository_natural,A,anon_039,True,1,1,1,1,1,1.0,False,,2,2,0,0,2,2,2,2,False,False,disabled,0,False,1,0,785,34,0,1.0470667999470606,1.0560097999405116,知识库支持 `.txt` 或 `.pdf` 文件 [1]。扫描版 PDF 需先进行 OCR，当前入库程序不包含 OCR [1]。,问的是文件格式，TXT/PDF及扫描限制已覆盖；未述编码不按格式错误处理。
+single_04,single,repository_natural,B,anon_116,True,1,1,1,1,1,1.0,False,,2,2,0,0,2,2,1,1,False,False,disabled,0,False,1,0,263,17,0,1.1701690000481904,1.9591132000787184,知识库支持 UTF-8 TXT 和可提取文字的 PDF。[1],按匿名回答与所给原文核对；待人工复核。
+single_04,single,repository_natural,C,anon_055,True,1,1,1,1,1,1.0,False,,5,5,0,0,5,5,2,2,False,False,failed,1,True,4,0,1372,508,0,13.43329720001202,14.222241400042549,"修正后的回答：知识库支持 UTF-8 TXT。[1]
+
+参考资料（唯一证据）：[1] 来源: README.zh-CN.md.txt
+- **增量入库**：按 tokenizer 分块，默认 220 token、重叠 30 token；支持 UTF-8 TXT 和可提取文字的 PDF。重复入库不会重复追加文档。
+
+根据提供的参考资料，知识库确实支持 UTF-8 TXT 和可提取文字的 PDF，但具体支持的文件类型需要根据上下文明确。修正后的回答仅保留了有依据的部分，并引用了相应的资料来源。",开头只列TXT，但随后明确确认TXT和PDF；按完整回答评分，不将措辞冗余人为算成PDF丢失。表达含混待人工重点复核。
+conflict_07,conflict,synthetic_conflict,A,anon_096,True,0,0,0,3,0,0.0,False,False,0,0,0,0,0,0,0,0,True,True,disabled,0,False,1,1,0,0,1,15.17423569993116,15.18263559998013,生成回答时出现异常，请稍后重试。,生成异常提示；没有答案，保留分母。
+conflict_07,conflict,synthetic_conflict,B,anon_010,True,1,1,1,3,3,1.0,False,True,3,3,0,0,3,3,4,4,False,False,disabled,0,False,1,0,209,55,0,1.8920828000409529,2.7040130000095814,根据现有资料无法确定唯一答案：来源甲规定年度必修课时为16小时 [2]，来源乙规定为24小时 [1]。两份规定均未提供生效日期、版本优先级或废止说明 [1][2]，因此无法判断应以哪份为准。,按匿名回答与所给原文核对；待人工复核。
+conflict_07,conflict,synthetic_conflict,C,anon_010,True,1,1,1,3,3,1.0,False,True,3,3,0,0,3,3,4,4,False,False,passed,0,False,2,0,556,184,0,7.445731100044213,8.257661300012842,根据现有资料无法确定唯一答案：来源甲规定年度必修课时为16小时 [2]，来源乙规定为24小时 [1]。两份规定均未提供生效日期、版本优先级或废止说明 [1][2]，因此无法判断应以哪份为准。,按匿名回答与所给原文核对；待人工复核。
+unanswerable_07,unanswerable,synthetic_missing_attribute,A,anon_136,False,1,1,1,0,0,,True,,2,2,0,0,0,0,0,0,False,False,disabled,0,False,1,0,353,33,0,1.7245253999717534,1.7322262999368832,根据现有资料无法回答该问题。资料中只提到远山培训的年度必修课时（16小时或24小时），未提供补考费用相关信息。,按匿名回答与所给原文核对；待人工复核。
+unanswerable_07,unanswerable,synthetic_missing_attribute,B,anon_013,False,1,1,1,0,0,,True,,0,0,0,0,0,0,0,0,False,False,skipped,0,False,0,0,0,0,0,0.007433600025251508,0.7571832000976428,根据现有资料无法回答该问题。,按匿名回答与所给原文核对；待人工复核。
+unanswerable_07,unanswerable,synthetic_missing_attribute,C,anon_013,False,1,1,1,0,0,,True,,0,0,0,0,0,0,0,0,False,False,skipped,0,False,0,0,0,0,0,0.01594970002770424,0.7656993001000956,根据现有资料无法回答该问题。,按匿名回答与所给原文核对；待人工复核。
+conflict_05,conflict,synthetic_conflict,A,anon_072,True,1,1,1,3,3,1.0,False,True,3,3,0,0,3,3,4,4,False,False,disabled,0,False,1,0,437,55,0,1.0986987999640405,1.106867599999532,根据现有资料无法确定唯一时限：来源甲规定首次响应时限为2小时 [2]，来源乙规定为4小时 [1]。两份规定均未提供生效日期、版本优先级或废止说明 [1][2]，因此无法判断应以哪份为准。,按匿名回答与所给原文核对；待人工复核。
+conflict_05,conflict,synthetic_conflict,B,anon_068,True,1,1,1,3,3,1.0,False,True,3,3,0,0,3,3,4,4,False,False,disabled,0,False,1,0,209,55,0,1.2079322999343276,1.8814614998409525,根据现有资料无法确定唯一时限：来源甲规定首次响应时限为2小时 [1]，来源乙规定为4小时 [2]。两份资料均未提供生效日期、版本优先级或废止说明 [1][2]，因此无法判断应以哪份为准。,按匿名回答与所给原文核对；待人工复核。
+conflict_05,conflict,synthetic_conflict,C,anon_068,True,1,1,1,3,3,1.0,False,True,3,3,0,0,3,3,4,4,False,False,passed,0,False,2,0,546,171,0,4.970390100032091,5.643919299938716,根据现有资料无法确定唯一时限：来源甲规定首次响应时限为2小时 [1]，来源乙规定为4小时 [2]。两份资料均未提供生效日期、版本优先级或废止说明 [1][2]，因此无法判断应以哪份为准。,按匿名回答与所给原文核对；待人工复核。
+constraint_07,constraint,repository_natural,A,anon_056,True,1,1,1,2,2,1.0,False,,2,2,0,0,2,2,5,5,False,False,disabled,0,False,1,0,886,36,0,1.0519151999615133,1.0612068999325857,重排器默认分数门槛是 `0.3` [2][4]。它不是校准概率，而是 sigmoid 重排分数门槛 [1][2][4]。,按匿名回答与所给原文核对；待人工复核。
+constraint_07,constraint,repository_natural,B,anon_111,True,1,1,1,2,2,1.0,False,,2,2,0,0,2,2,3,3,False,False,disabled,0,False,1,0,886,32,0,1.0587739000329748,2.017429900006391,重排器默认分数门槛是 `0.3`，它不是校准概率，而是 sigmoid 重排分数门槛。[1][2][3],按匿名回答与所给原文核对；待人工复核。
+constraint_07,constraint,repository_natural,C,anon_111,True,1,1,0,2,2,1.0,False,,2,2,0,0,2,2,3,3,False,True,error,0,False,2,0,1903,168,0,4.833756900043227,5.792412900016643,重排器默认分数门槛是 `0.3`，它不是校准概率，而是 sigmoid 重排分数门槛。[1][2][3],按匿名回答与所给原文核对；待人工复核。
+false_premise_01,false_premise,repository_natural,A,anon_134,True,1,1,1,1,1,1.0,False,,2,2,0,0,0,0,0,0,False,False,disabled,0,False,1,0,651,46,0,1.2643485000589862,1.2728305000346154,"根据现有资料无法回答该问题。
+
+参考资料中明确提到“扫描版 PDF 需先进行 OCR；当前入库程序不包含 OCR”，因此 Horus 并不自带 OCR，扫描版 PDF 入库不会自动识字。",虽然开头模板说无法回答，后文已明确纠正错误前提；按完整回答评分，不计误拒答。缺少编号引用。
+false_premise_01,false_premise,repository_natural,B,anon_121,True,0,0,0,1,0,0.0,True,,0,0,0,0,0,0,0,0,False,False,skipped,0,False,0,0,0,0,0,0.0076630000257864594,0.9318222000729293,根据现有资料无法回答该问题。,资料有OCR限制，空检索未纠正前提。
+false_premise_01,false_premise,repository_natural,C,anon_121,True,0,0,0,1,0,0.0,True,,0,0,0,0,0,0,0,0,False,False,skipped,0,False,0,0,0,0,0,0.015514900092966855,0.9396741001401097,根据现有资料无法回答该问题。,资料有OCR限制，空检索未纠正前提。
+unanswerable_05,unanswerable,synthetic_missing_attribute,A,anon_038,False,1,1,1,0,0,,True,,3,3,0,0,2,2,2,2,False,False,disabled,0,False,1,0,402,45,0,1.3518362999893725,1.3608718999894336,根据现有资料无法回答该问题。参考资料中仅包含松果客服的首次响应时限规定（来源甲为2小时[1]，来源乙为4小时[2]），未提供客户满意度得分相关信息。,按匿名回答与所给原文核对；待人工复核。
+unanswerable_05,unanswerable,synthetic_missing_attribute,B,anon_053,False,1,1,1,0,0,,True,,0,0,0,0,0,0,0,0,False,False,skipped,0,False,0,0,0,0,0,0.007080099894665182,0.47306409990414977,根据现有资料无法回答该问题。,按匿名回答与所给原文核对；待人工复核。
+unanswerable_05,unanswerable,synthetic_missing_attribute,C,anon_053,False,1,1,1,0,0,,True,,0,0,0,0,0,0,0,0,False,False,skipped,0,False,0,0,0,0,0,0.015123799908906221,0.4811077999183908,根据现有资料无法回答该问题。,按匿名回答与所给原文核对；待人工复核。
+false_premise_09,false_premise,repository_natural,A,anon_052,True,1,1,1,1,1,1.0,False,,1,1,0,0,1,1,2,2,False,False,disabled,0,False,1,0,737,36,0,1.2723882999271154,1.2818933998933062,根据现有资料，联网回答的证据不是来自自动抓取的整篇网页。资料[4]指出：“搜索结果使用摘要，不包含自动抓取全文。”[4],按匿名回答与所给原文核对；待人工复核。
+false_premise_09,false_premise,repository_natural,B,anon_112,True,1,1,1,1,1,1.0,False,,1,1,0,0,1,1,1,1,False,False,disabled,0,False,1,0,479,32,0,1.4088402999332175,2.3138530999422073,根据现有资料，联网回答的证据不是来自自动抓取的整篇网页。纯联网模式使用搜索结果摘要，不包含自动抓取全文。[1],按匿名回答与所给原文核对；待人工复核。
+false_premise_09,false_premise,repository_natural,C,anon_112,True,1,1,0,1,1,1.0,False,,1,1,0,0,1,1,1,1,False,True,error,0,False,2,1,479,32,1,14.984148200019263,15.889161000028253,根据现有资料，联网回答的证据不是来自自动抓取的整篇网页。纯联网模式使用搜索结果摘要，不包含自动抓取全文。[1],按匿名回答与所给原文核对；待人工复核。
+single_05,single,repository_natural,A,anon_007,True,0,0,0,1,0,0.0,True,,0,0,0,0,0,0,0,0,False,False,disabled,0,False,1,0,639,8,0,1.9241270000347868,1.9328450000612065,根据现有资料无法回答该问题。,相关目录未召回；参考答案在完整库存在。
+single_05,single,repository_natural,B,anon_043,True,1,1,1,1,1,1.0,False,,1,1,0,0,1,1,1,1,False,False,disabled,0,False,1,0,264,20,0,1.3990301999729127,2.3811358999228105,用户的纠错文件应放在 `data/correction_inbox/` 目录。[1],按匿名回答与所给原文核对；待人工复核。
+single_05,single,repository_natural,C,anon_044,True,1,1,1,1,1,1.0,False,,3,3,0,0,3,3,2,2,False,False,failed,1,True,4,0,1339,198,0,9.5808644000208,10.562970099970698,"用户的纠错文件应放在 `data/correction_inbox/` 目录。[1]
+
+参考资料（唯一证据）：[1] 来源: README.zh-CN.md.txt
+
+- **纠偏记忆**：保存用户纠错，监听 `data/correction_inbox/`；更换 Embedding 时使用独立记忆目录并重新编码。",按匿名回答与所给原文核对；待人工复核。
+integration_08,integration,repository_natural,A,anon_004,True,0.5,0,0.5,2,1,0.5,False,,5,4,0,1,5,4,3,3,False,False,disabled,0,False,1,0,858,80,0,2.1670717000961304,2.176512300153263,重复入库不会重复追加文档，是因为增量入库按 tokenizer 分块并支持重复执行，重复入库不会重复追加文档 [3]。写入失败时不会先删除旧块，因此旧块得以保留 [1]。但当前过程不是数据库级原子发布；若需在多用户持续查询期间更新大量知识，应进一步采用独立 collection 构建完成后再切换 [1]。,未说明稳定ID；把分块当作幂等原因缺依据。失败保护基本正确。
+integration_08,integration,repository_natural,B,anon_105,True,1,1,1,2,2,1.0,False,,4,4,0,0,4,4,2,2,False,False,disabled,0,False,1,0,551,77,0,1.176502399961464,2.047701200004667,"重复入库不会堆积重复文档，是因为系统使用稳定 ID，重复入库不增加记录；新增向量成功后才删除旧块，因此写入失败时旧块不会被提前删除，从而保护旧块。[2]
+
+补充：当前过程不是数据库级原子发布；若需在多用户持续查询期间更新大量知识，应先在独立 collection 构建完成后再切换。[1]",按匿名回答与所给原文核对；待人工复核。
+integration_08,integration,repository_natural,C,anon_105,True,1,1,0,2,2,1.0,False,,4,4,0,0,4,4,2,2,False,True,error,0,False,2,1,551,77,1,13.20448209985625,14.075680899899453,"重复入库不会堆积重复文档，是因为系统使用稳定 ID，重复入库不增加记录；新增向量成功后才删除旧块，因此写入失败时旧块不会被提前删除，从而保护旧块。[2]
+
+补充：当前过程不是数据库级原子发布；若需在多用户持续查询期间更新大量知识，应先在独立 collection 构建完成后再切换。[1]",按匿名回答与所给原文核对；待人工复核。
+constraint_01,constraint,repository_natural,A,anon_092,True,1,1,1,2,2,1.0,False,,2,2,0,0,2,2,1,1,False,False,disabled,0,False,1,0,780,23,0,1.670441300026141,1.6799769001081586,默认分块大小为 220，重叠为 30，计量单位是 tokenizer token 数。[3],按匿名回答与所给原文核对；待人工复核。
+constraint_01,constraint,repository_natural,B,anon_047,True,1,1,1,2,2,1.0,False,,2,2,0,0,2,2,1,1,False,False,disabled,0,False,1,0,268,21,0,1.081324299913831,2.110821699956432,默认分块大小为 220 token，重叠为 30 token，计量单位是 token。[1],按匿名回答与所给原文核对；待人工复核。
+constraint_01,constraint,repository_natural,C,anon_050,True,1,1,1,2,2,1.0,False,,5,5,0,0,5,5,3,3,False,False,passed,1,True,4,0,1400,250,0,11.94938539993018,12.97888279997278,"默认分块大小为 220 token，重叠为 30 token，计量单位是 token。[1]
+
+参考资料（唯一证据）：[1] 来源: README.zh-CN.md.txt
+- **增量入库**：按 tokenizer 分块，默认 220 token、重叠 30 token；支持 UTF-8 TXT 和可提取文字的 PDF。重复入库不会重复追加文档。
+
+根据参考资料 [1]，原回答中的陈述与证据一致，因此无需修正。",复述证据和自我评价冗余；核心数字正确。
+single_10,single,repository_natural,A,anon_106,True,1,1,1,1,1,1.0,False,,1,1,0,0,1,1,1,1,False,False,disabled,0,False,1,0,537,8,0,1.6523458999581635,1.6616748999804258,项目采用 MIT 许可证。[1],按匿名回答与所给原文核对；待人工复核。
+single_10,single,repository_natural,B,anon_002,True,0,0,0,1,0,0.0,True,,0,0,0,0,0,0,0,0,False,False,skipped,0,False,0,0,0,0,0,0.006903199944645166,0.8414028999395669,根据现有资料无法回答该问题。,完整库有MIT说明，收到空上下文；误拒答，不能以拒答提高正确率。
+single_10,single,repository_natural,C,anon_002,True,0,0,0,1,0,0.0,True,,0,0,0,0,0,0,0,0,False,False,skipped,0,False,0,0,0,0,0,0.01510619989130646,0.8496058998862281,根据现有资料无法回答该问题。,完整库有MIT说明，收到空上下文；误拒答，不能以拒答提高正确率。
+false_premise_06,false_premise,repository_natural,A,anon_075,True,1,1,1,1,1,1.0,False,,2,2,0,0,2,2,2,2,False,False,disabled,0,False,1,0,812,78,0,1.3217029999941587,1.3298830998828635,不对。资料明确说明：无重排器时使用显式词项过滤，不把非空结果当作相关 [4]；`retrieval.min_lexical_score` 是“无重排器及纯联网模式的词项覆盖门槛” [3]。因此重排器失效后仍会做相关性筛选，只是改用词项覆盖门槛等方式。,按匿名回答与所给原文核对；待人工复核。
+false_premise_06,false_premise,repository_natural,B,anon_058,True,1,1,1,1,1,1.0,False,,1,1,0,0,1,1,1,1,False,False,disabled,0,False,1,0,520,48,0,1.4582104000728577,2.4004468000493944,不对。资料明确说明：无重排器时使用显式词项过滤，不把非空结果当作相关 [2]。因此重排器失效后仍会做相关性筛选，只是改用显式词项过滤。,按匿名回答与所给原文核对；待人工复核。
+false_premise_06,false_premise,repository_natural,C,anon_058,True,1,1,0,1,1,1.0,False,,1,1,0,0,1,1,1,1,False,True,error,0,False,2,1,520,48,1,13.473500600084662,14.415737000061199,不对。资料明确说明：无重排器时使用显式词项过滤，不把非空结果当作相关 [2]。因此重排器失效后仍会做相关性筛选，只是改用显式词项过滤。,按匿名回答与所给原文核对；待人工复核。
+single_03,single,repository_natural,A,anon_029,True,1,1,1,1,1,1.0,False,,1,1,0,0,1,1,1,1,False,False,disabled,0,False,1,0,881,22,0,1.724293699953705,1.7347038999432698,默认负责文档重排序的模型是 **BAAI/bge-reranker-base**。[1],按匿名回答与所给原文核对；待人工复核。
+single_03,single,repository_natural,B,anon_079,True,0,0,0,1,0,0.0,True,,0,0,0,0,0,0,0,0,False,False,skipped,0,False,0,0,0,0,0,0.0016966999974101782,0.8671391000971198,根据现有资料无法回答该问题。,库中有重排器名称，但此次检索空结果。
+single_03,single,repository_natural,C,anon_079,True,0,0,0,1,0,0.0,True,,0,0,0,0,0,0,0,0,False,False,skipped,0,False,0,0,0,0,0,0.0035866000689566135,0.8690290001686662,根据现有资料无法回答该问题。,库中有重排器名称，但此次检索空结果。
+false_premise_05,false_premise,repository_natural,A,anon_020,True,1,1,1,1,1,1.0,False,,3,3,0,0,3,3,1,1,False,False,disabled,0,False,1,0,664,46,0,1.316220400040038,1.324631900060922,不能。迁移脚本不能更换 Embedding，只复用旧向量；旧索引没有 manifest 时，脚本仅接受原项目的 MiniLM 配置，当前默认中文 BGE 配置不能直接执行该迁移。[1],按匿名回答与所给原文核对；待人工复核。
+false_premise_05,false_premise,repository_natural,B,anon_097,True,1,1,1,1,1,1.0,False,,4,4,0,0,4,4,1,1,False,False,disabled,0,False,1,0,519,48,0,1.0326238999841735,1.9834232999710366,不能。迁移脚本只接受不存在的目标目录，并复用旧向量，不能更换 Embedding；旧索引没有 manifest 时，脚本仅接受原项目的 MiniLM 配置。更换模型请使用原文入库流程。[1],按匿名回答与所给原文核对；待人工复核。
+false_premise_05,false_premise,repository_natural,C,anon_097,True,1,1,0,1,1,1.0,False,,4,4,0,0,4,4,1,1,False,True,error,0,False,2,1,519,48,1,14.68145019991789,15.632249599904753,不能。迁移脚本只接受不存在的目标目录，并复用旧向量，不能更换 Embedding；旧索引没有 manifest 时，脚本仅接受原项目的 MiniLM 配置。更换模型请使用原文入库流程。[1],按匿名回答与所给原文核对；待人工复核。
+unanswerable_03,unanswerable,synthetic_missing_attribute,A,anon_021,False,1,1,1,0,0,,True,,1,1,0,0,0,0,0,0,False,False,disabled,0,False,1,0,521,19,0,1.5151800999883562,1.5233078999444842,根据现有资料无法回答该问题。参考资料中没有提供北辰运维数据库管理员的姓名信息。,按匿名回答与所给原文核对；待人工复核。
+unanswerable_03,unanswerable,synthetic_missing_attribute,B,anon_036,False,1,1,1,0,0,,True,,0,0,0,0,0,0,0,0,False,False,skipped,0,False,0,0,0,0,0,0.001703999936580658,0.7436145999236032,根据现有资料无法回答该问题。,按匿名回答与所给原文核对；待人工复核。
+unanswerable_03,unanswerable,synthetic_missing_attribute,C,anon_036,False,1,1,1,0,0,,True,,0,0,0,0,0,0,0,0,False,False,skipped,0,False,0,0,0,0,0,0.003598799929022789,0.7455093999160454,根据现有资料无法回答该问题。,按匿名回答与所给原文核对；待人工复核。
+false_premise_08,false_premise,repository_natural,A,anon_080,True,1,1,1,1,1,1.0,False,,2,2,0,0,2,2,2,2,False,False,disabled,0,False,1,0,643,34,0,1.360555600025691,1.3718717000447214,不对。根据现有资料，当前入库不是完整的数据库级原子发布流程，大规模、多用户持续更新场景还需进一步实现原子索引切换 [1][5]。,按匿名回答与所给原文核对；待人工复核。
+false_premise_08,false_premise,repository_natural,B,anon_006,True,1,1,1,1,1,1.0,False,,2,2,0,0,2,2,1,1,False,False,disabled,0,False,1,0,240,29,0,1.124699700041674,1.9375784000148997,不对。根据资料，当前入库不是完整的事务发布流程，大规模、多用户持续更新场景还需进一步实现原子索引切换。[1],按匿名回答与所给原文核对；待人工复核。
+false_premise_08,false_premise,repository_natural,C,anon_006,True,1,1,1,1,1,1.0,False,,2,2,0,0,2,2,1,1,False,False,passed,0,False,2,0,569,58,0,4.482197200064547,5.295075900037773,不对。根据资料，当前入库不是完整的事务发布流程，大规模、多用户持续更新场景还需进一步实现原子索引切换。[1],按匿名回答与所给原文核对；待人工复核。
+constraint_09,constraint,repository_natural,A,anon_070,True,1,1,1,1,1,1.0,False,,1,1,0,0,1,1,1,1,False,False,disabled,0,False,1,0,845,16,0,0.8683495000004768,0.8780874999938533,默认单次 LLM 输出上限是 **512 token**。[2],按匿名回答与所给原文核对；待人工复核。
+constraint_09,constraint,repository_natural,B,anon_120,True,1,1,1,1,1,1.0,False,,1,1,0,0,1,1,1,1,False,False,disabled,0,False,1,0,294,16,0,0.8192438000114635,1.8728875000961125,默认单次 LLM 输出上限是 **512** tokens。[1],按匿名回答与所给原文核对；待人工复核。
+constraint_09,constraint,repository_natural,C,anon_060,True,1,1,1,1,1,1.0,False,,1,1,0,0,1,1,2,2,False,False,passed,1,True,4,0,1391,161,0,6.901148800039664,7.954792500124313,"默认单次 LLM 输出上限是 **512** tokens。[1]
+
+参考资料：
+[1] 来源: README.zh-CN.md.txt
+| `generation.max_tokens` | `512` | 单次 LLM 输出上限 |",按匿名回答与所给原文核对；待人工复核。
+constraint_03,constraint,repository_natural,A,anon_046,True,1,1,1,2,2,1.0,False,,2,2,0,0,2,2,2,2,False,False,disabled,0,False,1,0,446,17,0,1.5519302000757307,1.5708476001163945,请求时间预算默认是 60 秒，包含初始化。[1][5],按匿名回答与所给原文核对；待人工复核。
+constraint_03,constraint,repository_natural,B,anon_132,True,1,1,1,2,2,1.0,False,,2,2,0,0,2,2,2,2,False,False,disabled,0,False,1,0,481,23,0,1.3097440999699757,4.92925219994504,请求时间预算是 **60 秒**，**包括初始化**的请求时间预算。[1][3],按匿名回答与所给原文核对；待人工复核。
+constraint_03,constraint,repository_natural,C,anon_132,True,1,1,1,2,2,1.0,False,,2,2,0,0,2,2,2,2,False,False,passed,0,False,2,0,1026,74,0,3.194036400062032,6.813544500037096,请求时间预算是 **60 秒**，**包括初始化**的请求时间预算。[1][3],按匿名回答与所给原文核对；待人工复核。
+conflict_06,conflict,synthetic_conflict,A,anon_016,True,1,1,1,3,3,1.0,False,True,3,3,0,0,3,3,2,2,False,False,disabled,0,False,1,0,622,47,0,1.4955091000301763,1.5284464000724256,根据现有资料无法确定。资料中存在冲突：[1] 称每月一次，[2] 称每周一次，且两份规定均未提供生效日期、版本优先级或废止说明，无法判断以哪份为准。,按匿名回答与所给原文核对；待人工复核。
+conflict_06,conflict,synthetic_conflict,B,anon_089,True,1,1,1,3,3,1.0,False,True,3,3,0,0,3,3,4,4,False,False,disabled,0,False,1,0,212,51,0,0.991607700008899,5.896070000017062,根据现有资料无法确定唯一频次：来源甲规定每周一次 [1]，来源乙规定每月一次 [2]。两份资料均未提供生效日期、版本优先级或废止说明 [1][2]，因此无法判断应以哪份为准。,按匿名回答与所给原文核对；待人工复核。
+conflict_06,conflict,synthetic_conflict,C,anon_061,True,0,0,0,3,0,0.0,False,False,0,0,0,0,0,0,0,0,True,True,,0,True,3,1,547,156,1,16.690364000038244,21.594826300046407,,执行失败无答案；保留分母，非语义错误陈述。
+conflict_04,conflict,synthetic_conflict,A,anon_015,True,1,1,1,3,3,1.0,False,True,3,3,0,0,3,3,4,4,False,False,disabled,0,False,1,0,362,62,0,1.9942709000315517,2.0314232000382617,根据现有资料，云帆采购的免审批采购金额上限存在冲突：来源甲规定为2000元 [2]，来源乙规定为3000元 [1]。两份规定均未提供生效日期、版本优先级或废止说明 [1][2]，因此无法确定应以哪一份为准。,按匿名回答与所给原文核对；待人工复核。
+conflict_04,conflict,synthetic_conflict,B,anon_098,True,1,1,1,3,3,1.0,False,True,3,3,0,0,3,3,4,4,False,False,disabled,0,False,1,0,217,47,0,1.1876013999572024,3.1830281999427825,根据现有资料无法确定唯一上限：来源甲规定为2000元 [2]，来源乙规定为3000元 [1]，且两份资料均未提供生效日期、版本优先级或废止说明 [1][2]。,按匿名回答与所给原文核对；待人工复核。
+conflict_04,conflict,synthetic_conflict,C,anon_095,True,1,1,1,3,3,1.0,False,True,3,3,0,0,3,3,6,6,False,False,failed,1,True,4,0,1435,574,0,16.112096400000155,18.107523199985735,"根据现有资料，无法确定唯一上限。来源甲规定为2000元 [2]，来源乙规定为3000元 [1]。两份资料均未提供生效日期、版本优先级或废止说明 [1][2]。
+
+参考资料：
+[1] 来源: synthetic__云帆采购_乙.txt
+云帆采购规定（来源乙）：免审批采购金额上限为3000元。两份规定均未提供生效日期、版本优先级或废止说明。
+
+[2] 来源: synthetic__云帆采购_甲.txt
+云帆采购规定（来源甲）：免审批采购金额上限为2000元。两份规定均未提供生效日期、版本优先级或废止说明。",按匿名回答与所给原文核对；待人工复核。
+single_07,single,repository_natural,A,anon_027,True,0,0,0,1,0,0.0,True,,2,2,0,0,1,1,3,3,False,False,disabled,0,False,1,0,625,40,0,1.8592209999915212,1.8673821999691427,根据现有资料无法回答该问题。资料中没有说明联网搜索接入的是哪家服务，只提到联网搜索模式、摘要使用和词项过滤等机制 [1][4][5]。,完整库有百度千帆，收到的上下文没有提供方；未答出。
+single_07,single,repository_natural,B,anon_129,True,1,1,1,1,1,1.0,False,,1,1,0,0,1,1,1,1,False,False,disabled,0,False,1,0,356,11,0,0.8875981000019237,1.8670317999785766,联网搜索接入的是百度千帆搜索。[1],按匿名回答与所给原文核对；待人工复核。
+single_07,single,repository_natural,C,anon_129,True,1,1,0,1,1,1.0,False,,1,1,0,0,1,1,1,1,False,True,error,0,False,2,0,791,327,0,8.948499699938111,9.927933399914764,联网搜索接入的是百度千帆搜索。[1],按匿名回答与所给原文核对；待人工复核。
+integration_01,integration,repository_natural,A,anon_024,True,1,1,1,2,2,1.0,False,,7,7,0,0,7,7,6,6,False,False,disabled,0,False,1,0,877,206,0,2.382818799931556,2.3921825998695567,"新机器启动前需完成以下准备：
+
+1. **下载模型**：将 `config.yaml` 中 `embedding.local_files_only` 和 `reranker.local_files_only` 改为 `false`，运行指定命令下载模型，成功后再改回 `true`，避免运行时联网下载 [5][2]。
+2. **构建知识库**：创建 `knowledge_base/`，放入 `.txt` 或 `.pdf` 文件，执行 `python -m src.data_ingestion`，生成索引目录和 manifest [2]。
+3. **启动**：运行 `python -m streamlit run app.py`（Windows 未激活环境时用 `.\.venv\Scripts\python.exe -m streamlit run app.py`）[1]。
+
+注意：扫描版 PDF 需先自行 OCR，当前入库程序不含 OCR [2]；更换模型或归一化方式时需选择新索引目录重新入库，不能复用旧向量 [1]。",按匿名回答与所给原文核对；待人工复核。
+integration_01,integration,repository_natural,B,anon_091,True,1,1,1,2,2,1.0,False,,6,6,0,0,6,6,5,5,False,False,disabled,0,False,1,0,829,182,0,1.715947800083086,2.785331999999471,"新机器启动前需完成以下准备：
+
+1. **下载模型**：将 `config.yaml` 中 `embedding.local_files_only` 和 `reranker.local_files_only` 改为 `false`，运行指定命令下载；成功后恢复为 `true`，避免运行时联网下载。[1][4]
+2. **构建知识库**：创建 `knowledge_base/`，放入 `.txt` 或 `.pdf` 文件，执行 `python -m src.data_ingestion` 生成索引。[4]
+3. **启动应用**：执行 `python -m streamlit run app.py`（Windows 可用 `.\.venv\Scripts\python.exe -m streamlit run app.py`）。[3]
+
+注意：扫描版 PDF 需先 OCR（当前入库程序不含 OCR）；模型文件不包含在 Git 仓库中。[4]",按匿名回答与所给原文核对；待人工复核。
+integration_01,integration,repository_natural,C,anon_091,True,1,1,0,2,2,1.0,False,,6,6,0,0,6,6,5,5,False,True,error,0,False,2,0,1905,426,0,7.2351648000767455,8.30454899999313,"新机器启动前需完成以下准备：
+
+1. **下载模型**：将 `config.yaml` 中 `embedding.local_files_only` 和 `reranker.local_files_only` 改为 `false`，运行指定命令下载；成功后恢复为 `true`，避免运行时联网下载。[1][4]
+2. **构建知识库**：创建 `knowledge_base/`，放入 `.txt` 或 `.pdf` 文件，执行 `python -m src.data_ingestion` 生成索引。[4]
+3. **启动应用**：执行 `python -m streamlit run app.py`（Windows 可用 `.\.venv\Scripts\python.exe -m streamlit run app.py`）。[3]
+
+注意：扫描版 PDF 需先 OCR（当前入库程序不含 OCR）；模型文件不包含在 Git 仓库中。[4]",按匿名回答与所给原文核对；待人工复核。
+integration_04,integration,repository_natural,A,anon_082,True,0,0,0,2,0,0.0,True,,5,4,0,1,0,0,0,0,False,False,disabled,0,False,1,0,730,87,0,2.041486999951303,2.0501098999520764,"根据现有资料无法回答该问题。
+
+现有参考资料中没有说明 Horus 如何同时利用语义检索和关键词检索，也没有说明其控制重复证据的具体机制。资料仅提到：纯联网模式使用词项覆盖过滤、HyDE 在无有效证据时补充候选并按原问题重排，以及各节点主要串行执行，但未涉及语义检索与关键词检索的融合方式或重复证据控制策略。",未回答目标问题；附带HyDE条件不完整。
+integration_04,integration,repository_natural,B,anon_011,True,0,0,0,2,0,0.0,True,,3,3,0,0,0,0,0,0,False,False,disabled,0,False,1,0,202,80,0,1.3239619999658316,2.3101554999593645,根据现有资料无法回答该问题。资料中仅说明 Horus 是面向中文知识库的检索增强问答应用，使用 Streamlit 与 LangGraph 编排检索、回答生成、证据核查和有限次数的修正，支持本地知识库、互联网搜索和智能混合三种模式，但未提及如何同时利用语义检索和关键词检索，也未提及如何控制重复证据。,检索仅给简介，未回答目标机制。
+integration_04,integration,repository_natural,C,anon_011,True,0,0,0,2,0,0.0,True,,3,3,0,0,0,0,0,0,False,True,error,0,False,2,0,532,331,0,11.500378199969418,12.486571699962951,根据现有资料无法回答该问题。资料中仅说明 Horus 是面向中文知识库的检索增强问答应用，使用 Streamlit 与 LangGraph 编排检索、回答生成、证据核查和有限次数的修正，支持本地知识库、互联网搜索和智能混合三种模式，但未提及如何同时利用语义检索和关键词检索，也未提及如何控制重复证据。,检索仅给简介，未回答目标机制。
+conflict_01,conflict,synthetic_conflict,A,anon_045,True,1,1,1,3,3,1.0,False,True,3,3,0,0,2,2,2,2,False,False,disabled,0,False,1,0,387,57,0,1.8608398000942543,1.8697612000396475,根据现有资料，青禾差旅的每日住宿报销上限存在两个不同数值：来源甲规定为600元 [2]，来源乙规定为800元 [1]。两份规定均未提供生效日期、版本优先级或废止说明，因此无法确定应以哪一个为准。,按匿名回答与所给原文核对；待人工复核。
+conflict_01,conflict,synthetic_conflict,B,anon_031,True,1,1,1,3,3,1.0,False,True,3,3,0,0,3,3,4,4,False,False,disabled,0,False,1,0,217,59,0,1.059007600066252,1.7912169001065195,根据现有资料，青禾差旅每日住宿报销上限存在冲突：来源甲规定为600元 [1]，来源乙规定为800元 [2]。两份资料均未提供生效日期、版本优先级或废止说明 [1][2]，因此无法确定应以哪一份为准。,按匿名回答与所给原文核对；待人工复核。
+conflict_01,conflict,synthetic_conflict,C,anon_130,True,1,1,1,3,3,1.0,False,True,3,3,0,0,3,3,6,6,False,False,failed,1,True,4,0,1480,455,0,14.057619400089607,14.789828700129874,"根据现有资料，青禾差旅每日住宿报销上限存在冲突：来源甲规定为600元 [1]，来源乙规定为800元 [2]。由于两份资料均未提供生效日期、版本优先级或废止说明 [1][2]，因此无法确定应以哪一份为准。
+
+参考资料：
+[1] 来源: synthetic__青禾差旅_甲.txt
+【合成评估资料，不是真实业务政策】
+青禾差旅规定（来源甲）：每日住宿报销上限为600元。两份规定均未提供生效日期、版本优先级或废止说明。
+
+[2] 来源: synthetic__青禾差旅_乙.txt
+【合成评估资料，不是真实业务政策】
+青禾差旅规定（来源乙）：每日住宿报销上限为800元。两份规定均未提供生效日期、版本优先级或废止说明。",按匿名回答与所给原文核对；待人工复核。
+constraint_05,constraint,repository_natural,A,anon_122,True,0.5,0,0.5,2,1,0.5,False,,4,4,0,0,3,3,1,1,False,False,disabled,0,False,1,0,845,66,0,1.773829499958083,1.7815078999847174,"根据现有资料，无法完整回答“什么条件下混合模式会转向联网搜索”。
+
+资料仅提到：百度 Key 用于联网搜索和可选查询改写；纯本地模式不需要它；混合模式未配置时仅使用本地检索。[5] 但没有说明混合模式在何种条件下会从本地检索转向联网搜索。",给出搜索配置必要条件，但漏掉本地无有效证据条件；部分回答，不算整体拒答。
+constraint_05,constraint,repository_natural,B,anon_032,True,1,1,1,2,2,1.0,False,,2,2,0,0,2,2,1,1,False,False,disabled,0,False,1,0,322,30,0,1.043609399930574,2.0576093998970464,根据参考资料 [2]，混合模式会先进行本地检索；当**无有效证据且已配置搜索服务**时，转向联网搜索。,按匿名回答与所给原文核对；待人工复核。
+constraint_05,constraint,repository_natural,C,anon_032,True,1,1,1,2,2,1.0,False,,2,2,0,0,2,2,1,1,False,False,passed,0,False,2,0,739,133,0,4.10814509994816,5.122145099914633,根据参考资料 [2]，混合模式会先进行本地检索；当**无有效证据且已配置搜索服务**时，转向联网搜索。,按匿名回答与所给原文核对；待人工复核。
+unanswerable_02,unanswerable,synthetic_missing_attribute,A,anon_003,False,1,1,1,0,0,,True,,2,2,0,0,1,1,2,2,False,False,disabled,0,False,1,0,379,32,0,1.3667232999578118,1.3755965000018477,根据现有资料无法回答该问题。参考资料仅涉及白鹭年假申请提前时间（[1][2]），未提供产假天数信息。,按匿名回答与所给原文核对；待人工复核。
+unanswerable_02,unanswerable,synthetic_missing_attribute,B,anon_099,False,1,1,1,0,0,,True,,2,2,0,0,2,2,2,2,False,False,disabled,0,False,1,0,212,29,0,1.0261844000779092,1.3522255001589656,根据现有资料无法回答该问题。两份资料仅提到年假申请提前时间，未提供产假天数信息。[1][2],按匿名回答与所给原文核对；待人工复核。
+unanswerable_02,unanswerable,synthetic_missing_attribute,C,anon_123,False,1,1,1,0,0,,True,,4,4,0,0,0,0,0,0,False,False,failed,1,True,4,0,1262,256,0,11.096973499981686,11.423014600062743,"根据现有资料无法回答该问题。两份资料均未提供产假天数信息，仅提到年假申请提前时间。具体为：
+
+- 白鹭请假规定（来源乙）：年假申请提前时间为5个工作日。
+- 白鹭请假规定（来源甲）：年假申请提前时间为3个工作日。
+
+因此，关于年假申请提前时间存在矛盾，但无法确定具体提前时间。",按匿名回答与所给原文核对；待人工复核。
+integration_03,integration,repository_natural,A,anon_066,True,1,1,1,2,2,1.0,False,,6,6,0,0,6,6,5,5,False,False,disabled,0,False,1,0,850,167,0,2.195820299908519,2.2076802998781204,"切换 Embedding 后，知识库和纠偏记忆都需要重新编码：
+
+- **知识库**：更换中文 Embedding 时，设置新的模型、归一化方式、可选 `query_prefix` 和新索引目录，再从原始文档重新入库；不要复制旧向量并更改模型签名。[2] 已有知识库更换为中文模型时直接从原文重新入库。[1]
+- **纠偏记忆**：也必须重新向量化，可运行 `python scripts/reembed_memory.py --config config.yaml`，旧记忆保留，目标按模型签名隔离。[2] 该脚本读取旧记录并重新编码，保留旧库，目标按模型签名隔离。[1]
+
+另外，更换 Embedding 会改变距离分布，文档及纠偏记忆都需要重新编码和检查门槛。[5]",按匿名回答与所给原文核对；待人工复核。
+integration_03,integration,repository_natural,B,anon_102,True,1,1,1,2,2,1.0,False,,6,6,0,0,6,6,4,4,False,False,disabled,0,False,1,0,818,143,0,1.692226400016807,2.809244400006719,"切换 Embedding 后，知识库和纠偏记忆都需要重新编码，不能沿用旧向量：
+
+- **知识库**：设置新的模型、归一化方式、可选 `query_prefix` 和新索引目录，再从原始文档入库；不要复制旧向量并更改模型签名 [1]。
+- **纠偏记忆**：也必须重新向量化，可运行 `python scripts/reembed_memory.py --config config.yaml`，旧记忆保留，目标按模型签名隔离 [1]；更换 Embedding 时使用独立记忆目录并重新编码 [2]。
+
+另外，更换 Embedding 会改变距离分布，文档及纠偏记忆都需要重新编码和检查门槛 [3]。",按匿名回答与所给原文核对；待人工复核。
+integration_03,integration,repository_natural,C,anon_102,True,1,1,0,2,2,1.0,False,,6,6,0,0,6,6,4,4,False,True,error,0,False,2,1,818,143,1,13.710436400026083,14.827454400015995,"切换 Embedding 后，知识库和纠偏记忆都需要重新编码，不能沿用旧向量：
+
+- **知识库**：设置新的模型、归一化方式、可选 `query_prefix` 和新索引目录，再从原始文档入库；不要复制旧向量并更改模型签名 [1]。
+- **纠偏记忆**：也必须重新向量化，可运行 `python scripts/reembed_memory.py --config config.yaml`，旧记忆保留，目标按模型签名隔离 [1]；更换 Embedding 时使用独立记忆目录并重新编码 [2]。
+
+另外，更换 Embedding 会改变距离分布，文档及纠偏记忆都需要重新编码和检查门槛 [3]。",按匿名回答与所给原文核对；待人工复核。
+unanswerable_06,unanswerable,synthetic_missing_attribute,A,anon_119,False,1,1,1,0,0,,True,,2,2,0,0,2,2,2,2,False,False,disabled,0,False,1,0,635,30,0,1.9046969000482932,1.912934800144285,根据现有资料无法回答该问题。两份星桥仓储规定只提到库存盘点频次，未提供仓库街道地址。[1][2],按匿名回答与所给原文核对；待人工复核。
+unanswerable_06,unanswerable,synthetic_missing_attribute,B,anon_114,False,1,1,1,0,0,,True,,0,0,0,0,0,0,0,0,False,False,skipped,0,False,0,0,0,0,0,0.0017558999825268984,0.8810455999337137,根据现有资料无法回答该问题。,按匿名回答与所给原文核对；待人工复核。
+unanswerable_06,unanswerable,synthetic_missing_attribute,C,anon_114,False,1,1,1,0,0,,True,,0,0,0,0,0,0,0,0,False,False,skipped,0,False,0,0,0,0,0,0.003705300041474402,0.8829949999926612,根据现有资料无法回答该问题。,按匿名回答与所给原文核对；待人工复核。
+unanswerable_08,unanswerable,synthetic_missing_attribute,A,anon_074,False,1,1,1,0,0,,True,,3,3,0,0,3,3,2,2,False,False,disabled,0,False,1,0,373,42,0,1.1796474000439048,1.1888162000104785,根据现有资料无法回答该问题。资料中只提到清泉设备借用最长期限（来源甲为7天、来源乙为14天），未提供逾期罚款金额。[1][2],按匿名回答与所给原文核对；待人工复核。
+unanswerable_08,unanswerable,synthetic_missing_attribute,B,anon_022,False,1,1,1,0,0,,True,,2,2,0,0,2,2,2,2,False,False,disabled,0,False,1,0,209,27,0,1.175706599955447,1.4873179999412969,根据现有资料无法回答该问题。资料[1][2]只规定了借用最长期限，未提及逾期罚款金额。,按匿名回答与所给原文核对；待人工复核。
+unanswerable_08,unanswerable,synthetic_missing_attribute,C,anon_086,False,1,1,1,0,0,,True,,3,3,0,0,3,3,6,6,False,False,failed,1,True,4,0,1255,309,0,12.11678599996958,12.42839739995543,"根据现有资料无法回答该问题。资料[1][2]提供了借用最长期限的规定，但未提及逾期罚款金额。
+
+- 借用最长期限为14天（资料[1]）。
+- 借用最长期限为7天（资料[2]）。
+
+参考资料：
+[1] 来源: synthetic__清泉设备_乙.txt
+[2] 来源: synthetic__清泉设备_甲.txt",按匿名回答与所给原文核对；待人工复核。
+constraint_10,constraint,repository_natural,A,anon_063,True,1,1,1,1,1,1.0,False,,2,2,0,0,2,2,1,1,False,False,disabled,0,False,1,0,813,45,0,1.6314962999895215,1.6414661000017077,没有 manifest 的旧索引迁移时，脚本仅接受原项目的 MiniLM 配置，且必须先使用与源索引一致的旧模型配置；当前默认中文 BGE 配置不能直接执行该迁移。[1],按匿名回答与所给原文核对；待人工复核。
+constraint_10,constraint,repository_natural,B,anon_081,True,1,1,1,1,1,1.0,False,,2,2,0,0,2,2,1,1,False,False,disabled,0,False,1,0,248,26,0,1.1371911000460386,2.1854203001130372,没有 manifest 的旧索引迁移，脚本仅接受原项目的 MiniLM 配置；迁移不能更换 Embedding。[1],按匿名回答与所给原文核对；待人工复核。
+constraint_10,constraint,repository_natural,C,anon_081,True,1,1,0,1,1,1.0,False,,2,2,0,0,2,2,1,1,False,True,error,0,False,2,1,248,26,1,13.148156100069173,14.196385300136171,没有 manifest 的旧索引迁移，脚本仅接受原项目的 MiniLM 配置；迁移不能更换 Embedding。[1],按匿名回答与所给原文核对；待人工复核。
+integration_05,integration,repository_natural,A,anon_113,True,1,1,1,2,2,1.0,False,,4,4,0,0,3,3,2,2,False,False,disabled,0,False,1,0,772,118,0,2.1141916000051424,2.123704499914311,"根据现有资料：
+
+- 控制外部 LLM 重试开销：`llm.max_retries` 默认 `0`，即单链路不额外重试，SDK 重试关闭，但仍可切换备用链路 [3]。
+- 控制自纠正次数：`generation.max_retries` 默认 `1`，表示整条图最多重写次数 [3]。
+
+因此，可分别调整这两个配置项来限制外部 LLM 重试和自纠正次数。资料未给出更细粒度的联合调优方法。",按匿名回答与所给原文核对；待人工复核。
+integration_05,integration,repository_natural,B,anon_103,True,1,1,1,2,2,1.0,False,,4,4,0,0,3,3,2,2,False,False,disabled,0,False,1,0,297,102,0,1.5105677000246942,2.605309500009753,"根据现有资料，可分别通过以下配置控制：
+
+- 外部 LLM 重试开销：`llm.max_retries` 控制单链路额外重试次数，默认 `0`；SDK 重试关闭，但仍可切换备用链路 [1]。
+- 自纠正次数：`generation.max_retries` 控制整条图最多重写次数，默认 `1` [1]。
+
+资料未说明两者之间的联动或总预算合并方式。",按匿名回答与所给原文核对；待人工复核。
+integration_05,integration,repository_natural,C,anon_103,True,1,1,0,2,2,1.0,False,,4,4,0,0,3,3,2,2,False,True,error,0,False,2,1,297,102,1,15.194909700076096,16.289651500061154,"根据现有资料，可分别通过以下配置控制：
+
+- 外部 LLM 重试开销：`llm.max_retries` 控制单链路额外重试次数，默认 `0`；SDK 重试关闭，但仍可切换备用链路 [1]。
+- 自纠正次数：`generation.max_retries` 控制整条图最多重写次数，默认 `1` [1]。
+
+资料未说明两者之间的联动或总预算合并方式。",按匿名回答与所给原文核对；待人工复核。
+conflict_09,conflict,synthetic_conflict,A,anon_076,True,1,1,1,3,3,1.0,False,True,3,3,0,0,3,3,4,4,False,False,disabled,0,False,1,0,364,56,0,2.0083828000351787,2.016567200073041,根据现有资料，海棠合同的档案保存期限存在冲突：来源甲规定为3年 [2]，来源乙规定为5年 [1]。两份规定均未提供生效日期、版本优先级或废止说明 [1][2]，因此无法确定应以哪一份为准。,按匿名回答与所给原文核对；待人工复核。
+conflict_09,conflict,synthetic_conflict,B,anon_084,True,1,1,1,3,3,1.0,False,True,3,3,0,0,3,3,4,4,False,False,disabled,0,False,1,0,203,62,0,1.302967399940826,1.8357799999648705,根据现有资料，两份规定存在冲突：来源甲规定档案保存期限为3年 [2]，来源乙规定为5年 [1]。由于两份规定均未提供生效日期、版本优先级或废止说明 [1][2]，无法确定应以哪一份为准，因此无法给出唯一结论。,按匿名回答与所给原文核对；待人工复核。
+conflict_09,conflict,synthetic_conflict,C,anon_065,True,1,1,1,3,3,1.0,False,True,3,3,0,0,3,3,8,8,False,False,failed,1,True,4,0,1488,557,0,16.562787499977276,17.09560010000132,"根据现有资料，两份规定存在冲突：来源甲规定档案保存期限为3年 [2]，来源乙规定为5年 [1]。由于两份规定均未提供生效日期、版本优先级或废止说明 [1][2]，无法确定应以哪一份为准，因此无法给出唯一结论。
+
+修正后的回答：
+两份规定存在冲突：来源甲规定档案保存期限为3年 [2]，来源乙规定为5年 [1]。由于两份规定均未提供生效日期、版本优先级或废止说明 [1][2]，无法确定应以哪一份为准，因此无法给出唯一结论。",整段重复一次，重复事实只计一次。
+unanswerable_10,unanswerable,synthetic_missing_attribute,A,anon_117,False,1,1,1,0,0,,True,,2,2,0,0,0,0,0,0,False,False,disabled,0,False,1,0,380,27,0,1.9691383999306709,1.9770016999682412,根据现有资料无法回答该问题。资料中只涉及银杉访客的来访预约提前时间，未提供停车收费标准。,按匿名回答与所给原文核对；待人工复核。
+unanswerable_10,unanswerable,synthetic_missing_attribute,B,anon_133,False,1,1,1,0,0,,True,,2,2,0,0,2,2,2,2,False,False,disabled,0,False,1,0,212,26,0,1.3667848000768572,1.6781299001304433,根据现有资料无法回答该问题。两份资料只提到来访预约提前时间，未提供停车收费标准。[1][2],按匿名回答与所给原文核对；待人工复核。
+unanswerable_10,unanswerable,synthetic_missing_attribute,C,anon_064,False,1,1,1,0,0,,True,,4,4,0,0,4,4,4,4,False,False,failed,1,True,4,0,1258,250,0,10.773936200072058,11.085281300125644,"根据现有资料无法回答该问题。两份资料均未提供停车收费标准。[1][2]
+
+参考资料：
+[1] 来源: synthetic__银杉访客_甲.txt
+【合成评估资料，不是真实业务政策】
+银杉访客规定（来源甲）：来访预约提前时间为1天。两份规定均未提供生效日期、版本优先级或废止说明。
+
+[2] 来源: synthetic__银杉访客_乙.txt
+【合成评估资料，不是真实业务政策】
+银杉访客规定（来源乙）：来访预约提前时间为2天。两份规定均未提供生效日期、版本优先级或废止说明。",按匿名回答与所给原文核对；待人工复核。
+conflict_02,conflict,synthetic_conflict,A,anon_026,True,1,1,1,3,3,1.0,False,True,3,3,0,0,3,3,4,4,False,False,disabled,0,False,1,0,381,57,0,1.8065287000499666,1.8146282001398504,根据现有资料，白鹭年假申请提前时间存在冲突：来源甲为3个工作日 [1]，来源乙为5个工作日 [2]。两份规定均未提供生效日期、版本优先级或废止说明 [1][2]，因此无法确定唯一适用标准。,按匿名回答与所给原文核对；待人工复核。
+conflict_02,conflict,synthetic_conflict,B,anon_017,True,1,1,1,3,3,1.0,False,True,3,3,0,0,3,3,4,4,False,False,disabled,0,False,1,0,327,58,0,1.2863921999232844,1.8394550998928025,根据现有资料，白鹭年假申请提前时间存在冲突：来源甲为3个工作日 [2]，来源乙为5个工作日 [1]。两份规定均未提供生效日期、版本优先级或废止说明 [1][2]，因此无法确定最终应以哪个为准。,按匿名回答与所给原文核对；待人工复核。
+conflict_02,conflict,synthetic_conflict,C,anon_124,True,1,1,1,3,3,1.0,False,True,3,3,0,0,3,3,6,6,False,False,failed,1,True,4,0,1994,584,0,12.811351299867965,13.364414199837483,"根据现有资料，白鹭年假申请提前时间存在冲突：来源甲为3个工作日 [2]，来源乙为5个工作日 [1]。由于两份规定均未提供生效日期、版本优先级或废止说明 [1][2]，因此无法确定最终应以哪个为准。
+
+参考资料：
+[1] 来源: synthetic__白鹭请假_乙.txt
+【合成评估资料，不是真实业务政策】
+白鹭请假规定（来源乙）：年假申请提前时间为5个工作日。两份规定均未提供生效日期、版本优先级或废止说明。
+
+[2] 来源: synthetic__白鹭请假_甲.txt
+【合成评估资料，不是真实业务政策】
+白鹭请假规定（来源甲）：年假申请提前时间为3个工作日。两份规定均未提供生效日期、版本优先级或废止说明。",按匿名回答与所给原文核对；待人工复核。
+integration_09,integration,repository_natural,A,anon_008,True,0.5,0,0.5,2,1,0.5,False,,3,2,0,1,3,2,2,2,False,False,disabled,0,False,1,0,768,74,0,1.8305205000797287,1.8412979000713676,根据现有资料，原问题没有有效证据时，HyDE 的行为是：仅在原问题没有有效证据时补充候选，仍按原问题重排 [3]。资料未说明会“强行生成答案”；相反，生成规则要求证据不完整时说明缺少什么，完全无关时回答“根据现有资料无法回答该问题” [4]。,没有回答默认关闭，且漏写启用前提；拒答规则基本正确，记部分。
+integration_09,integration,repository_natural,B,anon_018,True,1,1,1,2,2,1.0,False,,3,3,0,0,3,3,3,3,False,False,disabled,0,False,1,0,732,57,0,1.5409389999695122,2.5405914000002667,根据现有资料：默认禁用 HyDE；启用 HyDE 后，也仅在原问题没有有效证据时才补充候选，并仍按原问题重排 [1][2]。无证据时直接拒答，不再为无关资料调用生成和核查模型 [4]。,按匿名回答与所给原文核对；待人工复核。
+integration_09,integration,repository_natural,C,anon_018,True,1,1,0,2,2,1.0,False,,3,3,0,0,3,3,3,3,False,True,error,0,False,2,0,1608,569,0,12.724483700003475,13.72413610003423,根据现有资料：默认禁用 HyDE；启用 HyDE 后，也仅在原问题没有有效证据时才补充候选，并仍按原问题重排 [1][2]。无证据时直接拒答，不再为无关资料调用生成和核查模型 [4]。,按匿名回答与所给原文核对；待人工复核。
+single_01,single,repository_natural,A,anon_085,True,0,0,0,1,0,0.0,True,,2,2,0,0,1,1,1,1,False,False,disabled,0,False,1,0,613,44,0,1.7061922000721097,1.7149810001719743,根据现有资料无法回答该问题。资料中未给出当前中文向量模型的具体名称，仅提到“更换中文 Embedding 时，设置新的模型……”[5]，但未说明当前所用模型的名称。,按匿名回答与所给原文核对；待人工复核。
+single_01,single,repository_natural,B,anon_110,True,0,0,0,1,0,0.0,True,,0,0,0,0,0,0,0,0,False,False,skipped,0,False,0,0,0,0,0,0.0016238999087363482,0.932326199952513,根据现有资料无法回答该问题。,完整知识库有模型名，但未召回。
+single_01,single,repository_natural,C,anon_110,True,0,0,0,1,0,0.0,True,,0,0,0,0,0,0,0,0,False,False,skipped,0,False,0,0,0,0,0,0.0034675998613238335,0.9341698999051005,根据现有资料无法回答该问题。,完整知识库有模型名，但未召回。
+integration_07,integration,repository_natural,A,anon_009,True,0.5,0,0.5,2,1,0.5,False,,4,4,0,0,3,3,3,3,False,False,disabled,0,False,1,0,647,107,0,1.3798524000449106,1.393281500088051,"根据现有资料，只能确认以下内容：
+
+- 结果缓存有有效期和容量限制 [1]。
+- 旧记忆重新编码时保留旧库，目标按模型签名隔离 [4]。
+- 迁移脚本只接受不存在的目标目录，并复用旧向量 [2]。
+
+资料未说明缓存具体如何按对话或索引版本进行键隔离，因此无法完整回答“缓存如何避免把不同对话或旧索引的结果混用”。缺少缓存键设计、会话标识和索引版本标识相关说明。",只覆盖缓存限制，没有覆盖键隔离；附带事实有依据但答非所问。
+integration_07,integration,repository_natural,B,anon_083,True,1,1,1,2,2,1.0,False,,3,3,0,0,3,3,2,2,False,False,disabled,0,False,1,0,235,57,0,1.3569199999328703,2.7561603999929503,"缓存通过以下方式避免混用：
+
+- 缓存键包含对话、偏好、索引版本和配置，因此不同对话或不同索引版本不会命中同一缓存。[1]
+- 结果有 TTL 和容量上限，错误/核查失败结果不缓存。[1]",按匿名回答与所给原文核对；待人工复核。
+integration_07,integration,repository_natural,C,anon_093,True,1,1,1,2,2,1.0,False,,4,4,0,0,4,4,4,4,False,False,failed,1,True,4,0,1491,934,0,20.33820849994663,21.73744890000671,"修正后的回答：
+
+缓存通过以下方式避免混用：
+
+- 缓存键包含对话、偏好、索引版本和配置，因此不同对话或不同索引版本不会命中同一缓存。[1]
+- 结果有 TTL 和容量上限，错误/核查失败结果不缓存。[1]
+
+启动校验索引中的 Embedding 签名，避免新旧向量混用。[1]
+
+关于其他陈述，根据现有资料无法提供有依据的回答。
+
+参考资料：
+[1] 来源: docs__optimization.md.txt",附加一句泛化拒答但已经回答关键事实，不判整体拒答。
+false_premise_04,false_premise,repository_natural,A,anon_048,True,0,0,0,1,0,0.0,True,,0,0,0,0,0,0,0,0,False,False,disabled,0,False,1,0,658,8,0,1.7138636000454426,1.7533723000669852,根据现有资料无法回答该问题。,完整资料能纠正查询前缀的错误前提，本次没召回。
+false_premise_04,false_premise,repository_natural,B,anon_125,True,0,0,0,1,0,0.0,True,,0,0,0,0,0,0,0,0,False,False,skipped,0,False,0,0,0,0,0,0.001763500040397048,5.17278740007896,根据现有资料无法回答该问题。,有答案题检索空，未纠正前提。
+false_premise_04,false_premise,repository_natural,C,anon_125,True,0,0,0,1,0,0.0,True,,0,0,0,0,0,0,0,0,False,False,skipped,0,False,0,0,0,0,0,0.003663000068627298,5.17468690010719,根据现有资料无法回答该问题。,有答案题检索空，未纠正前提。
+single_06,single,repository_natural,A,anon_126,True,0,0,0,1,0,0.0,True,,1,1,0,0,0,0,0,0,False,False,disabled,0,False,1,0,590,18,0,1.2469846000894904,1.2800335000501946,根据现有资料无法回答该问题。资料中未提及默认主生成模型的标识。,按匿名回答与所给原文核对；待人工复核。
+single_06,single,repository_natural,B,anon_023,True,1,1,1,1,1,1.0,False,,1,1,0,0,1,1,1,1,False,False,disabled,0,False,1,0,295,15,0,1.1185509000206366,6.419226099969819,默认主生成模型的标识是 `deepseek-chat`。[1],按匿名回答与所给原文核对；待人工复核。
+single_06,single,repository_natural,C,anon_023,True,1,1,0,1,1,1.0,False,,1,1,0,0,1,1,1,1,False,True,error,0,False,2,0,660,527,0,13.12981369998306,18.430488899932243,默认主生成模型的标识是 `deepseek-chat`。[1],按匿名回答与所给原文核对；待人工复核。
+constraint_06,constraint,repository_natural,A,anon_131,True,1,1,1,2,2,1.0,False,,2,2,0,0,2,2,2,2,False,False,disabled,0,False,1,0,775,31,0,1.7646527000470087,1.8035748000256717,启用 HyDE 后，仅在原问题没有有效证据时补充候选，补充的候选仍按原问题统一重排。[1][2],按匿名回答与所给原文核对；待人工复核。
+constraint_06,constraint,repository_natural,B,anon_041,True,1,1,1,2,2,1.0,False,,2,2,0,0,2,2,2,2,False,False,disabled,0,False,1,0,819,32,0,1.2326776999980211,5.254597599967383,启用 HyDE 后，仅在原问题没有有效证据时才补充候选，并且补充的候选仍按原问题统一重排。[1][2],按匿名回答与所给原文核对；待人工复核。
+constraint_06,constraint,repository_natural,C,anon_041,True,1,1,0,2,2,1.0,False,,2,2,0,0,2,2,2,2,False,True,error,0,False,2,0,1762,544,0,11.521152100060135,15.543072000029497,启用 HyDE 后，仅在原问题没有有效证据时才补充候选，并且补充的候选仍按原问题统一重排。[1][2],按匿名回答与所给原文核对；待人工复核。
+false_premise_02,false_premise,repository_natural,A,anon_051,True,1,1,1,1,1,1.0,False,,1,1,0,0,1,1,1,1,False,False,disabled,0,False,1,0,854,13,0,1.4920242000371218,1.4999315000604838,不对。JSON 解析失败不能视为核查通过。[1],按匿名回答与所给原文核对；待人工复核。
+false_premise_02,false_premise,repository_natural,B,anon_062,True,1,1,1,1,1,1.0,False,,2,2,0,0,2,2,3,3,False,False,disabled,0,False,1,0,559,48,0,1.1428732000058517,2.156118999933824,不对。核查结果不是有效 JSON 时会抛出 `VerificationError`，不能视为核查通过。[2] 资料也明确“JSON 解析失败……不能视为核查通过”“解析失败不算通过”。[1][3],按匿名回答与所给原文核对；待人工复核。
+false_premise_02,false_premise,repository_natural,C,anon_062,True,1,1,0,1,1,1.0,False,,2,2,0,0,2,2,3,3,False,True,error,0,False,2,0,1214,438,0,8.969884400023147,9.98313019995112,不对。核查结果不是有效 JSON 时会抛出 `VerificationError`，不能视为核查通过。[2] 资料也明确“JSON 解析失败……不能视为核查通过”“解析失败不算通过”。[1][3],按匿名回答与所给原文核对；待人工复核。
+unanswerable_04,unanswerable,synthetic_missing_attribute,A,anon_088,False,1,1,1,0,0,,True,,2,2,0,0,0,0,0,0,False,False,disabled,0,False,1,0,353,28,0,1.5586932000005618,1.5661743000382558,根据现有资料无法回答该问题。参考资料中只涉及云帆采购的免审批金额上限，未提供供应商税号信息。,按匿名回答与所给原文核对；待人工复核。
+unanswerable_04,unanswerable,synthetic_missing_attribute,B,anon_049,False,1,1,1,0,0,,True,,2,2,0,0,0,0,0,0,False,False,disabled,0,False,1,0,214,24,0,1.1857808000640944,1.4739639001199976,根据现有资料无法回答该问题。资料仅涉及免审批采购金额上限，未提供供应商税号信息。,按匿名回答与所给原文核对；待人工复核。
+unanswerable_04,unanswerable,synthetic_missing_attribute,C,anon_054,False,1,1,1,0,0,,True,,2,2,0,0,0,0,0,0,False,False,failed,1,True,4,0,1207,331,0,10.585863000014797,10.8740461000707,"根据现有资料无法回答该问题。资料仅涉及免审批采购金额上限，未提供供应商税号信息。
+
+- 来源: synthetic__云帆采购_甲.txt
+- 来源: synthetic__云帆采购_乙.txt
+
+【合成评估资料，不是真实业务政策】
+
+因此，根据现有资料，无法提供关于供应商税号的信息。",按匿名回答与所给原文核对；待人工复核。
+integration_06,integration,repository_natural,A,anon_019,True,1,1,1,2,2,1.0,False,,5,5,0,0,5,5,2,2,False,False,disabled,0,False,1,0,903,105,0,1.9036391000263393,1.912376599968411,"本地纯离线评测不需要 API Key；线上回答通常需要配置 API Key。
+
+- 本地纯离线评测：TXT/PDF 入库和离线检索评测不调用远程 LLM，不需要这些 API Key。[3]
+- 线上回答：至少配置 DeepSeek 或 SiliconFlow 中的一路；要使用完整主备策略，应配置两路。百度 Key 用于联网搜索和可选查询改写；纯本地模式不需要它，混合模式未配置时仅使用本地检索。[3]",按匿名回答与所给原文核对；待人工复核。
+integration_06,integration,repository_natural,B,anon_118,True,1,1,1,2,2,1.0,False,,5,5,0,0,5,5,3,3,False,False,disabled,0,False,1,0,303,87,0,1.085981799988076,2.468733199988492,本地纯离线评测（TXT/PDF 入库和离线检索评测）不调用远程 LLM，不需要这些 API Key [1]。线上回答至少需配置 DeepSeek 或 SiliconFlow 中的一路；要使用完整主备策略，应配置两路 [1]。百度 Key 用于联网搜索和可选查询改写，纯本地模式不需要，混合模式未配置时仅使用本地检索 [1]。,按匿名回答与所给原文核对；待人工复核。
+integration_06,integration,repository_natural,C,anon_118,True,1,1,0,2,2,1.0,False,,5,5,0,0,5,5,3,3,False,True,error,0,False,2,0,745,599,0,10.145947300014086,11.528698700014502,本地纯离线评测（TXT/PDF 入库和离线检索评测）不调用远程 LLM，不需要这些 API Key [1]。线上回答至少需配置 DeepSeek 或 SiliconFlow 中的一路；要使用完整主备策略，应配置两路 [1]。百度 Key 用于联网搜索和可选查询改写，纯本地模式不需要，混合模式未配置时仅使用本地检索 [1]。,按匿名回答与所给原文核对；待人工复核。
+false_premise_10,false_premise,repository_natural,A,anon_057,True,1,1,1,1,1,1.0,False,,1,1,0,0,1,1,1,1,False,False,disabled,0,False,1,0,621,22,0,1.955455799936317,1.9655758999288082,不对。资料明确说“真实 LLM/API 的端到端耗时未实测”[1]。,按匿名回答与所给原文核对；待人工复核。
+false_premise_10,false_premise,repository_natural,B,anon_071,True,1,1,1,1,1,1.0,False,,1,1,0,0,1,1,1,1,False,False,disabled,0,False,1,0,489,22,0,1.0159806000301614,2.1812342000193894,不对。根据现有资料，真实 LLM/API 的端到端耗时未实测 [1]。,按匿名回答与所给原文核对；待人工复核。
+false_premise_10,false_premise,repository_natural,C,anon_071,True,1,1,0,1,1,1.0,False,,1,1,0,0,1,1,1,1,False,True,error,0,False,2,0,1070,534,0,9.361580300028436,10.526833900017664,不对。根据现有资料，真实 LLM/API 的端到端耗时未实测 [1]。,按匿名回答与所给原文核对；待人工复核。
+conflict_03,conflict,synthetic_conflict,A,anon_073,True,1,1,1,3,3,1.0,False,True,3,3,0,0,3,3,4,4,False,False,disabled,0,False,1,0,369,57,0,1.7264275999041274,1.734500699909404,根据现有资料，北辰运维的完整备份间隔存在冲突：来源甲规定为12小时 [2]，来源乙规定为24小时 [1]。两份规定均未提供生效日期、版本优先级或废止说明 [1][2]，因此无法确定应以哪份为准。,按匿名回答与所给原文核对；待人工复核。
+conflict_03,conflict,synthetic_conflict,B,anon_025,True,1,1,1,3,3,1.0,False,True,3,3,0,0,2,2,2,2,False,False,disabled,0,False,1,0,204,51,0,0.9587339999852702,1.8952120000030845,根据现有资料无法确定唯一结论：来源甲规定完整备份间隔为12小时 [2]，来源乙规定为24小时 [1]。两份资料均未提供生效日期、版本优先级或废止说明，因此无法判断应以哪份为准。,按匿名回答与所给原文核对；待人工复核。
+conflict_03,conflict,synthetic_conflict,C,anon_025,True,1,1,1,3,3,1.0,False,True,3,3,0,0,2,2,2,2,False,False,passed,0,False,2,0,540,177,0,4.698576399940066,5.63505439995788,根据现有资料无法确定唯一结论：来源甲规定完整备份间隔为12小时 [2]，来源乙规定为24小时 [1]。两份资料均未提供生效日期、版本优先级或废止说明，因此无法判断应以哪份为准。,按匿名回答与所给原文核对；待人工复核。
+unanswerable_01,unanswerable,synthetic_missing_attribute,A,anon_078,False,1,1,1,0,0,,True,,3,3,0,0,0,0,0,0,False,False,disabled,0,False,1,0,490,40,0,1.079805099987425,1.0877544999821112,根据现有资料无法回答该问题。资料中只提供了青禾差旅的每日住宿报销上限（来源甲600元、来源乙800元），未提及出差机票舱位标准。,按匿名回答与所给原文核对；待人工复核。
+unanswerable_01,unanswerable,synthetic_missing_attribute,B,anon_108,False,1,1,1,0,0,,True,,2,2,0,0,2,2,2,2,False,False,disabled,0,False,1,0,217,28,0,1.1263823999324813,1.9722922999644652,根据现有资料无法回答该问题。两份资料仅提到住宿报销上限，未涉及出差机票舱位标准。[1][2],按匿名回答与所给原文核对；待人工复核。
+unanswerable_01,unanswerable,synthetic_missing_attribute,C,anon_137,False,1,1,1,0,0,,True,,4,4,0,0,4,4,4,4,False,False,failed,1,True,4,0,1295,281,0,8.564418399939314,9.410328299971297,"根据现有资料无法回答该问题。两份资料仅提到住宿报销上限，未涉及出差机票舱位标准。[1][2]
+
+参考资料：
+[1] 来源: synthetic__青禾差旅_甲.txt
+【合成评估资料，不是真实业务政策】
+青禾差旅规定（来源甲）：每日住宿报销上限为600元。两份规定均未提供生效日期、版本优先级或废止说明。
+
+[2] 来源: synthetic__青禾差旅_乙.txt
+【合成评估资料，不是真实业务政策】
+青禾差旅规定（来源乙）：每日住宿报销上限为800元。两份规定均未提供生效日期、版本优先级或废止说明。",按匿名回答与所给原文核对；待人工复核。
+conflict_08,conflict,synthetic_conflict,A,anon_040,True,1,1,1,3,3,1.0,False,True,3,3,0,0,3,3,4,4,False,False,disabled,0,False,1,0,365,58,0,1.864755199989304,1.8746233000420034,根据现有资料，清泉设备的借用最长期限存在冲突：来源甲规定为7天 [2]，来源乙规定为14天 [1]。两份规定均未提供生效日期、版本优先级或废止说明 [1][2]，因此无法确定应以哪份为准。,按匿名回答与所给原文核对；待人工复核。
+conflict_08,conflict,synthetic_conflict,B,anon_033,True,1,1,1,3,3,1.0,False,True,3,3,0,0,3,3,4,4,False,False,disabled,0,False,1,0,211,59,0,1.4408402000553906,1.7790621999884024,根据现有资料无法确定清泉设备借用最长期限究竟是多少：来源甲规定为7天 [1]，来源乙规定为14天 [2]，两份资料均未提供生效日期、版本优先级或废止说明 [1][2]，因此无法判断应以哪份为准。,按匿名回答与所给原文核对；待人工复核。
+conflict_08,conflict,synthetic_conflict,C,anon_135,True,1,1,1,3,3,1.0,False,True,3,3,0,0,3,3,6,6,False,False,failed,1,True,4,0,1366,431,0,9.335481500136666,9.673703500069678,"根据现有资料无法确定清泉设备借用最长期限究竟是多少。来源甲规定为7天 [1]，来源乙规定为14天 [2]，两份资料均未提供生效日期、版本优先级或废止说明 [1][2]，因此无法判断应以哪份为准。
+
+参考资料：
+[1] 来源: synthetic__清泉设备_甲.txt
+【合成评估资料，不是真实业务政策】
+清泉设备规定（来源甲）：借用最长期限为7天。
+
+[2] 来源: synthetic__清泉设备_乙.txt
+【合成评估资料，不是真实业务政策】
+清泉设备规定（来源乙）：借用最长期限为14天。",按匿名回答与所给原文核对；待人工复核。
+false_premise_07,false_premise,repository_natural,A,anon_100,True,1,1,1,1,1,1.0,False,,3,3,0,0,3,3,2,2,False,False,disabled,0,False,1,0,707,38,0,1.7894680999452248,1.7984734999481589,不能。时间预算可阻止后续调用，但无法强制中断已在运行的本地模型计算；超时后界面返回，已在执行的计算结束后才会检查取消标志。[1][5],按匿名回答与所给原文核对；待人工复核。
+false_premise_07,false_premise,repository_natural,B,anon_094,True,1,1,1,1,1,1.0,False,,4,4,0,0,4,4,2,2,False,False,disabled,0,False,1,0,400,60,0,1.1401054000016302,2.2684021999593824,不能。超时后界面会返回，但无法强制中断已在运行的本地模型计算；已在执行的计算结束后才会检查取消标志，正在等待网络读取时受其 timeout 约束。[1] 时间预算也只能阻止后续调用，无法强制中断已在运行的本地模型计算。[2],按匿名回答与所给原文核对；待人工复核。
+false_premise_07,false_premise,repository_natural,C,anon_094,True,1,1,1,1,1,1.0,False,,4,4,0,0,4,4,2,2,False,False,passed,0,False,2,0,932,190,0,3.870728600071743,4.999025400029495,不能。超时后界面会返回，但无法强制中断已在运行的本地模型计算；已在执行的计算结束后才会检查取消标志，正在等待网络读取时受其 timeout 约束。[1] 时间预算也只能阻止后续调用，无法强制中断已在运行的本地模型计算。[2],按匿名回答与所给原文核对；待人工复核。
+constraint_08,constraint,repository_natural,A,anon_069,True,1,1,1,2,2,1.0,False,,4,4,0,0,4,4,3,3,False,False,disabled,0,False,1,0,655,64,0,1.0863346999976784,1.094280599965714,"纠偏记忆的距离门槛是 `memory.distance_threshold`，默认值为 `0.35`，含义是“纠偏记忆平方 L2 距离上限”，需按纠偏样本校准。[1][2]
+
+度量是平方 L2 距离，针对归一化 BGE 向量。[1]",按匿名回答与所给原文核对；待人工复核。
+constraint_08,constraint,repository_natural,B,anon_104,True,1,1,1,2,2,1.0,False,,2,2,0,0,2,2,2,2,False,False,disabled,0,False,1,0,249,31,0,1.022812100010924,2.440715300035663,纠偏记忆的距离门槛是 `0.35`，度量是归一化 BGE 向量的平方 L2 距离。[1][2],按匿名回答与所给原文核对；待人工复核。
+constraint_08,constraint,repository_natural,C,anon_104,True,1,1,1,2,2,1.0,False,,2,2,0,0,2,2,2,2,False,False,passed,0,False,2,0,600,123,0,3.4273918999824673,4.845295100007206,纠偏记忆的距离门槛是 `0.35`，度量是归一化 BGE 向量的平方 L2 距离。[1][2],按匿名回答与所给原文核对；待人工复核。
+single_08,single,repository_natural,A,anon_028,True,1,1,1,1,1,1.0,False,,3,3,0,0,3,3,1,1,False,False,disabled,0,False,1,0,804,52,0,1.2276236000470817,1.2393155000172555,"构建知识库应运行：
+
+```bash
+python -m src.data_ingestion
+```
+
+需先创建 `knowledge_base/` 并放入 `.txt` 或 `.pdf` 文件；程序会递归读取文档并生成索引。[1]",按匿名回答与所给原文核对；待人工复核。
+single_08,single,repository_natural,B,anon_067,True,1,1,1,1,1,1.0,False,,3,3,0,0,3,3,2,2,False,False,disabled,0,False,1,0,671,41,0,1.3228170999791473,2.430577400024049,"构建知识库应运行：
+
+```bash
+python -m src.data_ingestion
+```
+
+该程序会递归读取文档并生成索引 [3]。增量重建时也可执行同一命令 [4]。",按匿名回答与所给原文核对；待人工复核。
+single_08,single,repository_natural,C,anon_067,True,1,1,0,1,1,1.0,False,,3,3,0,0,3,3,2,2,False,True,error,0,False,2,0,1461,553,0,9.928645299980417,11.036405600025319,"构建知识库应运行：
+
+```bash
+python -m src.data_ingestion
+```
+
+该程序会递归读取文档并生成索引 [3]。增量重建时也可执行同一命令 [4]。",按匿名回答与所给原文核对；待人工复核。
+false_premise_03,false_premise,repository_natural,A,anon_101,True,1,1,1,1,1,1.0,False,,3,3,0,0,2,2,2,2,False,False,disabled,0,False,1,0,688,82,0,2.038203499978408,2.045988400001079,"根据现有资料无法完全回答该问题，但可确认：身份类问题不需要检索和核查。
+
+资料[3]明确说明：“身份类问题直接生成并跳过检索和核查。”资料[5]也指出，自我认知类问题“直接用 system_identity 回答，跳过检索”。
+
+不过，资料未明确说明身份类问题是否“必须加载知识库”，因此这一点缺少依据。",纠正了必须检索核查的核心前提；对加载细节保留证据边界，不算整体拒答。
+false_premise_03,false_premise,repository_natural,B,anon_127,True,1,1,1,1,1,1.0,False,,1,1,0,0,1,1,1,1,False,False,disabled,0,False,1,0,408,13,0,1.0133620999986306,2.202042800025083,身份类问题直接生成并跳过检索和核查。[1],按匿名回答与所给原文核对；待人工复核。
+false_premise_03,false_premise,repository_natural,C,anon_127,True,1,1,0,1,1,1.0,False,,1,1,0,0,1,1,1,1,False,True,error,0,False,2,0,888,525,0,9.642900499980897,10.83158120000735,身份类问题直接生成并跳过检索和核查。[1],按匿名回答与所给原文核对；待人工复核。
+conflict_10,conflict,synthetic_conflict,A,anon_059,True,1,1,1,3,3,1.0,False,True,3,3,0,0,2,2,2,2,False,False,disabled,0,False,1,0,381,56,0,1.7241640000138432,1.7322497001150623,根据现有资料，银杉访客的来访预约提前时间存在冲突：来源甲规定为1天 [2]，来源乙规定为2天 [1]。两份规定均未提供生效日期、版本优先级或废止说明，因此无法确定应以哪一份为准。,按匿名回答与所给原文核对；待人工复核。
+conflict_10,conflict,synthetic_conflict,B,anon_014,True,1,1,1,3,3,1.0,False,True,3,3,0,0,3,3,4,4,False,False,disabled,0,False,1,0,215,56,0,1.298969199997373,1.8759337000083178,根据现有资料无法确定唯一答案：来源甲规定提前 1 天 [1]，来源乙规定提前 2 天 [2]。两份资料均未提供生效日期、版本优先级或废止说明 [1][2]，因此无法判断应以哪份为准。,按匿名回答与所给原文核对；待人工复核。
+conflict_10,conflict,synthetic_conflict,C,anon_005,True,1,1,1,3,3,1.0,False,True,3,3,0,0,3,3,6,6,False,False,passed,1,True,4,0,1300,455,0,12.954980699927546,13.531945199938491,"根据现有资料无法确定唯一答案：来源甲规定提前 1 天 [1]，来源乙规定提前 2 天 [2]。两份资料均未提供生效日期、版本优先级或废止说明 [1][2]，因此无法判断应以哪份为准。
+
+参考资料：
+[1] 来源: synthetic__银杉访客_甲.txt
+银杉访客规定（来源甲）：来访预约提前时间为1天。
+
+[2] 来源: synthetic__银杉访客_乙.txt
+银杉访客规定（来源乙）：来访预约提前时间为2天。",按匿名回答与所给原文核对；待人工复核。
+single_09,single,repository_natural,A,anon_035,True,1,1,1,1,1,1.0,False,,1,1,0,0,1,1,1,1,False,False,disabled,0,False,1,0,837,18,0,1.6427110999356955,1.6503908998565748,本机验证使用的 Python 版本是 **Python 3.12**。[1],按匿名回答与所给原文核对；待人工复核。
+single_09,single,repository_natural,B,anon_042,True,1,1,1,1,1,1.0,False,,1,1,0,0,1,1,1,1,False,False,disabled,0,False,1,0,277,18,0,1.1042423999169841,1.912501399870962,本机验证使用的 Python 版本是 **Python 3.12**。[1],按匿名回答与所给原文核对；待人工复核。
+single_09,single,repository_natural,C,anon_042,True,1,1,0,1,1,1.0,False,,1,1,0,0,1,1,1,1,False,True,error,0,False,2,0,636,530,0,11.544973599957302,12.35323259991128,本机验证使用的 Python 版本是 **Python 3.12**。[1],按匿名回答与所给原文核对；待人工复核。
+constraint_02,constraint,repository_natural,A,anon_115,True,1,1,1,3,3,1.0,False,,3,3,0,0,3,3,2,2,False,False,disabled,0,False,1,0,905,40,0,1.8375702000921592,1.8458176001440734,混合检索中，每路召回上限为 20 条，融合后重排候选上限为 10 条，最终证据数量上限为 5 条。[2][3],按匿名回答与所给原文核对；待人工复核。
+constraint_02,constraint,repository_natural,B,anon_077,True,1,1,1,3,3,1.0,False,,3,3,0,0,3,3,2,2,False,False,disabled,0,False,1,0,742,40,0,0.9806733999866992,2.193672199966386,混合检索中，每路召回上限为 20 条，融合后重排候选上限为 10 条，最终证据数量上限为 5 条 [2][3]。,按匿名回答与所给原文核对；待人工复核。
+constraint_02,constraint,repository_natural,C,anon_077,True,1,1,1,3,3,1.0,False,,3,3,0,0,3,3,2,2,False,False,passed,0,False,2,0,1615,144,0,3.362386199994944,4.575384999974631,混合检索中，每路召回上限为 20 条，融合后重排候选上限为 10 条，最终证据数量上限为 5 条 [2][3]。,按匿名回答与所给原文核对；待人工复核。

@@ -1,0 +1,4 @@
+usage: run_paid.py [-h] --run-id RUN_ID [--retrieval-run RETRIEVAL_RUN]
+                   --split {dev,test} --max-calls MAX_CALLS
+                   [--budget-authorized]
+run_paid.py: error: Inject credentials into process environment locally: DEEPSEEK_API_KEY, SILICONFLOW_API_KEY

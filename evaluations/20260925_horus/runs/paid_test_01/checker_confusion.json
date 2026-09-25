@@ -1,0 +1,45 @@
+{
+  "matrix": {
+    "支持": {
+      "支持": 10,
+      "矛盾": 0,
+      "证据不足": 0,
+      "missing_or_error": 0
+    },
+    "矛盾": {
+      "支持": 0,
+      "矛盾": 9,
+      "证据不足": 0,
+      "missing_or_error": 1
+    },
+    "证据不足": {
+      "支持": 0,
+      "矛盾": 1,
+      "证据不足": 9,
+      "missing_or_error": 0
+    }
+  },
+  "per_class": [
+    {
+      "label": "支持",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "label": "矛盾",
+      "precision": 0.9,
+      "recall": 0.9,
+      "f1": 0.9
+    },
+    {
+      "label": "证据不足",
+      "precision": 1.0,
+      "recall": 0.9,
+      "f1": 0.9473684210526316
+    }
+  ],
+  "n": 30,
+  "accuracy": 0.9333333333333333,
+  "scope": "30 synthetic atomic claims; not natural-response coverage"
+}

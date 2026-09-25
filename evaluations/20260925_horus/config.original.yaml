@@ -1,0 +1,68 @@
+# 修改后重启应用；更换 Embedding 时必须使用新目录重新入库。
+db:
+  chroma_persist_dir: ./chroma_db_zh_bge_small_v15
+  docs_dir: ./knowledge_base
+embedding:
+  model_name: BAAI/bge-small-zh-v1.5
+  device: cpu
+  normalize_embeddings: true
+  query_prefix: '为这个句子生成表示以用于检索相关文章：'
+  local_files_only: true
+retrieval:
+  chunk_size: 220  # tokenizer token 数
+  chunk_overlap: 30
+  top_k: 5
+  candidate_k: 20
+  rerank_k: 10
+  rrf_k: 60
+  min_lexical_score: 0.3 # 无重排器时的保守兜底，非语义概率
+  max_vector_distance: null # 按模型和距离度量校准后启用
+  hyde_enabled: false
+  hyde_max_tokens: 128
+reranker:
+  enabled: true
+  model_name: BAAI/bge-reranker-base # 本机已缓存的中英重排模型
+  device: auto
+  batch_size: 4
+  max_length: 512
+  cpu_threads: 4
+  min_score: 0.3 # sigmoid 分数，初始阈值，需业务集校准
+  local_files_only: true
+llm:
+  primary:
+    api_base: https://api.deepseek.com/v1
+    model: deepseek-chat
+    api_key_env: DEEPSEEK_API_KEY
+    timeout: 15
+  fallback:
+    api_base: https://api.siliconflow.cn/v1
+    model: Qwen/Qwen2.5-7B-Instruct
+    api_key_env: SILICONFLOW_API_KEY
+    timeout: 15
+  light:
+    api_base: https://api.siliconflow.cn/v1
+    model: Qwen/Qwen2.5-7B-Instruct
+    api_key_env: SILICONFLOW_API_KEY
+    timeout: 12
+  max_retries: 0
+generation:
+  temperature: 0.1
+  max_tokens: 512
+  max_retries: 1
+  verification_enabled: true
+  streaming: true
+  context_max_chars: 6000
+runtime:
+  request_timeout: 60
+  query_cache_ttl: 300
+  query_cache_max_entries: 64
+web:
+  timeout: 8
+  max_results: 5
+  query_rewrite_enabled: false
+logging:
+  level: INFO
+
+# 归一化 BGE 向量的平方 L2 距离；保守初值，需按纠偏样本校准
+memory:
+  distance_threshold: 0.35

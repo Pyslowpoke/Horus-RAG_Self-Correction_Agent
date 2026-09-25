@@ -1,0 +1,156 @@
+[
+  {
+    "comparison": "B-A",
+    "metric": "any_hit",
+    "paired_questions": 50,
+    "difference": 0.14,
+    "ci_low": 0.0,
+    "ci_high": 0.28,
+    "improved": 10,
+    "worsened": 3,
+    "unchanged": 37
+  },
+  {
+    "comparison": "B-A",
+    "metric": "all_hit",
+    "paired_questions": 50,
+    "difference": 0.12,
+    "ci_low": 0.0,
+    "ci_high": 0.26,
+    "improved": 9,
+    "worsened": 3,
+    "unchanged": 38
+  },
+  {
+    "comparison": "B-A",
+    "metric": "evidence_recall",
+    "paired_questions": 50,
+    "difference": 0.13,
+    "ci_low": 0.0,
+    "ci_high": 0.26,
+    "improved": 10,
+    "worsened": 3,
+    "unchanged": 37
+  },
+  {
+    "comparison": "B-A",
+    "metric": "mrr",
+    "paired_questions": 50,
+    "difference": 0.222,
+    "ci_low": 0.08999166666666666,
+    "ci_high": 0.3473333333333333,
+    "improved": 22,
+    "worsened": 4,
+    "unchanged": 24
+  },
+  {
+    "comparison": "B-A",
+    "metric": "mean_seconds",
+    "paired_questions": 60,
+    "difference": 1.2021420066665285,
+    "ci_low": 1.0615090061584163,
+    "ci_high": 1.3470556522294965,
+    "improved": 60,
+    "worsened": 0,
+    "unchanged": 0
+  },
+  {
+    "comparison": "B-A",
+    "metric": "negative_empty_rate",
+    "paired_questions": 10,
+    "difference": 0.5,
+    "ci_low": 0.2,
+    "ci_high": 0.8,
+    "improved": 5,
+    "worsened": 0,
+    "unchanged": 5
+  },
+  {
+    "comparison": "B-A",
+    "metric": "positive_empty_rate",
+    "paired_questions": 50,
+    "difference": 0.1,
+    "ci_low": 0.02,
+    "ci_high": 0.18,
+    "improved": 5,
+    "worsened": 0,
+    "unchanged": 45
+  },
+  {
+    "comparison": "B-V",
+    "metric": "any_hit",
+    "paired_questions": 50,
+    "difference": 0.04,
+    "ci_low": 0.0,
+    "ci_high": 0.1,
+    "improved": 2,
+    "worsened": 0,
+    "unchanged": 48
+  },
+  {
+    "comparison": "B-V",
+    "metric": "all_hit",
+    "paired_questions": 50,
+    "difference": 0.04,
+    "ci_low": 0.0,
+    "ci_high": 0.1,
+    "improved": 2,
+    "worsened": 0,
+    "unchanged": 48
+  },
+  {
+    "comparison": "B-V",
+    "metric": "evidence_recall",
+    "paired_questions": 50,
+    "difference": 0.04,
+    "ci_low": 0.0,
+    "ci_high": 0.09,
+    "improved": 3,
+    "worsened": 0,
+    "unchanged": 47
+  },
+  {
+    "comparison": "B-V",
+    "metric": "mrr",
+    "paired_questions": 50,
+    "difference": 0.023333333333333334,
+    "ci_low": 0.0,
+    "ci_high": 0.05333333333333334,
+    "improved": 3,
+    "worsened": 0,
+    "unchanged": 47
+  },
+  {
+    "comparison": "B-V",
+    "metric": "mean_seconds",
+    "paired_questions": 60,
+    "difference": 0.11876827610798904,
+    "ci_low": 0.045875702632329186,
+    "ci_high": 0.19976343417299275,
+    "improved": 37,
+    "worsened": 23,
+    "unchanged": 0
+  },
+  {
+    "comparison": "B-V",
+    "metric": "negative_empty_rate",
+    "paired_questions": 10,
+    "difference": 0.0,
+    "ci_low": 0.0,
+    "ci_high": 0.0,
+    "improved": 0,
+    "worsened": 0,
+    "unchanged": 10
+  },
+  {
+    "comparison": "B-V",
+    "metric": "positive_empty_rate",
+    "paired_questions": 50,
+    "difference": 0.0,
+    "ci_low": 0.0,
+    "ci_high": 0.0,
+    "improved": 0,
+    "worsened": 0,
+    "unchanged": 50
+  }
+]

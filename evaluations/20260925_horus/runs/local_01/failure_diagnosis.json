@@ -1,0 +1,220 @@
+[
+  {
+    "question_id": "constraint_04",
+    "question": "请求结果缓存的过期时间和容量上限是多少？",
+    "returned": 1,
+    "reference_trace": [
+      {
+        "quote": "`300` 秒 / `64` | 会话内结果缓存",
+        "in_final": false,
+        "in_rerank_candidates": true,
+        "candidate_scores": [
+          null
+        ]
+      }
+    ],
+    "limitation": "Exact annotated source quotes only; equivalent evidence elsewhere may be unlabelled."
+  },
+  {
+    "question_id": "integration_02",
+    "question": "生成回答和事实核查为什么能使用一致的证据编号？",
+    "returned": 5,
+    "reference_trace": [
+      {
+        "quote": "统一证据编号与上下文",
+        "in_final": true,
+        "in_rerank_candidates": true,
+        "candidate_scores": [
+          null
+        ]
+      },
+      {
+        "quote": "本地与联网结果的引用编号、显示顺序、核查上下文保持一致。",
+        "in_final": false,
+        "in_rerank_candidates": false,
+        "candidate_scores": []
+      }
+    ],
+    "limitation": "Exact annotated source quotes only; equivalent evidence elsewhere may be unlabelled."
+  },
+  {
+    "question_id": "false_premise_01",
+    "question": "Horus 既然自带 OCR，扫描 PDF 入库会自动识字吧？",
+    "returned": 0,
+    "reference_trace": [
+      {
+        "quote": "当前入库程序不包含 OCR",
+        "in_final": false,
+        "in_rerank_candidates": true,
+        "candidate_scores": [
+          null
+        ]
+      }
+    ],
+    "limitation": "Exact annotated source quotes only; equivalent evidence elsewhere may be unlabelled."
+  },
+  {
+    "question_id": "single_10",
+    "question": "项目采用什么开源许可证？",
+    "returned": 0,
+    "reference_trace": [
+      {
+        "quote": "[MIT](LICENSE)",
+        "in_final": false,
+        "in_rerank_candidates": true,
+        "candidate_scores": [
+          null
+        ]
+      }
+    ],
+    "limitation": "Exact annotated source quotes only; equivalent evidence elsewhere may be unlabelled."
+  },
+  {
+    "question_id": "false_premise_06",
+    "question": "重排器失效之后就不再做任何相关性筛选了，对吗？",
+    "returned": 3,
+    "reference_trace": [
+      {
+        "quote": "未启用或加载失败时使用词项覆盖过滤",
+        "in_final": false,
+        "in_rerank_candidates": true,
+        "candidate_scores": [
+          null
+        ]
+      }
+    ],
+    "limitation": "Exact annotated source quotes only; equivalent evidence elsewhere may be unlabelled."
+  },
+  {
+    "question_id": "single_03",
+    "question": "默认负责文档重排序的模型是什么？",
+    "returned": 0,
+    "reference_trace": [
+      {
+        "quote": "默认使用 `BAAI/bge-reranker-base`",
+        "in_final": false,
+        "in_rerank_candidates": true,
+        "candidate_scores": [
+          null
+        ]
+      }
+    ],
+    "limitation": "Exact annotated source quotes only; equivalent evidence elsewhere may be unlabelled."
+  },
+  {
+    "question_id": "false_premise_05",
+    "question": "migrate_index.py 可以直接把 MiniLM 向量转换成中文 BGE 吗？",
+    "returned": 3,
+    "reference_trace": [
+      {
+        "quote": "不可用它更换 Embedding",
+        "in_final": false,
+        "in_rerank_candidates": true,
+        "candidate_scores": [
+          null
+        ]
+      }
+    ],
+    "limitation": "Exact annotated source quotes only; equivalent evidence elsewhere may be unlabelled."
+  },
+  {
+    "question_id": "integration_04",
+    "question": "Horus 如何同时利用语义检索和关键词检索，并控制重复证据？",
+    "returned": 1,
+    "reference_trace": [
+      {
+        "quote": "向量与 BM25 各召回最多 20 条",
+        "in_final": false,
+        "in_rerank_candidates": true,
+        "candidate_scores": [
+          null
+        ]
+      },
+      {
+        "quote": "RRF 每条召回列表内先去重。",
+        "in_final": false,
+        "in_rerank_candidates": false,
+        "candidate_scores": []
+      }
+    ],
+    "limitation": "Exact annotated source quotes only; equivalent evidence elsewhere may be unlabelled."
+  },
+  {
+    "question_id": "integration_03",
+    "question": "切换 Embedding 后，知识库和纠偏记忆各需要如何处理？",
+    "returned": 5,
+    "reference_trace": [
+      {
+        "quote": "应选择新索引目录并重新入库",
+        "in_final": false,
+        "in_rerank_candidates": false,
+        "candidate_scores": []
+      },
+      {
+        "quote": "纠偏记忆也必须重新向量化",
+        "in_final": true,
+        "in_rerank_candidates": true,
+        "candidate_scores": [
+          null
+        ]
+      }
+    ],
+    "limitation": "Exact annotated source quotes only; equivalent evidence elsewhere may be unlabelled."
+  },
+  {
+    "question_id": "integration_05",
+    "question": "如何同时控制外部 LLM 的重试开销和自纠正次数？",
+    "returned": 1,
+    "reference_trace": [
+      {
+        "quote": "SDK 内置重试关闭；只由应用配置重试。",
+        "in_final": false,
+        "in_rerank_candidates": true,
+        "candidate_scores": [
+          null
+        ]
+      },
+      {
+        "quote": "图统一控制核查循环，默认最多重写一次",
+        "in_final": false,
+        "in_rerank_candidates": true,
+        "candidate_scores": [
+          null
+        ]
+      }
+    ],
+    "limitation": "Exact annotated source quotes only; equivalent evidence elsewhere may be unlabelled."
+  },
+  {
+    "question_id": "single_01",
+    "question": "当前中文向量模型的名称是什么？",
+    "returned": 0,
+    "reference_trace": [
+      {
+        "quote": "`BAAI/bge-small-zh-v1.5`，512 维",
+        "in_final": false,
+        "in_rerank_candidates": true,
+        "candidate_scores": [
+          null
+        ]
+      }
+    ],
+    "limitation": "Exact annotated source quotes only; equivalent evidence elsewhere may be unlabelled."
+  },
+  {
+    "question_id": "false_premise_04",
+    "question": "中文向量指令既加在问题上也加在每篇文档上，对吗？",
+    "returned": 0,
+    "reference_trace": [
+      {
+        "quote": "仅查询添加中文检索指令",
+        "in_final": false,
+        "in_rerank_candidates": true,
+        "candidate_scores": [
+          null
+        ]
+      }
+    ],
+    "limitation": "Exact annotated source quotes only; equivalent evidence elsewhere may be unlabelled."
+  }
+]

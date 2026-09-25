@@ -1,0 +1,4619 @@
+[
+  {
+    "answer_id": "anon_001",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "图流程使用LangGraph",
+        "verdict": "supported",
+        "citations": [
+          4
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_002",
+    "correctness": 0,
+    "covered_fact_indices": [],
+    "claims": [],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "完整库有MIT说明，收到空上下文；误拒答，不能以拒答提高正确率。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_003",
+    "correctness": 1,
+    "covered_fact_indices": [],
+    "claims": [
+      {
+        "text": "参考资料涉及年假申请提前时间",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "提供的资料没有产假天数",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      }
+    ],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_004",
+    "correctness": 0.5,
+    "covered_fact_indices": [
+      2
+    ],
+    "claims": [
+      {
+        "text": "入库按tokenizer分块",
+        "verdict": "supported",
+        "citations": [
+          3
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "分块是不会重复追加的原因",
+        "verdict": "insufficient",
+        "citations": [
+          3
+        ],
+        "citation_support": false
+      },
+      {
+        "text": "重复入库不重复追加",
+        "verdict": "supported",
+        "citations": [
+          3
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "失败不会先删除旧块",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "当前不是数据库级原子发布",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "未说明稳定ID；把分块当作幂等原因缺依据。失败保护基本正确。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_005",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2,
+      3
+    ],
+    "claims": [
+      {
+        "text": "甲提前1天",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "乙提前2天",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "两者无日期和优先级，不能确定唯一规则",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": true,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_006",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "当前入库不是完整事务发布",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "多用户持续更新尚需原子索引切换",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_007",
+    "correctness": 0,
+    "covered_fact_indices": [],
+    "claims": [],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "相关目录未召回；参考答案在完整库存在。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_008",
+    "correctness": 0.5,
+    "covered_fact_indices": [
+      2
+    ],
+    "claims": [
+      {
+        "text": "原问题无证据时HyDE补充候选，未限定需先启用",
+        "verdict": "insufficient",
+        "citations": [
+          3
+        ],
+        "citation_support": false
+      },
+      {
+        "text": "候选按原问题重排",
+        "verdict": "supported",
+        "citations": [
+          3
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "证据不完整说明缺失，完全无关拒答",
+        "verdict": "supported",
+        "citations": [
+          4
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "没有回答默认关闭，且漏写启用前提；拒答规则基本正确，记部分。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_009",
+    "correctness": 0.5,
+    "covered_fact_indices": [
+      2
+    ],
+    "claims": [
+      {
+        "text": "缓存有有效期和容量",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "旧记忆重新编码保留旧库并按模型签名隔离",
+        "verdict": "supported",
+        "citations": [
+          4
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "迁移目标须不存在并复用旧向量",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "本次上下文未给缓存键设计",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "只覆盖缓存限制，没有覆盖键隔离；附带事实有依据但答非所问。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_010",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2,
+      3
+    ],
+    "claims": [
+      {
+        "text": "甲16小时",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "乙24小时",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "未给优先级，无法唯一判断",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": true,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_011",
+    "correctness": 0,
+    "covered_fact_indices": [],
+    "claims": [
+      {
+        "text": "项目使用Streamlit和LangGraph",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      },
+      {
+        "text": "支持本地联网混合模式",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      },
+      {
+        "text": "本次上下文未说明语义关键词组合及去重",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      }
+    ],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "检索仅给简介，未回答目标机制。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_012",
+    "correctness": 0,
+    "covered_fact_indices": [],
+    "claims": [
+      {
+        "text": "缓存存在有效期和容量",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "本次资料未给数值",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "完整库有300秒/64条；本次上下文缺数值，整体未回答。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_013",
+    "correctness": 1,
+    "covered_fact_indices": [],
+    "claims": [],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_014",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2,
+      3
+    ],
+    "claims": [
+      {
+        "text": "甲提前1天",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "乙提前2天",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "无优先级，不能唯一判断",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": true,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_015",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2,
+      3
+    ],
+    "claims": [
+      {
+        "text": "甲2000元",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "乙3000元",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "无日期优先级，无法确定",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": true,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_016",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2,
+      3
+    ],
+    "claims": [
+      {
+        "text": "乙每月一次",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "甲每周一次",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "没有日期或优先级，不能确定",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": true,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_017",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2,
+      3
+    ],
+    "claims": [
+      {
+        "text": "甲3工作日",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "乙5工作日",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "没有优先级，不能唯一确定",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": true,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_018",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2
+    ],
+    "claims": [
+      {
+        "text": "默认禁用HyDE",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "启用后也仅在原题无有效证据时补充并按原题重排",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "无证据直接拒答，不调用生成核查",
+        "verdict": "supported",
+        "citations": [
+          4
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_019",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2
+    ],
+    "claims": [
+      {
+        "text": "离线入库与检索评测无需远程API",
+        "verdict": "supported",
+        "citations": [
+          3
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "生成至少配置DeepSeek或SiliconFlow",
+        "verdict": "supported",
+        "citations": [
+          3
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "完整主备需两路",
+        "verdict": "supported",
+        "citations": [
+          3
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "百度用于联网和可选改写",
+        "verdict": "supported",
+        "citations": [
+          3
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "纯本地无需百度，混合未配置时只本地",
+        "verdict": "supported",
+        "citations": [
+          3
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_020",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "迁移不能更换Embedding并复用旧向量",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "无manifest的旧库仅接受原MiniLM配置",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "当前BGE配置不能直接迁移旧库",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_021",
+    "correctness": 1,
+    "covered_fact_indices": [],
+    "claims": [
+      {
+        "text": "资料未提供管理员姓名",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      }
+    ],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_022",
+    "correctness": 1,
+    "covered_fact_indices": [],
+    "claims": [
+      {
+        "text": "资料只规定借用期限",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "资料没有逾期罚款金额",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_023",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "默认主模型标识deepseek-chat",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_024",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2
+    ],
+    "claims": [
+      {
+        "text": "先把两个local_files_only设false下载模型",
+        "verdict": "supported",
+        "citations": [
+          5,
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "下载后可恢复本地缓存模式",
+        "verdict": "supported",
+        "citations": [
+          5,
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "放入TXT/PDF并执行入库命令",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "入库生成索引和manifest",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "使用streamlit命令启动",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "扫描PDF需OCR而程序不提供",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "换模型或归一化需新库重编码",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_025",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2,
+      3
+    ],
+    "claims": [
+      {
+        "text": "甲12小时",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "乙24小时",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "无优先级不能唯一确定",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      }
+    ],
+    "refused": false,
+    "conflict_handled": true,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_026",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2,
+      3
+    ],
+    "claims": [
+      {
+        "text": "甲3工作日",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "乙5工作日",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "无日期或优先级，不能确定",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": true,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_027",
+    "correctness": 0,
+    "covered_fact_indices": [],
+    "claims": [
+      {
+        "text": "本次资料未给服务提供方",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      },
+      {
+        "text": "资料只描述搜索摘要和过滤等机制",
+        "verdict": "supported",
+        "citations": [
+          1,
+          4,
+          5
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "完整库有百度千帆，收到的上下文没有提供方；未答出。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_028",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "入库命令python -m src.data_ingestion",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "先创建knowledge_base并放入TXT/PDF",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "程序递归读取并生成索引",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_029",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "默认重排模型BAAI/bge-reranker-base",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_030",
+    "correctness": 1,
+    "covered_fact_indices": [],
+    "claims": [],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_031",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2,
+      3
+    ],
+    "claims": [
+      {
+        "text": "甲600元",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "乙800元",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "无优先级无法确定",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": true,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_032",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2
+    ],
+    "claims": [
+      {
+        "text": "混合先本地",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "本地无有效证据且配置搜索服务才联网",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_033",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2,
+      3
+    ],
+    "claims": [
+      {
+        "text": "甲7天",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "乙14天",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "无优先级，无法确定",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": true,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_034",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "使用LangGraph",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_035",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "本机验证Python3.12",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_036",
+    "correctness": 1,
+    "covered_fact_indices": [],
+    "claims": [],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_037",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2
+    ],
+    "claims": [
+      {
+        "text": "关键词命中不能当幻觉率或忠实度",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "正确性忠实度需独立评审",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "提速关闭重排可能影响召回质量",
+        "verdict": "supported",
+        "citations": [
+          4
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "阈值应业务集校准",
+        "verdict": "supported",
+        "citations": [
+          4
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "演示通过率非业务准确率",
+        "verdict": "supported",
+        "citations": [
+          4
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "小样本不代表一般准确率",
+        "verdict": "supported",
+        "citations": [
+          3
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "快照尚未实测真实API端到端",
+        "verdict": "supported",
+        "citations": [
+          3
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_038",
+    "correctness": 1,
+    "covered_fact_indices": [],
+    "claims": [
+      {
+        "text": "甲响应2小时",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "乙响应4小时",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "资料没给满意度得分",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      }
+    ],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_039",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "支持TXT和PDF",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "扫描PDF须自行OCR，程序无OCR",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "问的是文件格式，TXT/PDF及扫描限制已覆盖；未述编码不按格式错误处理。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_040",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2,
+      3
+    ],
+    "claims": [
+      {
+        "text": "甲7天",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "乙14天",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "无优先级，无法确定",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": true,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_041",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2
+    ],
+    "claims": [
+      {
+        "text": "启用后原题无有效证据时才补充",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "补充候选按原题重排",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_042",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "Python3.12",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_043",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "纠错目录data/correction_inbox/",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_044",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "纠错目录data/correction_inbox/",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "保存并监听用户纠错",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "更换Embedding使用独立记忆目录并重编码",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_045",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2,
+      3
+    ],
+    "claims": [
+      {
+        "text": "甲600元",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "乙800元",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "无优先级无法判断",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      }
+    ],
+    "refused": false,
+    "conflict_handled": true,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_046",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2
+    ],
+    "claims": [
+      {
+        "text": "预算60秒",
+        "verdict": "supported",
+        "citations": [
+          1,
+          5
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "包含初始化",
+        "verdict": "supported",
+        "citations": [
+          1,
+          5
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_047",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2
+    ],
+    "claims": [
+      {
+        "text": "分块220 token",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "重叠30 token",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_048",
+    "correctness": 0,
+    "covered_fact_indices": [],
+    "claims": [],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "完整资料能纠正查询前缀的错误前提，本次没召回。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_049",
+    "correctness": 1,
+    "covered_fact_indices": [],
+    "claims": [
+      {
+        "text": "资料仅涉及免审批金额上限",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      },
+      {
+        "text": "未提供供应商税号",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      }
+    ],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_050",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2
+    ],
+    "claims": [
+      {
+        "text": "分块220 token",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "重叠30 token",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "支持UTF8 TXT",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "支持可提取文字PDF",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "重复入库不重复追加",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "复述证据和自我评价冗余；核心数字正确。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_051",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "JSON解析失败不算通过",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_052",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "搜索用摘要而非自动抓全文",
+        "verdict": "supported",
+        "citations": [
+          4
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_053",
+    "correctness": 1,
+    "covered_fact_indices": [],
+    "claims": [],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_054",
+    "correctness": 1,
+    "covered_fact_indices": [],
+    "claims": [
+      {
+        "text": "资料涉及免审批金额而无税号",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      },
+      {
+        "text": "这些是合成政策资料",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      }
+    ],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_055",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "支持UTF8 TXT",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "支持可提取文字PDF",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "分块220 token",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "重叠30 token",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "重复入库不重复追加",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "开头只列TXT，但随后明确确认TXT和PDF；按完整回答评分，不将措辞冗余人为算成PDF丢失。表达含混待人工重点复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_056",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2
+    ],
+    "claims": [
+      {
+        "text": "默认门槛0.3",
+        "verdict": "supported",
+        "citations": [
+          2,
+          4
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "sigmoid分数不是校准概率",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2,
+          4
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_057",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "快照真实API端到端尚未实测",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_058",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "无重排器时仍用词项过滤",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_059",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2,
+      3
+    ],
+    "claims": [
+      {
+        "text": "甲1天",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "乙2天",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "无优先级，无法确定",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      }
+    ],
+    "refused": false,
+    "conflict_handled": true,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_060",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "默认输出上限512token",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_061",
+    "correctness": 0,
+    "covered_fact_indices": [],
+    "claims": [],
+    "refused": false,
+    "conflict_handled": false,
+    "notes": "执行失败无答案；保留分母，非语义错误陈述。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_062",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "非法JSON抛VerificationError",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "解析失败不算通过",
+        "verdict": "supported",
+        "citations": [
+          1,
+          3
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_063",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "无manifest仅原MiniLM配置",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "须与源模型一致，默认BGE不能迁移旧向量",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_064",
+    "correctness": 1,
+    "covered_fact_indices": [],
+    "claims": [
+      {
+        "text": "两份资料无停车收费",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "甲预约提前1天",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "乙预约提前2天",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "两份规则无日期或优先级",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_065",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2,
+      3
+    ],
+    "claims": [
+      {
+        "text": "甲3年",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "乙5年",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "无优先级不能确定",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": true,
+    "notes": "整段重复一次，重复事实只计一次。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_066",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2
+    ],
+    "claims": [
+      {
+        "text": "新Embedding设置新索引并从原文入库",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "不能复制旧向量仅改签名",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "纠偏记忆需重新向量化",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "可用reembed_memory.py命令",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "旧库保留并按签名隔离新库",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "新Embedding改变距离分布需检查门槛",
+        "verdict": "supported",
+        "citations": [
+          5
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_067",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "入库使用python -m src.data_ingestion",
+        "verdict": "supported",
+        "citations": [
+          3,
+          4
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "递归读取文档并生成索引",
+        "verdict": "supported",
+        "citations": [
+          3
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "增量重建也是同一命令",
+        "verdict": "supported",
+        "citations": [
+          4
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_068",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2,
+      3
+    ],
+    "claims": [
+      {
+        "text": "甲2小时",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "乙4小时",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "无优先级不能确定",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": true,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_069",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2
+    ],
+    "claims": [
+      {
+        "text": "memory.distance_threshold默认0.35",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "使用平方L2距离",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "用于归一化BGE向量",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "需纠偏样本校准",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_070",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "默认512token",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_071",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "快照API端到端尚未实测",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_072",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2,
+      3
+    ],
+    "claims": [
+      {
+        "text": "甲2小时",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "乙4小时",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "无优先级不能确定",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": true,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_073",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2,
+      3
+    ],
+    "claims": [
+      {
+        "text": "甲12小时",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "乙24小时",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "无优先级不能确定",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": true,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_074",
+    "correctness": 1,
+    "covered_fact_indices": [],
+    "claims": [
+      {
+        "text": "甲借用7天",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "乙借用14天",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "未提供逾期罚款",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_075",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "无重排器改用词项过滤",
+        "verdict": "supported",
+        "citations": [
+          4
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "min_lexical_score控制无重排器和纯联网门槛",
+        "verdict": "supported",
+        "citations": [
+          3
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_076",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2,
+      3
+    ],
+    "claims": [
+      {
+        "text": "甲3年",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "乙5年",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "无优先级不能确定",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": true,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_077",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2,
+      3
+    ],
+    "claims": [
+      {
+        "text": "每路20",
+        "verdict": "supported",
+        "citations": [
+          2,
+          3
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "重排10",
+        "verdict": "supported",
+        "citations": [
+          2,
+          3
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "最终最多5",
+        "verdict": "supported",
+        "citations": [
+          2,
+          3
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_078",
+    "correctness": 1,
+    "covered_fact_indices": [],
+    "claims": [
+      {
+        "text": "甲住宿600元",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      },
+      {
+        "text": "乙住宿800元",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      },
+      {
+        "text": "未给机票舱位标准",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      }
+    ],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_079",
+    "correctness": 0,
+    "covered_fact_indices": [],
+    "claims": [],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "库中有重排器名称，但此次检索空结果。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_080",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "目前非完整事务或原子发布",
+        "verdict": "supported",
+        "citations": [
+          1,
+          5
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "多用户更新还需原子索引切换",
+        "verdict": "supported",
+        "citations": [
+          1,
+          5
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_081",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "无manifest仅接受原MiniLM",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "迁移不能换Embedding",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_082",
+    "correctness": 0,
+    "covered_fact_indices": [],
+    "claims": [
+      {
+        "text": "本次资料没有组合检索和去重机制",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      },
+      {
+        "text": "纯联网使用词项覆盖",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      },
+      {
+        "text": "HyDE无证据即补充，漏启用条件",
+        "verdict": "insufficient",
+        "citations": [],
+        "citation_support": false
+      },
+      {
+        "text": "候选按原问题重排",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      },
+      {
+        "text": "节点主要串行",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      }
+    ],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "未回答目标问题；附带HyDE条件不完整。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_083",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2
+    ],
+    "claims": [
+      {
+        "text": "缓存键含对话偏好索引版本配置",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "TTL及容量上限",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "错误或核查失败结果不缓存",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_084",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2,
+      3
+    ],
+    "claims": [
+      {
+        "text": "甲3年",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "乙5年",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "无优先级无法判断",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": true,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_085",
+    "correctness": 0,
+    "covered_fact_indices": [],
+    "claims": [
+      {
+        "text": "本次上下文未给中文模型具体名",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      },
+      {
+        "text": "资料仅说更换Embedding应设新模型",
+        "verdict": "supported",
+        "citations": [
+          5
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_086",
+    "correctness": 1,
+    "covered_fact_indices": [],
+    "claims": [
+      {
+        "text": "资料有借用期限但无罚款金额",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "乙借用14天",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "甲借用7天",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_087",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2
+    ],
+    "claims": [
+      {
+        "text": "关键词命中不是忠实度或幻觉率",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "脚本只评检索不调用LLM",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "脚本输出Precision Recall MRR",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "答案正确忠实需独立评审",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "小样本不代表一般业务准确率",
+        "verdict": "supported",
+        "citations": [
+          3
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "快照真实API端到端未实测",
+        "verdict": "supported",
+        "citations": [
+          3
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_088",
+    "correctness": 1,
+    "covered_fact_indices": [],
+    "claims": [
+      {
+        "text": "资料涉及免审批上限",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      },
+      {
+        "text": "未给供应商税号",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      }
+    ],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_089",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2,
+      3
+    ],
+    "claims": [
+      {
+        "text": "甲每周",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "乙每月",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "无优先级，无法唯一确定",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": true,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_090",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2
+    ],
+    "claims": [
+      {
+        "text": "TTL300秒",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "容量64条",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_091",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2
+    ],
+    "claims": [
+      {
+        "text": "两个local_files_only设false下载",
+        "verdict": "supported",
+        "citations": [
+          1,
+          4
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "下载后恢复true避免联网",
+        "verdict": "supported",
+        "citations": [
+          1,
+          4
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "放TXT/PDF并运行入库命令",
+        "verdict": "supported",
+        "citations": [
+          4
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "streamlit启动命令",
+        "verdict": "supported",
+        "citations": [
+          3
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "扫描PDF需OCR，程序不含OCR",
+        "verdict": "supported",
+        "citations": [
+          4
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "模型未放Git仓库",
+        "verdict": "supported",
+        "citations": [
+          4
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_092",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2
+    ],
+    "claims": [
+      {
+        "text": "分块220token",
+        "verdict": "supported",
+        "citations": [
+          3
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "重叠30token",
+        "verdict": "supported",
+        "citations": [
+          3
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_093",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2
+    ],
+    "claims": [
+      {
+        "text": "缓存键含对话偏好索引版本配置",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "TTL及容量限制",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "失败结果不缓存",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "启动校验Embedding签名",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "附加一句泛化拒答但已经回答关键事实，不判整体拒答。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_094",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "本地计算无法强制中断",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "超时界面返回，计算结束检查取消",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "网络读取受timeout限制",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "时间预算阻止后续调用",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_095",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2,
+      3
+    ],
+    "claims": [
+      {
+        "text": "甲2000元",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "乙3000元",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "无优先级无法唯一确定",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": true,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_096",
+    "correctness": 0,
+    "covered_fact_indices": [],
+    "claims": [],
+    "refused": false,
+    "conflict_handled": false,
+    "notes": "生成异常提示；没有答案，保留分母。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_097",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "迁移目标不能已存在",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "复用旧向量不能换Embedding",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "无manifest仅原MiniLM",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "换模型须从原文入库",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_098",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2,
+      3
+    ],
+    "claims": [
+      {
+        "text": "甲2000元",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "乙3000元",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "无优先级，不能唯一确定",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": true,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_099",
+    "correctness": 1,
+    "covered_fact_indices": [],
+    "claims": [
+      {
+        "text": "两份资料仅给年假申请提前时间",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "未给产假天数",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_100",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "无法强制中断本地计算",
+        "verdict": "supported",
+        "citations": [
+          1,
+          5
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "预算可阻止后续调用",
+        "verdict": "supported",
+        "citations": [
+          1,
+          5
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "超时界面返回，计算结束后查取消",
+        "verdict": "supported",
+        "citations": [
+          1,
+          5
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_101",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "身份问题跳过检索与核查",
+        "verdict": "supported",
+        "citations": [
+          3
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "自我认知用system_identity直接回答",
+        "verdict": "supported",
+        "citations": [
+          5
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "本次资料未明确是否加载知识库",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "纠正了必须检索核查的核心前提；对加载细节保留证据边界，不算整体拒答。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_102",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2
+    ],
+    "claims": [
+      {
+        "text": "知识库设置新模型和新目录从原文入库",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "不能复用旧向量仅改签名",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "纠偏记忆也重编码",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "使用reembed_memory.py",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "旧库保留目标按签名隔离",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "距离分布改变须校准门槛",
+        "verdict": "supported",
+        "citations": [
+          3
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_103",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2
+    ],
+    "claims": [
+      {
+        "text": "llm.max_retries默认0",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "SDK无重试但仍可备用链路",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "generation.max_retries默认1",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "所给片段无更细联合机制",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_104",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2
+    ],
+    "claims": [
+      {
+        "text": "门槛0.35",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "归一化BGE平方L2距离",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_105",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2
+    ],
+    "claims": [
+      {
+        "text": "稳定ID防重复记录",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "新增向量成功才删除旧块",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "因此失败时保留旧块",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "当前非数据库级原子发布",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_106",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "MIT许可证",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_107",
+    "correctness": 0,
+    "covered_fact_indices": [],
+    "claims": [
+      {
+        "text": "生成要求每个事实有编号引用",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "核查要求逐字摘录连续原文",
+        "verdict": "supported",
+        "citations": [
+          3
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "当前上下文未说明统一编号机制",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      }
+    ],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "未回答共享证据编号和上下文机制；附带引用规则正确。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_108",
+    "correctness": 1,
+    "covered_fact_indices": [],
+    "claims": [
+      {
+        "text": "资料仅给住宿上限",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "没有机票舱位标准",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_109",
+    "correctness": 1,
+    "covered_fact_indices": [],
+    "claims": [
+      {
+        "text": "资料只给档案期限",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "没有法务电话",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_110",
+    "correctness": 0,
+    "covered_fact_indices": [],
+    "claims": [],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "完整知识库有模型名，但未召回。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_111",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2
+    ],
+    "claims": [
+      {
+        "text": "门槛0.3",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2,
+          3
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "sigmoid分数非校准概率",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2,
+          3
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_112",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "搜索结果用摘要，不自动抓全文",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_113",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2
+    ],
+    "claims": [
+      {
+        "text": "llm.max_retries默认0",
+        "verdict": "supported",
+        "citations": [
+          3
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "SDK重试关闭，仍可备用链路",
+        "verdict": "supported",
+        "citations": [
+          3
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "图max_retries默认1",
+        "verdict": "supported",
+        "citations": [
+          3
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "资料没有更细联合调优方法",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_114",
+    "correctness": 1,
+    "covered_fact_indices": [],
+    "claims": [],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_115",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2,
+      3
+    ],
+    "claims": [
+      {
+        "text": "每路20",
+        "verdict": "supported",
+        "citations": [
+          2,
+          3
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "重排10",
+        "verdict": "supported",
+        "citations": [
+          2,
+          3
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "最终最多5",
+        "verdict": "supported",
+        "citations": [
+          2,
+          3
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_116",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "支持UTF8 TXT",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "支持可提取文字PDF",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_117",
+    "correctness": 1,
+    "covered_fact_indices": [],
+    "claims": [
+      {
+        "text": "资料涉及访客预约提前时间",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      },
+      {
+        "text": "没有停车收费标准",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      }
+    ],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_118",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2
+    ],
+    "claims": [
+      {
+        "text": "离线入库检索评测无需远程API",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "线上生成至少配DeepSeek或SiliconFlow",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "完整主备配两路",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "百度用于搜索及可选改写",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "本地无需百度Key，混合未配只本地",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_119",
+    "correctness": 1,
+    "covered_fact_indices": [],
+    "claims": [
+      {
+        "text": "资料只给盘点频次",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "没有仓库街道地址",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_120",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "默认512token",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_121",
+    "correctness": 0,
+    "covered_fact_indices": [],
+    "claims": [],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "资料有OCR限制，空检索未纠正前提。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_122",
+    "correctness": 0.5,
+    "covered_fact_indices": [
+      2
+    ],
+    "claims": [
+      {
+        "text": "百度Key用于联网和可选改写",
+        "verdict": "supported",
+        "citations": [
+          5
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "纯本地不需要百度Key",
+        "verdict": "supported",
+        "citations": [
+          5
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "混合未配置搜索时只本地",
+        "verdict": "supported",
+        "citations": [
+          5
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "所给上下文未说明本地空结果触发条件",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "给出搜索配置必要条件，但漏掉本地无有效证据条件；部分回答，不算整体拒答。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_123",
+    "correctness": 1,
+    "covered_fact_indices": [],
+    "claims": [
+      {
+        "text": "未给产假天数",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      },
+      {
+        "text": "乙年假提前5工作日",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      },
+      {
+        "text": "甲年假提前3工作日",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      },
+      {
+        "text": "年假提前时间冲突且无法唯一确定",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      }
+    ],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_124",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2,
+      3
+    ],
+    "claims": [
+      {
+        "text": "甲3工作日",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "乙5工作日",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "无优先级无法唯一确定",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": true,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_125",
+    "correctness": 0,
+    "covered_fact_indices": [],
+    "claims": [],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "有答案题检索空，未纠正前提。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_126",
+    "correctness": 0,
+    "covered_fact_indices": [],
+    "claims": [
+      {
+        "text": "所给资料未提主生成模型标识",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      }
+    ],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_127",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "身份问题直接生成，跳过检索核查",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_128",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2
+    ],
+    "claims": [
+      {
+        "text": "生成前统一证据编号与上下文",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "生成核查使用同一套编号证据",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "生成要求逐事实编号引用",
+        "verdict": "supported",
+        "citations": [
+          1,
+          4
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "核查以资料为唯一证据并返回claim verdict evidence",
+        "verdict": "supported",
+        "citations": [
+          1,
+          4
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "当前片段未给编号实现代码",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_129",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "联网接入百度千帆",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_130",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2,
+      3
+    ],
+    "claims": [
+      {
+        "text": "甲600元",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "乙800元",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "无优先级不能唯一确定",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": true,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_131",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2
+    ],
+    "claims": [
+      {
+        "text": "启用后原题无证据时补充",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "按原题重排",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_132",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2
+    ],
+    "claims": [
+      {
+        "text": "预算60秒",
+        "verdict": "supported",
+        "citations": [
+          1,
+          3
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "包含初始化",
+        "verdict": "supported",
+        "citations": [
+          1,
+          3
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_133",
+    "correctness": 1,
+    "covered_fact_indices": [],
+    "claims": [
+      {
+        "text": "资料仅给来访预约时间",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "未给停车收费",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_134",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1
+    ],
+    "claims": [
+      {
+        "text": "扫描PDF需要先OCR",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      },
+      {
+        "text": "Horus入库程序不包含OCR",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      }
+    ],
+    "refused": false,
+    "conflict_handled": null,
+    "notes": "虽然开头模板说无法回答，后文已明确纠正错误前提；按完整回答评分，不计误拒答。缺少编号引用。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_135",
+    "correctness": 1,
+    "covered_fact_indices": [
+      1,
+      2,
+      3
+    ],
+    "claims": [
+      {
+        "text": "甲7天",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "乙14天",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "无优先级不能唯一确定",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": false,
+    "conflict_handled": true,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_136",
+    "correctness": 1,
+    "covered_fact_indices": [],
+    "claims": [
+      {
+        "text": "资料给年度课时16或24小时",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      },
+      {
+        "text": "没有补考费用",
+        "verdict": "supported",
+        "citations": [],
+        "citation_support": false
+      }
+    ],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  },
+  {
+    "answer_id": "anon_137",
+    "correctness": 1,
+    "covered_fact_indices": [],
+    "claims": [
+      {
+        "text": "资料没有机票舱位标准",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "甲住宿600元",
+        "verdict": "supported",
+        "citations": [
+          1
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "乙住宿800元",
+        "verdict": "supported",
+        "citations": [
+          2
+        ],
+        "citation_support": true
+      },
+      {
+        "text": "两份资料无日期或优先级",
+        "verdict": "supported",
+        "citations": [
+          1,
+          2
+        ],
+        "citation_support": true
+      }
+    ],
+    "refused": true,
+    "conflict_handled": null,
+    "notes": "按匿名回答与所给原文核对；待人工复核。",
+    "reviewer": "Codex conversation AI; exact model snapshot unavailable",
+    "human_review": "pending"
+  }
+]

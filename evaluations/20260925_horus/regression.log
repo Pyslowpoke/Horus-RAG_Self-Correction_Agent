@@ -1,0 +1,96 @@
+test_identity_question_skips_local_model_loading (test_app_flow.AppFlowTests.test_identity_question_skips_local_model_loading) ... 2026-09-25 15:00:20.036 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-09-25 15:00:24.796 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-09-25 15:00:24.796 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-09-25 15:00:24.842 Thread 'rag_0': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+INFO:src.agents.generation_agent:[GenerationAgent] �������: mode=self_aware, len=8
+ok
+test_local_request_runs_in_worker_and_renders_final_answer (test_app_flow.AppFlowTests.test_local_request_runs_in_worker_and_renders_final_answer) ... 2026-09-25 15:00:24.884 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-09-25 15:00:25.493 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-09-25 15:00:25.493 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-09-25 15:00:25.493 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-09-25 15:00:25.493 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-09-25 15:00:25.521 Thread 'rag_0': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+INFO:src.agents.memory_agent:[MemoryAgent] �������: len=0
+Building prefix dict from the default dictionary ...
+DEBUG:jieba:Building prefix dict from the default dictionary ...
+Dumping model to file cache C:\Users\13788\AppData\Local\Temp\jieba.cache
+DEBUG:jieba:Dumping model to file cache C:\Users\13788\AppData\Local\Temp\jieba.cache
+Loading model cost 0.422 seconds.
+DEBUG:jieba:Loading model cost 0.422 seconds.
+Prefix dict has been built successfully.
+DEBUG:jieba:Prefix dict has been built successfully.
+INFO:src.agents.generation_agent:[GenerationAgent] �������: mode=local, len=8
+ok
+test_instruction_only_applies_to_queries (test_chinese_embedding.ChineseEmbeddingTests.test_instruction_only_applies_to_queries) ... ok
+test_memory_threshold_uses_model_specific_setting (test_chinese_embedding.ChineseEmbeddingTests.test_memory_threshold_uses_model_specific_setting) ... ok
+test_old_index_rejected_by_new_embedding (test_chinese_embedding.ChineseEmbeddingTests.test_old_index_rejected_by_new_embedding) ... ok
+test_failure_switches_provider_once (test_llm.LLMTests.test_failure_switches_provider_once) ... WARNING:src.generators.llm_client:LLM ����ʧ��: model=primary status=None attempt=1
+ok
+test_same_provider_not_called_twice_as_fallback (test_llm.LLMTests.test_same_provider_not_called_twice_as_fallback) ... ok
+test_sdk_retry_disabled_and_output_bounded (test_llm.LLMTests.test_sdk_retry_disabled_and_output_bounded) ... ok
+test_streaming_closes_stream_and_emits_draft (test_llm.LLMTests.test_streaming_closes_stream_and_emits_draft) ... ok
+test_cancellation_after_generation_prevents_verification (test_regressions.GraphTests.test_cancellation_after_generation_prevents_verification) ... INFO:src.agents.generation_agent:[GenerationAgent] �������: mode=local, len=6
+ok
+test_context_limit_and_citation_documents_agree (test_regressions.GraphTests.test_context_limit_and_citation_documents_agree) ... INFO:src.agents.generation_agent:[GenerationAgent] �������: mode=local, len=6
+ok
+test_invalid_json_not_passed (test_regressions.GraphTests.test_invalid_json_not_passed) ... INFO:src.agents.generation_agent:[GenerationAgent] �������: mode=local, len=2
+ERROR:src.agents.fact_check_agent:��ʵ�˲�ʧ��
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 24, in _parse_json_response
+    parsed = json.loads(raw)
+             ^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\agents\fact_check_agent.py", line 13, in fact_check_agent
+    checks = fact_checker.check_once(state['answer'], state['context'])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 49, in check_once
+    return [self._validate_log_entry(entry, context) for entry in self._parse_json_response(raw)]
+                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 26, in _parse_json_response
+    raise VerificationError('�˲���������Ч JSON') from error
+src.verifiers.fact_checker.VerificationError: �˲���������Ч JSON
+ok
+test_no_evidence_no_llm_calls (test_regressions.GraphTests.test_no_evidence_no_llm_calls) ... ok
+test_no_reference_supports_fabricated_quote (test_regressions.GraphTests.test_no_reference_supports_fabricated_quote) ... ok
+test_permanent_failure_is_bounded (test_regressions.GraphTests.test_permanent_failure_is_bounded) ... INFO:src.agents.generation_agent:[GenerationAgent] �������: mode=local, len=4
+ok
+test_repaired_answer_not_failed_by_history (test_regressions.GraphTests.test_repaired_answer_not_failed_by_history) ... INFO:src.agents.generation_agent:[GenerationAgent] �������: mode=local, len=4
+ok
+test_self_identity_route (test_regressions.GraphTests.test_self_identity_route) ... INFO:src.agents.generation_agent:[GenerationAgent] �������: mode=self_aware, len=8
+ok
+test_chunks_obey_token_limit_and_have_distinct_ids (test_regressions.IngestionTests.test_chunks_obey_token_limit_and_have_distinct_ids) ... ok
+test_failed_add_does_not_delete_old (test_regressions.IngestionTests.test_failed_add_does_not_delete_old) ... ok
+test_idempotent_sync_and_stale_deletion (test_regressions.IngestionTests.test_idempotent_sync_and_stale_deletion) ... ok
+test_bm25_zero_matches_do_not_add_rrf_votes (test_regressions.RetrievalTests.test_bm25_zero_matches_do_not_add_rrf_votes) ... ok
+test_distinct_chunks_same_source (test_regressions.RetrievalTests.test_distinct_chunks_same_source) ... ok
+test_duplicate_candidates_vote_once_per_list (test_regressions.RetrievalTests.test_duplicate_candidates_vote_once_per_list) ... ok
+test_empty_store (test_regressions.RetrievalTests.test_empty_store) ... ok
+test_hyde_documents_rescored_against_original_query (test_regressions.RetrievalTests.test_hyde_documents_rescored_against_original_query) ... ok
+test_metadata_preserved_when_reading_bm25 (test_regressions.RetrievalTests.test_metadata_preserved_when_reading_bm25) ... ok
+test_nonempty_does_not_mean_relevant (test_regressions.RetrievalTests.test_nonempty_does_not_mean_relevant) ... ok
+test_reranker_can_reject_every_candidate (test_regressions.RetrievalTests.test_reranker_can_reject_every_candidate) ... ok
+test_short_query_does_not_force_hyde (test_regressions.RetrievalTests.test_short_query_does_not_force_hyde) ... ok
+test_cache_key_accounts_for_history_preferences_index (test_regressions.RuntimeTests.test_cache_key_accounts_for_history_preferences_index) ... ok
+test_expired_budget_stops_execution (test_regressions.RuntimeTests.test_expired_budget_stops_execution) ... ok
+test_longest_date_matches_first (test_regressions.RuntimeTests.test_longest_date_matches_first) ... ok
+test_timeout_clamped_to_remaining (test_regressions.RuntimeTests.test_timeout_clamped_to_remaining) ... ok
+test_budget_timeout_is_not_swallowed (test_web.WebTests.test_budget_timeout_is_not_swallowed) ... ok
+test_filters_unrelated_web_result (test_web.WebTests.test_filters_unrelated_web_result) ... ok
+test_web_failure_is_not_empty_success (test_web.WebTests.test_web_failure_is_not_empty_success) ... ok
+
+----------------------------------------------------------------------
+Ran 36 tests in 45.757s
+
+OK

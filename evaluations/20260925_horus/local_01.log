@@ -1,0 +1,28 @@
+E:\����\agent-project\rag-2.0-self-correction\src\components.py:13: LangChainDeprecationWarning: The class `HuggingFaceEmbeddings` was deprecated in LangChain 0.2.2 and will be removed in 1.0. An updated version of the class exists in the `langchain-huggingface package and should be used instead. To use it run `pip install -U `langchain-huggingface` and import as `from `langchain_huggingface import HuggingFaceEmbeddings``.
+  embedding = HuggingFaceEmbeddings(model_name=opts['model_name'],
+E:\����\agent-project\rag-2.0-self-correction\evaluations\20260925_horus\run_local.py:51: LangChainDeprecationWarning: The class `Chroma` was deprecated in LangChain 0.2.9 and will be removed in 1.0. An updated version of the class exists in the `langchain-chroma package and should be used instead. To use it run `pip install -U `langchain-chroma` and import as `from `langchain_chroma import Chroma``.
+  db=Chroma(persist_directory=str(out/'index'),embedding_function=emb)
+Building prefix dict from the default dictionary ...
+Loading model from cache C:\Users\13788\AppData\Local\Temp\jieba.cache
+Loading model cost 1.632 seconds.
+Prefix dict has been built successfully.
+DEV_COMPLETE index_chunks=100 initialization_seconds=72.063
+repeat=1 questions=10/60
+repeat=1 questions=20/60
+repeat=1 questions=30/60
+repeat=1 questions=40/60
+repeat=1 questions=50/60
+repeat=1 questions=60/60
+repeat=2 questions=10/60
+repeat=2 questions=20/60
+repeat=2 questions=30/60
+repeat=2 questions=40/60
+repeat=2 questions=50/60
+repeat=2 questions=60/60
+repeat=3 questions=10/60
+repeat=3 questions=20/60
+repeat=3 questions=30/60
+repeat=3 questions=40/60
+repeat=3 questions=50/60
+repeat=3 questions=60/60
+COMPLETE: raw retrieval records saved; no LLM calls.

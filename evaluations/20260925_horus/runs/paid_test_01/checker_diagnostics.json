@@ -1,0 +1,1524 @@
+[
+  {
+    "call": 3,
+    "question_id": "constraint_04",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "支持"
+    ],
+    "validated_verdicts": [
+      "支持"
+    ]
+  },
+  {
+    "call": 6,
+    "question_id": "integration_10",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "核查结果不是有效 JSON",
+    "response_excerpt": "根据提供的参考资料，逐条核对回答中的事实性陈述：\n\n1. **关键词命中率不能充当幻觉率或忠实度指标；答案是否正确、是否忠实于证据，需要另行人工标注或独立评审。**\n   - **参考资料：** [1] 来源: docs__optimization.md.txt\n   - **核对结果：** 正确。参考资料明确指出关键"
+  },
+  {
+    "call": 9,
+    "question_id": "single_02",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "length",
+    "api_error": null,
+    "parse_status": "核查结果不是有效 JSON",
+    "response_excerpt": "根据提供的参考资料，逐条核对回答中的事实性陈述：\n\n1. **Horus 的图流程使用 LangGraph 编排。**\n   - 核对结果：正确。\n   - 参考依据：参考资料 [1] 中提到“使用 Streamlit 与 LangGraph 编排检索、回答生成、证据核查和有限次数的修正”。\n\n2. **面向中文知识库"
+  },
+  {
+    "call": 12,
+    "question_id": "integration_02",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "length",
+    "api_error": null,
+    "parse_status": "核查结果不是有效 JSON",
+    "response_excerpt": "根据提供的参考资料，逐条核对回答中的事实性陈述如下：\n\n1. **检索与回答流程中，在生成草稿前会先进行“统一证据编号与上下文”，随后才“生成草稿 → 单次核查”，因此生成和核查使用的是同一套已编号的证据。**\n\n   - **参考资料来源：** [2] 来源: README.zh-CN.md.txt\n   - **检"
+  },
+  {
+    "call": 16,
+    "question_id": "single_04",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "支持"
+    ],
+    "validated_verdicts": [
+      "证据不足"
+    ]
+  },
+  {
+    "call": 18,
+    "question_id": "single_04",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 10,
+    "raw_verdicts": [
+      "支持",
+      "支持",
+      "支持",
+      "支持",
+      "证据不足",
+      "证据不足",
+      "证据不足",
+      "证据不足",
+      "证据不足",
+      "证据不足"
+    ],
+    "validated_verdicts": [
+      "证据不足",
+      "支持",
+      "证据不足",
+      "支持",
+      "证据不足",
+      "证据不足",
+      "证据不足",
+      "证据不足",
+      "证据不足",
+      "证据不足"
+    ]
+  },
+  {
+    "call": 21,
+    "question_id": "conflict_07",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 3,
+    "raw_verdicts": [
+      "支持",
+      "支持",
+      "支持"
+    ],
+    "validated_verdicts": [
+      "支持",
+      "支持",
+      "支持"
+    ]
+  },
+  {
+    "call": 25,
+    "question_id": "conflict_05",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 3,
+    "raw_verdicts": [
+      "支持",
+      "支持",
+      "支持"
+    ],
+    "validated_verdicts": [
+      "支持",
+      "支持",
+      "支持"
+    ]
+  },
+  {
+    "call": 28,
+    "question_id": "constraint_07",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "核查结果不是有效 JSON",
+    "response_excerpt": "根据提供的参考资料，逐条核对回答中的事实性陈述：\n\n1. **重排器默认分数门槛是 `0.3`**：\n   - **正确**。参考资料 [3] 中 `reranker.min_score` 的值为 `0.3`，参考资料 [2] 中也有相同的描述。\n   \n2. **它不是校准概率，而是 sigmoid 重排分数门槛**"
+  },
+  {
+    "call": 33,
+    "question_id": "false_premise_09",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": null,
+    "api_error": "APITimeoutError",
+    "parse_status": "api_error"
+  },
+  {
+    "call": 36,
+    "question_id": "single_05",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "支持"
+    ],
+    "validated_verdicts": [
+      "证据不足"
+    ]
+  },
+  {
+    "call": 38,
+    "question_id": "single_05",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "支持"
+    ],
+    "validated_verdicts": [
+      "证据不足"
+    ]
+  },
+  {
+    "call": 41,
+    "question_id": "integration_08",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": null,
+    "api_error": "APITimeoutError",
+    "parse_status": "api_error"
+  },
+  {
+    "call": 44,
+    "question_id": "constraint_01",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "支持"
+    ],
+    "validated_verdicts": [
+      "证据不足"
+    ]
+  },
+  {
+    "call": 46,
+    "question_id": "constraint_01",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "支持"
+    ],
+    "validated_verdicts": [
+      "支持"
+    ]
+  },
+  {
+    "call": 50,
+    "question_id": "false_premise_06",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": null,
+    "api_error": "APITimeoutError",
+    "parse_status": "api_error"
+  },
+  {
+    "call": 54,
+    "question_id": "false_premise_05",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": null,
+    "api_error": "APITimeoutError",
+    "parse_status": "api_error"
+  },
+  {
+    "call": 58,
+    "question_id": "false_premise_08",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "支持"
+    ],
+    "validated_verdicts": [
+      "支持"
+    ]
+  },
+  {
+    "call": 61,
+    "question_id": "constraint_09",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "支持"
+    ],
+    "validated_verdicts": [
+      "证据不足"
+    ]
+  },
+  {
+    "call": 63,
+    "question_id": "constraint_09",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "支持"
+    ],
+    "validated_verdicts": [
+      "支持"
+    ]
+  },
+  {
+    "call": 66,
+    "question_id": "constraint_03",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "支持"
+    ],
+    "validated_verdicts": [
+      "支持"
+    ]
+  },
+  {
+    "call": 69,
+    "question_id": "conflict_06",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 2,
+    "raw_verdicts": [
+      "支持",
+      "支持"
+    ],
+    "validated_verdicts": [
+      "证据不足",
+      "证据不足"
+    ]
+  },
+  {
+    "call": 73,
+    "question_id": "conflict_04",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 2,
+    "raw_verdicts": [
+      "支持",
+      "支持"
+    ],
+    "validated_verdicts": [
+      "证据不足",
+      "证据不足"
+    ]
+  },
+  {
+    "call": 75,
+    "question_id": "conflict_04",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 6,
+    "raw_verdicts": [
+      "支持",
+      "支持",
+      "支持",
+      "支持",
+      "支持",
+      "支持"
+    ],
+    "validated_verdicts": [
+      "证据不足",
+      "证据不足",
+      "证据不足",
+      "证据不足",
+      "证据不足",
+      "证据不足"
+    ]
+  },
+  {
+    "call": 78,
+    "question_id": "single_07",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "核查结果不是有效 JSON",
+    "response_excerpt": "根据提供的参考资料，逐条核对回答中的事实性陈述：\n\n1. **联网搜索接入的是百度千帆搜索。**\n   - 核对结果：正确。参考资料中的检索与回答流程中明确提到“联网：百度千帆搜索”。\n\n2. **WEB_SEARCH_PROMPT 的内容描述了联网问答助手的搜索和回答方式。**\n   - 核对结果：正确。参考资料中的"
+  },
+  {
+    "call": 81,
+    "question_id": "integration_01",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "核查结果不是有效 JSON",
+    "response_excerpt": "```json\n[\n    {\"claim\":\"下载模型时需要将 `config.yaml` 中 `embedding.local_files_only` 和 `reranker.local_files_only` 改为 `false`，运行指定命令下载；成功后恢复为 `true`，避免运行时联网下载。\",\"verdi"
+  },
+  {
+    "call": 84,
+    "question_id": "integration_04",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "核查结果不是有效 JSON",
+    "response_excerpt": "根据提供的参考资料，逐条核对回答中的事实性陈述：\n\n1. **Horus 是面向中文知识库的检索增强问答应用**：\n   - **事实性陈述**：正确。参考资料中明确提到“面向中文知识库的检索增强问答应用”。\n\n2. **使用 Streamlit 与 LangGraph 编排检索、回答生成、证据核查和有限次数的修正**"
+  },
+  {
+    "call": 87,
+    "question_id": "conflict_01",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 2,
+    "raw_verdicts": [
+      "支持",
+      "支持"
+    ],
+    "validated_verdicts": [
+      "证据不足",
+      "证据不足"
+    ]
+  },
+  {
+    "call": 89,
+    "question_id": "conflict_01",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 2,
+    "raw_verdicts": [
+      "支持",
+      "支持"
+    ],
+    "validated_verdicts": [
+      "证据不足",
+      "支持"
+    ]
+  },
+  {
+    "call": 92,
+    "question_id": "constraint_05",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 2,
+    "raw_verdicts": [
+      "支持",
+      "支持"
+    ],
+    "validated_verdicts": [
+      "支持",
+      "支持"
+    ]
+  },
+  {
+    "call": 95,
+    "question_id": "unanswerable_02",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 3,
+    "raw_verdicts": [
+      "证据不足",
+      "矛盾",
+      "矛盾"
+    ],
+    "validated_verdicts": [
+      "证据不足",
+      "矛盾",
+      "矛盾"
+    ]
+  },
+  {
+    "call": 97,
+    "question_id": "unanswerable_02",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 2,
+    "raw_verdicts": [
+      "证据不足",
+      "证据不足"
+    ],
+    "validated_verdicts": [
+      "证据不足",
+      "证据不足"
+    ]
+  },
+  {
+    "call": 100,
+    "question_id": "integration_03",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": null,
+    "api_error": "APITimeoutError",
+    "parse_status": "api_error"
+  },
+  {
+    "call": 104,
+    "question_id": "unanswerable_08",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 4,
+    "raw_verdicts": [
+      "支持",
+      "证据不足",
+      "证据不足",
+      "支持"
+    ],
+    "validated_verdicts": [
+      "证据不足",
+      "证据不足",
+      "证据不足",
+      "证据不足"
+    ]
+  },
+  {
+    "call": 106,
+    "question_id": "unanswerable_08",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 4,
+    "raw_verdicts": [
+      "支持",
+      "支持",
+      "证据不足",
+      "证据不足"
+    ],
+    "validated_verdicts": [
+      "证据不足",
+      "证据不足",
+      "证据不足",
+      "证据不足"
+    ]
+  },
+  {
+    "call": 109,
+    "question_id": "constraint_10",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": null,
+    "api_error": "APITimeoutError",
+    "parse_status": "api_error"
+  },
+  {
+    "call": 112,
+    "question_id": "integration_05",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": null,
+    "api_error": "APITimeoutError",
+    "parse_status": "api_error"
+  },
+  {
+    "call": 115,
+    "question_id": "conflict_09",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 5,
+    "raw_verdicts": [
+      "支持",
+      "支持",
+      "支持",
+      "支持",
+      "支持"
+    ],
+    "validated_verdicts": [
+      "证据不足",
+      "证据不足",
+      "证据不足",
+      "证据不足",
+      "证据不足"
+    ]
+  },
+  {
+    "call": 117,
+    "question_id": "conflict_09",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 2,
+    "raw_verdicts": [
+      "支持",
+      "支持"
+    ],
+    "validated_verdicts": [
+      "证据不足",
+      "证据不足"
+    ]
+  },
+  {
+    "call": 120,
+    "question_id": "unanswerable_10",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "支持"
+    ],
+    "validated_verdicts": [
+      "证据不足"
+    ]
+  },
+  {
+    "call": 122,
+    "question_id": "unanswerable_10",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "证据不足"
+    ],
+    "validated_verdicts": [
+      "证据不足"
+    ]
+  },
+  {
+    "call": 125,
+    "question_id": "conflict_02",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 4,
+    "raw_verdicts": [
+      "支持",
+      "支持",
+      "支持",
+      "支持"
+    ],
+    "validated_verdicts": [
+      "证据不足",
+      "证据不足",
+      "证据不足",
+      "证据不足"
+    ]
+  },
+  {
+    "call": 127,
+    "question_id": "conflict_02",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 4,
+    "raw_verdicts": [
+      "支持",
+      "支持",
+      "支持",
+      "支持"
+    ],
+    "validated_verdicts": [
+      "证据不足",
+      "证据不足",
+      "证据不足",
+      "证据不足"
+    ]
+  },
+  {
+    "call": 130,
+    "question_id": "integration_09",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "length",
+    "api_error": null,
+    "parse_status": "核查结果不是有效 JSON",
+    "response_excerpt": "根据提供的参考资料，逐条核对回答中的事实性陈述：\n\n1. **默认禁用 HyDE；启用 HyDE 后，也仅在原问题没有有效证据时才补充候选，并仍按原问题重排 [1][2]。**\n   - 核对：正确。参考资料 [1] 和 [2] 中均提到这一点。\n\n2. **无证据时直接拒答，不再为无关资料调用生成和核查模型 [4]。"
+  },
+  {
+    "call": 134,
+    "question_id": "integration_07",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 6,
+    "raw_verdicts": [
+      "支持",
+      "支持",
+      "证据不足",
+      "支持",
+      "证据不足",
+      "证据不足"
+    ],
+    "validated_verdicts": [
+      "支持",
+      "支持",
+      "证据不足",
+      "支持",
+      "证据不足",
+      "证据不足"
+    ]
+  },
+  {
+    "call": 136,
+    "question_id": "integration_07",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 6,
+    "raw_verdicts": [
+      "支持",
+      "支持",
+      "支持",
+      "证据不足",
+      "支持",
+      "证据不足"
+    ],
+    "validated_verdicts": [
+      "证据不足",
+      "支持",
+      "支持",
+      "证据不足",
+      "支持",
+      "证据不足"
+    ]
+  },
+  {
+    "call": 140,
+    "question_id": "single_06",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "length",
+    "api_error": null,
+    "parse_status": "核查结果不是有效 JSON",
+    "response_excerpt": "根据提供的参考资料，逐条核对回答中的事实性陈述：\n\n1. **默认主生成模型的标识是 `deepseek-chat`。**\n   - **核对结果：** 支持\n   - **证据：** `DEEPSEEK_API_KEY=your_deepseek_api_key`（从参考资料中提取，说明 `deepseek-chat"
+  },
+  {
+    "call": 143,
+    "question_id": "constraint_06",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "length",
+    "api_error": null,
+    "parse_status": "核查结果不是有效 JSON",
+    "response_excerpt": "根据提供的参考资料，我将逐条核对回答中的事实性陈述：\n\n1. 启用 HyDE 后，仅在原问题没有有效证据时才补充候选，并且补充的候选仍按原问题统一重排。\n   - **核对结果**：正确。参考资料 [1] 和 [4] 中都提到“启用 HyDE 后仅在原问题无有效证据时触发，补充候选仍按原问题统一重排”。\n\n2. 身份类"
+  },
+  {
+    "call": 146,
+    "question_id": "false_premise_02",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "核查结果不是有效 JSON",
+    "response_excerpt": "根据提供的参考资料，逐条核对回答中的事实性陈述：\n\n1. **核查结果不是有效 JSON 时会抛出 `VerificationError`，不能视为核查通过。**\n   - 核查：正确。参考资料 [2] 中的代码片段显示，如果 JSON 解析失败，会抛出 `VerificationError`，并且明确指出“核查结果不"
+  },
+  {
+    "call": 149,
+    "question_id": "unanswerable_04",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "支持"
+    ],
+    "validated_verdicts": [
+      "证据不足"
+    ]
+  },
+  {
+    "call": 151,
+    "question_id": "unanswerable_04",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 3,
+    "raw_verdicts": [
+      "支持",
+      "支持",
+      "支持"
+    ],
+    "validated_verdicts": [
+      "证据不足",
+      "支持",
+      "支持"
+    ]
+  },
+  {
+    "call": 154,
+    "question_id": "integration_06",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "length",
+    "api_error": null,
+    "parse_status": "核查结果不是有效 JSON",
+    "response_excerpt": "根据提供的参考资料 `README.zh-CN.md.txt` 和环境变量内容，逐条核对回答中的事实性陈述：\n\n1. **至少配置 DeepSeek 或 SiliconFlow 中的一路；要使用完整主备策略，应配置两路。**\n   - **支持**。从参考资料中的环境变量可以看出，需要配置至少一个 API Key（`D"
+  },
+  {
+    "call": 157,
+    "question_id": "false_premise_10",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "length",
+    "api_error": null,
+    "parse_status": "核查结果不是有效 JSON",
+    "response_excerpt": "根据提供的参考资料，逐条核对回答中的事实性陈述如下：\n\n1. **陈述：** 真实 LLM/API 的端到端耗时未实测。\n   - **证据：** \"真实 LLM/API 的端到端耗时未实测。详见 [中文模型验证](docs/chinese_embedding.md)；其中本机数据、备份和 `.evaluation/`"
+  },
+  {
+    "call": 160,
+    "question_id": "conflict_03",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 3,
+    "raw_verdicts": [
+      "支持",
+      "支持",
+      "支持"
+    ],
+    "validated_verdicts": [
+      "支持",
+      "支持",
+      "支持"
+    ]
+  },
+  {
+    "call": 163,
+    "question_id": "unanswerable_01",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "支持"
+    ],
+    "validated_verdicts": [
+      "证据不足"
+    ]
+  },
+  {
+    "call": 165,
+    "question_id": "unanswerable_01",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "支持"
+    ],
+    "validated_verdicts": [
+      "证据不足"
+    ]
+  },
+  {
+    "call": 168,
+    "question_id": "conflict_08",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 3,
+    "raw_verdicts": [
+      "矛盾",
+      "矛盾",
+      "支持"
+    ],
+    "validated_verdicts": [
+      "矛盾",
+      "矛盾",
+      "支持"
+    ]
+  },
+  {
+    "call": 170,
+    "question_id": "conflict_08",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 4,
+    "raw_verdicts": [
+      "支持",
+      "证据不足",
+      "证据不足",
+      "支持"
+    ],
+    "validated_verdicts": [
+      "证据不足",
+      "证据不足",
+      "证据不足",
+      "证据不足"
+    ]
+  },
+  {
+    "call": 173,
+    "question_id": "false_premise_07",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 2,
+    "raw_verdicts": [
+      "支持",
+      "支持"
+    ],
+    "validated_verdicts": [
+      "支持",
+      "支持"
+    ]
+  },
+  {
+    "call": 176,
+    "question_id": "constraint_08",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "支持"
+    ],
+    "validated_verdicts": [
+      "支持"
+    ]
+  },
+  {
+    "call": 179,
+    "question_id": "single_08",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "length",
+    "api_error": null,
+    "parse_status": "核查结果不是有效 JSON",
+    "response_excerpt": "根据提供的回答和参考资料，逐条核对回答中的事实性陈述：\n\n1. **构建知识库应运行：**\n   ```bash\n   python -m src.data_ingestion\n   ```\n   - **事实性陈述**：正确。根据参考资料 [4]，增量重建时也使用相同的命令。\n\n2. **该程序会递归读取文档并生成索"
+  },
+  {
+    "call": 182,
+    "question_id": "false_premise_03",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "length",
+    "api_error": null,
+    "parse_status": "核查结果不是有效 JSON",
+    "response_excerpt": "根据提供的参考资料，逐条核对回答中的事实性陈述：\n\n1. **身份类问题直接生成并跳过检索和核查。**\n   - **参考资料**：[1] 来源: README.zh-CN.md.txt\n   - **核对结果**：正确。参考资料中明确提到“身份类问题直接生成并跳过检索和核查。”\n\n2. **启用 HyDE 后，仅在原"
+  },
+  {
+    "call": 185,
+    "question_id": "conflict_10",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 3,
+    "raw_verdicts": [
+      "支持",
+      "支持",
+      "支持"
+    ],
+    "validated_verdicts": [
+      "支持",
+      "支持",
+      "证据不足"
+    ]
+  },
+  {
+    "call": 187,
+    "question_id": "conflict_10",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 5,
+    "raw_verdicts": [
+      "支持",
+      "支持",
+      "支持",
+      "支持",
+      "支持"
+    ],
+    "validated_verdicts": [
+      "支持",
+      "支持",
+      "支持",
+      "支持",
+      "支持"
+    ]
+  },
+  {
+    "call": 190,
+    "question_id": "single_09",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "length",
+    "api_error": null,
+    "parse_status": "核查结果不是有效 JSON",
+    "response_excerpt": "根据提供的参考资料，逐条核对回答中的事实性陈述：\n\n1. **本机验证使用的 Python 版本是 **Python 3.12**。**\n   - 核查依据：参考资料 [1] 中提到“本机验证环境为 **Python 3.12**。”\n   - 该陈述与参考资料一致。\n\n2. **回答生成与事实核查调用远程 LLM。*"
+  },
+  {
+    "call": 193,
+    "question_id": "constraint_02",
+    "claim_id": null,
+    "arm": "C",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "支持"
+    ],
+    "validated_verdicts": [
+      "支持"
+    ]
+  },
+  {
+    "call": 194,
+    "question_id": null,
+    "claim_id": "check_1_支持",
+    "arm": "checker_challenge",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "支持"
+    ],
+    "validated_verdicts": [
+      "支持"
+    ]
+  },
+  {
+    "call": 195,
+    "question_id": null,
+    "claim_id": "check_1_矛盾",
+    "arm": "checker_challenge",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "矛盾"
+    ],
+    "validated_verdicts": [
+      "矛盾"
+    ]
+  },
+  {
+    "call": 196,
+    "question_id": null,
+    "claim_id": "check_1_证据不足",
+    "arm": "checker_challenge",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "证据不足"
+    ],
+    "validated_verdicts": [
+      "证据不足"
+    ]
+  },
+  {
+    "call": 197,
+    "question_id": null,
+    "claim_id": "check_2_支持",
+    "arm": "checker_challenge",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "支持"
+    ],
+    "validated_verdicts": [
+      "支持"
+    ]
+  },
+  {
+    "call": 198,
+    "question_id": null,
+    "claim_id": "check_2_矛盾",
+    "arm": "checker_challenge",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "矛盾"
+    ],
+    "validated_verdicts": [
+      "矛盾"
+    ]
+  },
+  {
+    "call": 199,
+    "question_id": null,
+    "claim_id": "check_2_证据不足",
+    "arm": "checker_challenge",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "证据不足"
+    ],
+    "validated_verdicts": [
+      "证据不足"
+    ]
+  },
+  {
+    "call": 200,
+    "question_id": null,
+    "claim_id": "check_3_支持",
+    "arm": "checker_challenge",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "支持"
+    ],
+    "validated_verdicts": [
+      "支持"
+    ]
+  },
+  {
+    "call": 201,
+    "question_id": null,
+    "claim_id": "check_3_矛盾",
+    "arm": "checker_challenge",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "矛盾"
+    ],
+    "validated_verdicts": [
+      "矛盾"
+    ]
+  },
+  {
+    "call": 202,
+    "question_id": null,
+    "claim_id": "check_3_证据不足",
+    "arm": "checker_challenge",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "证据不足"
+    ],
+    "validated_verdicts": [
+      "证据不足"
+    ]
+  },
+  {
+    "call": 203,
+    "question_id": null,
+    "claim_id": "check_4_支持",
+    "arm": "checker_challenge",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "支持"
+    ],
+    "validated_verdicts": [
+      "支持"
+    ]
+  },
+  {
+    "call": 204,
+    "question_id": null,
+    "claim_id": "check_4_矛盾",
+    "arm": "checker_challenge",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "矛盾"
+    ],
+    "validated_verdicts": [
+      "矛盾"
+    ]
+  },
+  {
+    "call": 205,
+    "question_id": null,
+    "claim_id": "check_4_证据不足",
+    "arm": "checker_challenge",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "证据不足"
+    ],
+    "validated_verdicts": [
+      "证据不足"
+    ]
+  },
+  {
+    "call": 206,
+    "question_id": null,
+    "claim_id": "check_5_支持",
+    "arm": "checker_challenge",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "支持"
+    ],
+    "validated_verdicts": [
+      "支持"
+    ]
+  },
+  {
+    "call": 207,
+    "question_id": null,
+    "claim_id": "check_5_矛盾",
+    "arm": "checker_challenge",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "矛盾"
+    ],
+    "validated_verdicts": [
+      "矛盾"
+    ]
+  },
+  {
+    "call": 208,
+    "question_id": null,
+    "claim_id": "check_5_证据不足",
+    "arm": "checker_challenge",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "矛盾"
+    ],
+    "validated_verdicts": [
+      "矛盾"
+    ]
+  },
+  {
+    "call": 209,
+    "question_id": null,
+    "claim_id": "check_6_支持",
+    "arm": "checker_challenge",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "支持"
+    ],
+    "validated_verdicts": [
+      "支持"
+    ]
+  },
+  {
+    "call": 210,
+    "question_id": null,
+    "claim_id": "check_6_矛盾",
+    "arm": "checker_challenge",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "矛盾"
+    ],
+    "validated_verdicts": [
+      "矛盾"
+    ]
+  },
+  {
+    "call": 211,
+    "question_id": null,
+    "claim_id": "check_6_证据不足",
+    "arm": "checker_challenge",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "证据不足"
+    ],
+    "validated_verdicts": [
+      "证据不足"
+    ]
+  },
+  {
+    "call": 212,
+    "question_id": null,
+    "claim_id": "check_7_支持",
+    "arm": "checker_challenge",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "支持"
+    ],
+    "validated_verdicts": [
+      "支持"
+    ]
+  },
+  {
+    "call": 213,
+    "question_id": null,
+    "claim_id": "check_7_矛盾",
+    "arm": "checker_challenge",
+    "finish_reason": null,
+    "api_error": "APITimeoutError",
+    "parse_status": "api_error"
+  },
+  {
+    "call": 214,
+    "question_id": null,
+    "claim_id": "check_7_证据不足",
+    "arm": "checker_challenge",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "证据不足"
+    ],
+    "validated_verdicts": [
+      "证据不足"
+    ]
+  },
+  {
+    "call": 215,
+    "question_id": null,
+    "claim_id": "check_8_支持",
+    "arm": "checker_challenge",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "支持"
+    ],
+    "validated_verdicts": [
+      "支持"
+    ]
+  },
+  {
+    "call": 216,
+    "question_id": null,
+    "claim_id": "check_8_矛盾",
+    "arm": "checker_challenge",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "矛盾"
+    ],
+    "validated_verdicts": [
+      "矛盾"
+    ]
+  },
+  {
+    "call": 217,
+    "question_id": null,
+    "claim_id": "check_8_证据不足",
+    "arm": "checker_challenge",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "证据不足"
+    ],
+    "validated_verdicts": [
+      "证据不足"
+    ]
+  },
+  {
+    "call": 218,
+    "question_id": null,
+    "claim_id": "check_9_支持",
+    "arm": "checker_challenge",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "支持"
+    ],
+    "validated_verdicts": [
+      "支持"
+    ]
+  },
+  {
+    "call": 219,
+    "question_id": null,
+    "claim_id": "check_9_矛盾",
+    "arm": "checker_challenge",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "矛盾"
+    ],
+    "validated_verdicts": [
+      "矛盾"
+    ]
+  },
+  {
+    "call": 220,
+    "question_id": null,
+    "claim_id": "check_9_证据不足",
+    "arm": "checker_challenge",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "证据不足"
+    ],
+    "validated_verdicts": [
+      "证据不足"
+    ]
+  },
+  {
+    "call": 221,
+    "question_id": null,
+    "claim_id": "check_10_支持",
+    "arm": "checker_challenge",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "支持"
+    ],
+    "validated_verdicts": [
+      "支持"
+    ]
+  },
+  {
+    "call": 222,
+    "question_id": null,
+    "claim_id": "check_10_矛盾",
+    "arm": "checker_challenge",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "矛盾"
+    ],
+    "validated_verdicts": [
+      "矛盾"
+    ]
+  },
+  {
+    "call": 223,
+    "question_id": null,
+    "claim_id": "check_10_证据不足",
+    "arm": "checker_challenge",
+    "finish_reason": "stop",
+    "api_error": null,
+    "parse_status": "valid",
+    "entries": 1,
+    "raw_verdicts": [
+      "证据不足"
+    ],
+    "validated_verdicts": [
+      "证据不足"
+    ]
+  }
+]

@@ -1,0 +1,242 @@
+[
+  {
+    "claim_id": "check_1_支持",
+    "context": "青禾差旅规定：每日住宿报销上限为600元。",
+    "claim": "青禾差旅的每日住宿报销上限为600元。",
+    "reference_verdict": "支持",
+    "origin": "synthetic_atomic",
+    "review": "AI constructed; human pending"
+  },
+  {
+    "claim_id": "check_1_矛盾",
+    "context": "青禾差旅规定：每日住宿报销上限为600元。",
+    "claim": "青禾差旅的每日住宿报销上限为800元。",
+    "reference_verdict": "矛盾",
+    "origin": "synthetic_atomic",
+    "review": "AI constructed; human pending"
+  },
+  {
+    "claim_id": "check_1_证据不足",
+    "context": "青禾差旅规定：每日住宿报销上限为600元。",
+    "claim": "青禾差旅规定由李明签署。",
+    "reference_verdict": "证据不足",
+    "origin": "synthetic_atomic",
+    "review": "AI constructed; human pending"
+  },
+  {
+    "claim_id": "check_2_支持",
+    "context": "白鹭请假规定：年假申请提前时间为3个工作日。",
+    "claim": "白鹭请假的年假申请提前时间为3个工作日。",
+    "reference_verdict": "支持",
+    "origin": "synthetic_atomic",
+    "review": "AI constructed; human pending"
+  },
+  {
+    "claim_id": "check_2_矛盾",
+    "context": "白鹭请假规定：年假申请提前时间为3个工作日。",
+    "claim": "白鹭请假的年假申请提前时间为5个工作日。",
+    "reference_verdict": "矛盾",
+    "origin": "synthetic_atomic",
+    "review": "AI constructed; human pending"
+  },
+  {
+    "claim_id": "check_2_证据不足",
+    "context": "白鹭请假规定：年假申请提前时间为3个工作日。",
+    "claim": "白鹭请假规定由李明签署。",
+    "reference_verdict": "证据不足",
+    "origin": "synthetic_atomic",
+    "review": "AI constructed; human pending"
+  },
+  {
+    "claim_id": "check_3_支持",
+    "context": "北辰运维规定：完整备份间隔为12小时。",
+    "claim": "北辰运维的完整备份间隔为12小时。",
+    "reference_verdict": "支持",
+    "origin": "synthetic_atomic",
+    "review": "AI constructed; human pending"
+  },
+  {
+    "claim_id": "check_3_矛盾",
+    "context": "北辰运维规定：完整备份间隔为12小时。",
+    "claim": "北辰运维的完整备份间隔为24小时。",
+    "reference_verdict": "矛盾",
+    "origin": "synthetic_atomic",
+    "review": "AI constructed; human pending"
+  },
+  {
+    "claim_id": "check_3_证据不足",
+    "context": "北辰运维规定：完整备份间隔为12小时。",
+    "claim": "北辰运维规定由李明签署。",
+    "reference_verdict": "证据不足",
+    "origin": "synthetic_atomic",
+    "review": "AI constructed; human pending"
+  },
+  {
+    "claim_id": "check_4_支持",
+    "context": "云帆采购规定：免审批采购金额上限为2000元。",
+    "claim": "云帆采购的免审批采购金额上限为2000元。",
+    "reference_verdict": "支持",
+    "origin": "synthetic_atomic",
+    "review": "AI constructed; human pending"
+  },
+  {
+    "claim_id": "check_4_矛盾",
+    "context": "云帆采购规定：免审批采购金额上限为2000元。",
+    "claim": "云帆采购的免审批采购金额上限为3000元。",
+    "reference_verdict": "矛盾",
+    "origin": "synthetic_atomic",
+    "review": "AI constructed; human pending"
+  },
+  {
+    "claim_id": "check_4_证据不足",
+    "context": "云帆采购规定：免审批采购金额上限为2000元。",
+    "claim": "云帆采购规定由李明签署。",
+    "reference_verdict": "证据不足",
+    "origin": "synthetic_atomic",
+    "review": "AI constructed; human pending"
+  },
+  {
+    "claim_id": "check_5_支持",
+    "context": "松果客服规定：首次响应时限为2小时。",
+    "claim": "松果客服的首次响应时限为2小时。",
+    "reference_verdict": "支持",
+    "origin": "synthetic_atomic",
+    "review": "AI constructed; human pending"
+  },
+  {
+    "claim_id": "check_5_矛盾",
+    "context": "松果客服规定：首次响应时限为2小时。",
+    "claim": "松果客服的首次响应时限为4小时。",
+    "reference_verdict": "矛盾",
+    "origin": "synthetic_atomic",
+    "review": "AI constructed; human pending"
+  },
+  {
+    "claim_id": "check_5_证据不足",
+    "context": "松果客服规定：首次响应时限为2小时。",
+    "claim": "松果客服规定由李明签署。",
+    "reference_verdict": "证据不足",
+    "origin": "synthetic_atomic",
+    "review": "AI constructed; human pending"
+  },
+  {
+    "claim_id": "check_6_支持",
+    "context": "星桥仓储规定：库存盘点频次为每周一次。",
+    "claim": "星桥仓储的库存盘点频次为每周一次。",
+    "reference_verdict": "支持",
+    "origin": "synthetic_atomic",
+    "review": "AI constructed; human pending"
+  },
+  {
+    "claim_id": "check_6_矛盾",
+    "context": "星桥仓储规定：库存盘点频次为每周一次。",
+    "claim": "星桥仓储的库存盘点频次为每月一次。",
+    "reference_verdict": "矛盾",
+    "origin": "synthetic_atomic",
+    "review": "AI constructed; human pending"
+  },
+  {
+    "claim_id": "check_6_证据不足",
+    "context": "星桥仓储规定：库存盘点频次为每周一次。",
+    "claim": "星桥仓储规定由李明签署。",
+    "reference_verdict": "证据不足",
+    "origin": "synthetic_atomic",
+    "review": "AI constructed; human pending"
+  },
+  {
+    "claim_id": "check_7_支持",
+    "context": "远山培训规定：年度必修课时为16小时。",
+    "claim": "远山培训的年度必修课时为16小时。",
+    "reference_verdict": "支持",
+    "origin": "synthetic_atomic",
+    "review": "AI constructed; human pending"
+  },
+  {
+    "claim_id": "check_7_矛盾",
+    "context": "远山培训规定：年度必修课时为16小时。",
+    "claim": "远山培训的年度必修课时为24小时。",
+    "reference_verdict": "矛盾",
+    "origin": "synthetic_atomic",
+    "review": "AI constructed; human pending"
+  },
+  {
+    "claim_id": "check_7_证据不足",
+    "context": "远山培训规定：年度必修课时为16小时。",
+    "claim": "远山培训规定由李明签署。",
+    "reference_verdict": "证据不足",
+    "origin": "synthetic_atomic",
+    "review": "AI constructed; human pending"
+  },
+  {
+    "claim_id": "check_8_支持",
+    "context": "清泉设备规定：借用最长期限为7天。",
+    "claim": "清泉设备的借用最长期限为7天。",
+    "reference_verdict": "支持",
+    "origin": "synthetic_atomic",
+    "review": "AI constructed; human pending"
+  },
+  {
+    "claim_id": "check_8_矛盾",
+    "context": "清泉设备规定：借用最长期限为7天。",
+    "claim": "清泉设备的借用最长期限为14天。",
+    "reference_verdict": "矛盾",
+    "origin": "synthetic_atomic",
+    "review": "AI constructed; human pending"
+  },
+  {
+    "claim_id": "check_8_证据不足",
+    "context": "清泉设备规定：借用最长期限为7天。",
+    "claim": "清泉设备规定由李明签署。",
+    "reference_verdict": "证据不足",
+    "origin": "synthetic_atomic",
+    "review": "AI constructed; human pending"
+  },
+  {
+    "claim_id": "check_9_支持",
+    "context": "海棠合同规定：档案保存期限为3年。",
+    "claim": "海棠合同的档案保存期限为3年。",
+    "reference_verdict": "支持",
+    "origin": "synthetic_atomic",
+    "review": "AI constructed; human pending"
+  },
+  {
+    "claim_id": "check_9_矛盾",
+    "context": "海棠合同规定：档案保存期限为3年。",
+    "claim": "海棠合同的档案保存期限为5年。",
+    "reference_verdict": "矛盾",
+    "origin": "synthetic_atomic",
+    "review": "AI constructed; human pending"
+  },
+  {
+    "claim_id": "check_9_证据不足",
+    "context": "海棠合同规定：档案保存期限为3年。",
+    "claim": "海棠合同规定由李明签署。",
+    "reference_verdict": "证据不足",
+    "origin": "synthetic_atomic",
+    "review": "AI constructed; human pending"
+  },
+  {
+    "claim_id": "check_10_支持",
+    "context": "银杉访客规定：来访预约提前时间为1天。",
+    "claim": "银杉访客的来访预约提前时间为1天。",
+    "reference_verdict": "支持",
+    "origin": "synthetic_atomic",
+    "review": "AI constructed; human pending"
+  },
+  {
+    "claim_id": "check_10_矛盾",
+    "context": "银杉访客规定：来访预约提前时间为1天。",
+    "claim": "银杉访客的来访预约提前时间为2天。",
+    "reference_verdict": "矛盾",
+    "origin": "synthetic_atomic",
+    "review": "AI constructed; human pending"
+  },
+  {
+    "claim_id": "check_10_证据不足",
+    "context": "银杉访客规定：来访预约提前时间为1天。",
+    "claim": "银杉访客规定由李明签署。",
+    "reference_verdict": "证据不足",
+    "origin": "synthetic_atomic",
+    "review": "AI constructed; human pending"
+  }
+]

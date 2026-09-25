@@ -1,0 +1,11 @@
+test_empty_success_is_not_failure (test_evaluation.MetricsTests.test_empty_success_is_not_failure) ... ok
+test_failed_query_is_not_correct_abstention (test_evaluation.MetricsTests.test_failed_query_is_not_correct_abstention) ... ok
+test_multiple_evidence_requires_both (test_evaluation.MetricsTests.test_multiple_evidence_requires_both) ... ok
+test_precision_denominators_differ (test_evaluation.MetricsTests.test_precision_denominators_differ) ... ok
+test_whitespace_normalization (test_evaluation.MetricsTests.test_whitespace_normalization) ... ok
+test_wrong_source_does_not_count (test_evaluation.MetricsTests.test_wrong_source_does_not_count) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.000s
+
+OK

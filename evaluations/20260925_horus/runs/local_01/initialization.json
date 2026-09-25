@@ -1,0 +1,22 @@
+{
+  "seconds": 72.06255729997065,
+  "ingestion": {
+    "added": 100,
+    "deleted": 0,
+    "count": 100
+  },
+  "device": "cpu",
+  "torch_threads": 4,
+  "model_cached_refs": {
+    "BAAI/bge-small-zh-v1.5": {
+      "main": "7999e1d3359715c523056ef9478215996d62a620"
+    },
+    "BAAI/bge-reranker-base": {
+      "main": "2cfc18c9415c912f9d8155881c133215df768a70"
+    }
+  },
+  "repeats": 3,
+  "api_calls": 0,
+  "result_cache": false,
+  "question_order_seed": 20260925
+}

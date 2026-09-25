@@ -1,0 +1,11 @@
+{
+  "calls": 20,
+  "input_tokens_known": 4679,
+  "output_tokens_known": 679,
+  "max_calls": 26,
+  "split": "dev",
+  "stopped": false,
+  "currency_cost": null,
+  "scoring_status": "pending independent blind scoring and human review",
+  "full_UI_E2E_measured": false
+}

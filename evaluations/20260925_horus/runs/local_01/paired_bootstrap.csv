@@ -1,0 +1,15 @@
+﻿comparison,metric,paired_questions,difference,ci_low,ci_high,improved,worsened,unchanged
+B-A,any_hit,50,0.14,0.0,0.28,10,3,37
+B-A,all_hit,50,0.12,0.0,0.26,9,3,38
+B-A,evidence_recall,50,0.13,0.0,0.26,10,3,37
+B-A,mrr,50,0.222,0.08999166666666666,0.3473333333333333,22,4,24
+B-A,mean_seconds,60,1.2021420066665285,1.0615090061584163,1.3470556522294965,60,0,0
+B-A,negative_empty_rate,10,0.5,0.2,0.8,5,0,5
+B-A,positive_empty_rate,50,0.1,0.02,0.18,5,0,45
+B-V,any_hit,50,0.04,0.0,0.1,2,0,48
+B-V,all_hit,50,0.04,0.0,0.1,2,0,48
+B-V,evidence_recall,50,0.04,0.0,0.09,3,0,47
+B-V,mrr,50,0.023333333333333334,0.0,0.05333333333333334,3,0,47
+B-V,mean_seconds,60,0.11876827610798904,0.045875702632329186,0.19976343417299275,37,23,0
+B-V,negative_empty_rate,10,0.0,0.0,0.0,0,0,10
+B-V,positive_empty_rate,50,0.0,0.0,0.0,0,0,50

@@ -1,0 +1,9 @@
+{
+  "pilot_run": "paid_dev_01",
+  "pilot_calls": 20,
+  "pilot_review": "6 dev cases completed; no API failures; returned primary model deepseek-flash; no prompt or threshold tuning",
+  "authorized_formal_max_calls": 290,
+  "authorization": "Explicit user response in this task on 2026-09-25",
+  "dotenv_runtime_loading": "User explicitly identified local .env; values never exposed",
+  "judge": "coding assistant AI, anonymous answer inputs, not human review"
+}

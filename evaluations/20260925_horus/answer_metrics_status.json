@@ -1,0 +1,19 @@
+{
+  "A": "not_run_missing_injected_credentials",
+  "B": "not_run_missing_injected_credentials",
+  "C": "not_run_missing_injected_credentials",
+  "answer_correctness": null,
+  "faithfulness_supported": null,
+  "faithfulness_contradicted": null,
+  "faithfulness_insufficient": null,
+  "completeness": null,
+  "citation_semantic_support": null,
+  "answer_refusal_rate": null,
+  "checker_confusion_matrix": null,
+  "correction_wrong_to_right": null,
+  "correction_right_to_wrong": null,
+  "api_calls_this_evaluation": 0,
+  "api_input_tokens": 0,
+  "api_output_tokens": 0,
+  "warning": "Local retrieval and scripted probes cannot establish answer-quality improvement."
+}

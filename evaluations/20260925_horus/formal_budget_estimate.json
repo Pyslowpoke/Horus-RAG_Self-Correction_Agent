@@ -1,0 +1,20 @@
+{
+  "pilot_calls": 20,
+  "pilot_input_tokens": 4679,
+  "pilot_output_tokens": 679,
+  "pilot_failures": 0,
+  "pilot_model_responses": [
+    "Qwen/Qwen2.5-7B-Instruct",
+    "deepseek-flash"
+  ],
+  "formal_generation_eligible": 110,
+  "formal_B_eligible": 50,
+  "formal_max_calls": 290,
+  "formal_expected_calls_if_pilot_rewrite_rate_repeats": 230,
+  "formal_input_proxy_upper_scenario": 277912,
+  "pilot_actual_to_proxy_input_ratio": 0.6812754804892254,
+  "formal_input_scaled_scenario": 189335,
+  "formal_output_hard_cap": 148480,
+  "currency_cost": null,
+  "note": "Input is an estimate, not guaranteed bound. Output cap and call cap enforced. Formal B/C fixed initial answer. Reviewer is this coding assistant AI, not a billed judge or human."
+}

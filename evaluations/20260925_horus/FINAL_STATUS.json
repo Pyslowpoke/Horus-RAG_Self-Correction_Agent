@@ -1,0 +1,35 @@
+{
+  "complete": true,
+  "product_regressions_passed": 36,
+  "evaluation_metric_tests_passed": 6,
+  "formal_questions": 60,
+  "dev_questions": 6,
+  "retrieval_requests": 540,
+  "answer_records": 180,
+  "checker_challenges": 30,
+  "unique_blind_AI_reviews": 137,
+  "human_reviews_completed": 0,
+  "human_review_sample_rows": 22,
+  "usage": {
+    "calls": 243,
+    "failed_calls": 10,
+    "input_tokens_known": 100131,
+    "output_tokens_known": 21061,
+    "currency_cost": null,
+    "retries": 0,
+    "usage_caveat": "Usage missing for timed-out calls; known totals are not a complete bill."
+  },
+  "paid_pilot_cap": 26,
+  "paid_formal_cap": 290,
+  "not_measured": [
+    "live_web",
+    "private_corpus",
+    "D_no_retrieval",
+    "full_UI_E2E",
+    "LLM_repeats",
+    "human_review",
+    "full_natural_claim_alignment"
+  ],
+  "product_code_changed": false,
+  "verdict": "Resume-safe as engineering and evaluation prototype; no demonstrated fact-checking accuracy gain."
+}

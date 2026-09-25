@@ -1,0 +1,142 @@
+{
+  "README.zh-CN.md": {
+    "corpus_file": "README.zh-CN.md.txt",
+    "origin": "repository_natural",
+    "sha256": "647b70077a5c472f40b737506f9ab86e8ac9fe0c8f5568f988e4f1250ed89bad"
+  },
+  "docs/optimization.md": {
+    "corpus_file": "docs__optimization.md.txt",
+    "origin": "repository_natural",
+    "sha256": "be22e90d6c5442c3a311e2da21bc73b3c5b91302488e3726aecea26d4be25f5a"
+  },
+  "config.yaml": {
+    "corpus_file": "config.yaml.txt",
+    "origin": "repository_natural",
+    "sha256": "af7d67bf9a6114f6d5aed77ca0bf4d86ed267397308adc034525bed90c741eb4"
+  },
+  "src/verifiers/fact_checker.py": {
+    "corpus_file": "src__verifiers__fact_checker.py.txt",
+    "origin": "repository_natural",
+    "sha256": "95b78d8602d5875524ecfa2adf74675a3a00d65642b93ea58788b5ea5ea72b53"
+  },
+  "src/agents/router_agent.py": {
+    "corpus_file": "src__agents__router_agent.py.txt",
+    "origin": "repository_natural",
+    "sha256": "e6e318a64a574cd86a603c0c7a339e92e88f2606b7f92d97c437040654ca24fa"
+  },
+  "src/agents/memory_agent.py": {
+    "corpus_file": "src__agents__memory_agent.py.txt",
+    "origin": "repository_natural",
+    "sha256": "1a18fca28fb5e20e0e4c94635303f3453364003ed3032bcb69a6f2fbb8a913d8"
+  },
+  "src/graph/multi_agent_graph.py": {
+    "corpus_file": "src__graph__multi_agent_graph.py.txt",
+    "origin": "repository_natural",
+    "sha256": "c3ea7cd82b544a1253aa6e41bcf838f6ae161804930c75642efb42bd5f26fda8"
+  },
+  "src/generators/prompt_templates.py": {
+    "corpus_file": "src__generators__prompt_templates.py.txt",
+    "origin": "repository_natural",
+    "sha256": "9677e90d07baf7220cf084d6e41193977569d5b86865fd26eaa283c466fac43a"
+  },
+  "synthetic/青禾差旅_甲": {
+    "corpus_file": "synthetic__青禾差旅_甲.txt",
+    "origin": "synthetic_conflict",
+    "sha256": "2ef76ce7043850a7914e24dcdf7f12ed16f16d7296d90d62eb18709ab48f3933"
+  },
+  "synthetic/青禾差旅_乙": {
+    "corpus_file": "synthetic__青禾差旅_乙.txt",
+    "origin": "synthetic_conflict",
+    "sha256": "13a53f8048dd3859468babc0166ea8ac72f882847be2abfdf48ec7eab283ad81"
+  },
+  "synthetic/白鹭请假_甲": {
+    "corpus_file": "synthetic__白鹭请假_甲.txt",
+    "origin": "synthetic_conflict",
+    "sha256": "e5a9e72b3fadf4d4e51cebd3a2c1dc8fd0b64e7d7bf66101ebef3c95143c7337"
+  },
+  "synthetic/白鹭请假_乙": {
+    "corpus_file": "synthetic__白鹭请假_乙.txt",
+    "origin": "synthetic_conflict",
+    "sha256": "5a4eb4857f6da55a8d9addec7a4a9ca086e19c7efbb9eae46f3b74d365a104bb"
+  },
+  "synthetic/北辰运维_甲": {
+    "corpus_file": "synthetic__北辰运维_甲.txt",
+    "origin": "synthetic_conflict",
+    "sha256": "85d9a14fdb9ec0d409560d539b81dd2992ee7e88d858949dc0c1765d412447b6"
+  },
+  "synthetic/北辰运维_乙": {
+    "corpus_file": "synthetic__北辰运维_乙.txt",
+    "origin": "synthetic_conflict",
+    "sha256": "74ae4a374c909c3e23f7eaae42cb3d7f618cd17112104a45760927289f1ea8d3"
+  },
+  "synthetic/云帆采购_甲": {
+    "corpus_file": "synthetic__云帆采购_甲.txt",
+    "origin": "synthetic_conflict",
+    "sha256": "29bbdce19dd8d1b7128db372def620356c731a7d626edf56594a5790dc544787"
+  },
+  "synthetic/云帆采购_乙": {
+    "corpus_file": "synthetic__云帆采购_乙.txt",
+    "origin": "synthetic_conflict",
+    "sha256": "575379a7ebc5f090a3ffb664c5fe4b5dd453f5027ccbb45c0d127c4279ec1543"
+  },
+  "synthetic/松果客服_甲": {
+    "corpus_file": "synthetic__松果客服_甲.txt",
+    "origin": "synthetic_conflict",
+    "sha256": "f8ebf54a8fb61c81527c24e6134313855ffcb96f103c7d4e166e19615a470d5c"
+  },
+  "synthetic/松果客服_乙": {
+    "corpus_file": "synthetic__松果客服_乙.txt",
+    "origin": "synthetic_conflict",
+    "sha256": "eecc8e9f0115b987b0779a4698a33f424a40be41bec4a0c4ed608fcf182289e1"
+  },
+  "synthetic/星桥仓储_甲": {
+    "corpus_file": "synthetic__星桥仓储_甲.txt",
+    "origin": "synthetic_conflict",
+    "sha256": "1a344caa184e6c8daaa13e72cbb6ee0a7666bc84e9ccbcf188ea6dc9f638a1cd"
+  },
+  "synthetic/星桥仓储_乙": {
+    "corpus_file": "synthetic__星桥仓储_乙.txt",
+    "origin": "synthetic_conflict",
+    "sha256": "f5f14f2152a9d5da7702cf36a55f4ded5397eab7e2ccb33b4c976897484b4998"
+  },
+  "synthetic/远山培训_甲": {
+    "corpus_file": "synthetic__远山培训_甲.txt",
+    "origin": "synthetic_conflict",
+    "sha256": "fbacd504f0bce5026ef48facffd1177bb504485e8b7a240aae5b071efe28464f"
+  },
+  "synthetic/远山培训_乙": {
+    "corpus_file": "synthetic__远山培训_乙.txt",
+    "origin": "synthetic_conflict",
+    "sha256": "ed0a1e32b53b89b4d86bb651be5f1b475a6e81e97c2758b32667e5785c779815"
+  },
+  "synthetic/清泉设备_甲": {
+    "corpus_file": "synthetic__清泉设备_甲.txt",
+    "origin": "synthetic_conflict",
+    "sha256": "7e0ef5c5eab6536e31d05ef172535211a82fb49b5b255b91ce1e0109f1a6a11f"
+  },
+  "synthetic/清泉设备_乙": {
+    "corpus_file": "synthetic__清泉设备_乙.txt",
+    "origin": "synthetic_conflict",
+    "sha256": "ffba90764278ee4e41810e26b24a391e53e2ef87bc5738383c45c191f6cda7c9"
+  },
+  "synthetic/海棠合同_甲": {
+    "corpus_file": "synthetic__海棠合同_甲.txt",
+    "origin": "synthetic_conflict",
+    "sha256": "8a3d3590b5baa6e64793aafa51b88112511c7b139d50bb55e8675026ef0a6319"
+  },
+  "synthetic/海棠合同_乙": {
+    "corpus_file": "synthetic__海棠合同_乙.txt",
+    "origin": "synthetic_conflict",
+    "sha256": "ef4ffc2c6eaf38720d71d1405b3ce8993eeea782c801dfd884b7c8644aa7d908"
+  },
+  "synthetic/银杉访客_甲": {
+    "corpus_file": "synthetic__银杉访客_甲.txt",
+    "origin": "synthetic_conflict",
+    "sha256": "2ddb5f38012cc4a288ad0fc97fedcaa48c23884021637b5e077a5c05476304d5"
+  },
+  "synthetic/银杉访客_乙": {
+    "corpus_file": "synthetic__银杉访客_乙.txt",
+    "origin": "synthetic_conflict",
+    "sha256": "8bab3bf7112c067f3a4ef55f878fff40d0d1a013faa6300d767e7075ad4c0e8c"
+  }
+}

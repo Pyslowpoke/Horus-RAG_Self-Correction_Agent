@@ -1,0 +1,173 @@
+[
+  {
+    "probe": "valid_support",
+    "context": "住宿上限为600元。申请须提前3天。",
+    "answer": "住宿上限为600元。",
+    "scripted_checker_output": [
+      {
+        "claim": "住宿上限为600元",
+        "verdict": "支持",
+        "evidence": "住宿上限为600元"
+      }
+    ],
+    "actual_product_result": {
+      "verification_log": [
+        {
+          "claim": "住宿上限为600元",
+          "verdict": "支持",
+          "evidence": "住宿上限为600元"
+        }
+      ],
+      "verification_history": [
+        {
+          "claim": "住宿上限为600元",
+          "verdict": "支持",
+          "evidence": "住宿上限为600元",
+          "round": 0
+        }
+      ],
+      "failed_claims": [],
+      "verification_status": "passed"
+    },
+    "fake_llm_calls": 1,
+    "paid_api_calls": 0,
+    "interpretation": "Contract/adversarial stub probe; does not measure real LLM error frequency"
+  },
+  {
+    "probe": "real_quote_wrong_entailment",
+    "context": "住宿上限为600元。申请须提前3天。",
+    "answer": "住宿上限为900元。",
+    "scripted_checker_output": [
+      {
+        "claim": "住宿上限为900元",
+        "verdict": "支持",
+        "evidence": "住宿上限为600元"
+      }
+    ],
+    "actual_product_result": {
+      "verification_log": [
+        {
+          "claim": "住宿上限为900元",
+          "verdict": "支持",
+          "evidence": "住宿上限为600元"
+        }
+      ],
+      "verification_history": [
+        {
+          "claim": "住宿上限为900元",
+          "verdict": "支持",
+          "evidence": "住宿上限为600元",
+          "round": 0
+        }
+      ],
+      "failed_claims": [],
+      "verification_status": "passed"
+    },
+    "fake_llm_calls": 1,
+    "paid_api_calls": 0,
+    "interpretation": "Contract/adversarial stub probe; does not measure real LLM error frequency"
+  },
+  {
+    "probe": "omitted_false_claim",
+    "context": "住宿上限为600元。申请须提前3天。",
+    "answer": "住宿上限为600元。申请须提前1天。",
+    "scripted_checker_output": [
+      {
+        "claim": "住宿上限为600元",
+        "verdict": "支持",
+        "evidence": "住宿上限为600元"
+      }
+    ],
+    "actual_product_result": {
+      "verification_log": [
+        {
+          "claim": "住宿上限为600元",
+          "verdict": "支持",
+          "evidence": "住宿上限为600元"
+        }
+      ],
+      "verification_history": [
+        {
+          "claim": "住宿上限为600元",
+          "verdict": "支持",
+          "evidence": "住宿上限为600元",
+          "round": 0
+        }
+      ],
+      "failed_claims": [],
+      "verification_status": "passed"
+    },
+    "fake_llm_calls": 1,
+    "paid_api_calls": 0,
+    "interpretation": "Contract/adversarial stub probe; does not measure real LLM error frequency"
+  },
+  {
+    "probe": "empty_claims_for_factual_answer",
+    "context": "住宿上限为600元。申请须提前3天。",
+    "answer": "住宿上限为900元。",
+    "scripted_checker_output": [],
+    "actual_product_result": {
+      "verification_log": [],
+      "verification_history": [],
+      "failed_claims": [],
+      "verification_status": "no_claims"
+    },
+    "fake_llm_calls": 1,
+    "paid_api_calls": 0,
+    "interpretation": "Contract/adversarial stub probe; does not measure real LLM error frequency"
+  },
+  {
+    "probe": "fabricated_quote",
+    "context": "住宿上限为600元。申请须提前3天。",
+    "answer": "住宿上限为900元。",
+    "scripted_checker_output": [
+      {
+        "claim": "住宿上限为900元",
+        "verdict": "支持",
+        "evidence": "住宿上限为900元"
+      }
+    ],
+    "actual_product_result": {
+      "verification_log": [
+        {
+          "claim": "住宿上限为900元",
+          "verdict": "证据不足",
+          "evidence": "住宿上限为900元"
+        }
+      ],
+      "verification_history": [
+        {
+          "claim": "住宿上限为900元",
+          "verdict": "证据不足",
+          "evidence": "住宿上限为900元",
+          "round": 0
+        }
+      ],
+      "failed_claims": [
+        {
+          "claim": "住宿上限为900元",
+          "verdict": "证据不足",
+          "evidence": "住宿上限为900元"
+        }
+      ],
+      "verification_status": "failed"
+    },
+    "fake_llm_calls": 1,
+    "paid_api_calls": 0,
+    "interpretation": "Contract/adversarial stub probe; does not measure real LLM error frequency"
+  },
+  {
+    "probe": "invalid_json",
+    "context": "住宿上限为600元。申请须提前3天。",
+    "answer": "住宿上限为900元。",
+    "scripted_checker_output": "not-json",
+    "actual_product_result": {
+      "verification_log": [],
+      "failed_claims": [],
+      "verification_status": "error"
+    },
+    "fake_llm_calls": 1,
+    "paid_api_calls": 0,
+    "interpretation": "Contract/adversarial stub probe; does not measure real LLM error frequency"
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "product_code_manifest.json": {
+    "verified_files": 34,
+    "mismatches": 0
+  },
+  "data_manifest.json": {
+    "verified_files": 37,
+    "mismatches": 0
+  },
+  "python_syntax_files": 15,
+  "answer_mapping": 180,
+  "unique_AI_reviews": 137,
+  "human_review_answers.csv": {
+    "rows": 180,
+    "completed_human_reviews": 0
+  },
+  "human_review_sample.csv": {
+    "rows": 22,
+    "completed_human_reviews": 0
+  },
+  "budget_caps_respected": true,
+  "secret_pattern_scan": {
+    "files": 120,
+    "matches": 0,
+    "scope": "Evaluation artifacts only; no credential file read; pattern scan is not a formal proof"
+  },
+  "evaluation_unit_tests_passed": 6,
+  "product_code_changed": false
+}

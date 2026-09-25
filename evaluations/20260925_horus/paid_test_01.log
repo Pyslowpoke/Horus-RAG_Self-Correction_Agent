@@ -1,0 +1,523 @@
+Building prefix dict from the default dictionary ...
+Loading model from cache C:\Users\13788\AppData\Local\Temp\jieba.cache
+Loading model cost 0.398 seconds.
+Prefix dict has been built successfully.
+��ʵ�˲�ʧ��
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 24, in _parse_json_response
+    parsed = json.loads(raw)
+             ^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\agents\fact_check_agent.py", line 13, in fact_check_agent
+    checks = fact_checker.check_once(state['answer'], state['context'])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 49, in check_once
+    return [self._validate_log_entry(entry, context) for entry in self._parse_json_response(raw)]
+                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 26, in _parse_json_response
+    raise VerificationError('�˲���������Ч JSON') from error
+src.verifiers.fact_checker.VerificationError: �˲���������Ч JSON
+��ʵ�˲�ʧ��
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 24, in _parse_json_response
+    parsed = json.loads(raw)
+             ^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\agents\fact_check_agent.py", line 13, in fact_check_agent
+    checks = fact_checker.check_once(state['answer'], state['context'])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 49, in check_once
+    return [self._validate_log_entry(entry, context) for entry in self._parse_json_response(raw)]
+                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 26, in _parse_json_response
+    raise VerificationError('�˲���������Ч JSON') from error
+src.verifiers.fact_checker.VerificationError: �˲���������Ч JSON
+��ʵ�˲�ʧ��
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 24, in _parse_json_response
+    parsed = json.loads(raw)
+             ^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\agents\fact_check_agent.py", line 13, in fact_check_agent
+    checks = fact_checker.check_once(state['answer'], state['context'])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 49, in check_once
+    return [self._validate_log_entry(entry, context) for entry in self._parse_json_response(raw)]
+                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 26, in _parse_json_response
+    raise VerificationError('�˲���������Ч JSON') from error
+src.verifiers.fact_checker.VerificationError: �˲���������Ч JSON
+[GenerationAgent] ����ʧ��: API call failed; inspect sanitized audit status
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\agents\generation_agent.py", line 73, in generation_agent
+    answer = llm.generate([{"role": "user", "content": prompt}], **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\evaluations\20260925_horus\run_paid.py", line 51, in generate
+    raise RuntimeError('API call failed; inspect sanitized audit status') from None
+RuntimeError: API call failed; inspect sanitized audit status
+��ʵ�˲�ʧ��
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 24, in _parse_json_response
+    parsed = json.loads(raw)
+             ^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\agents\fact_check_agent.py", line 13, in fact_check_agent
+    checks = fact_checker.check_once(state['answer'], state['context'])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 49, in check_once
+    return [self._validate_log_entry(entry, context) for entry in self._parse_json_response(raw)]
+                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 26, in _parse_json_response
+    raise VerificationError('�˲���������Ч JSON') from error
+src.verifiers.fact_checker.VerificationError: �˲���������Ч JSON
+��ʵ�˲�ʧ��
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\agents\fact_check_agent.py", line 13, in fact_check_agent
+    checks = fact_checker.check_once(state['answer'], state['context'])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 47, in check_once
+    raw = self.llm_client.generate([{'role': 'user', 'content':
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\evaluations\20260925_horus\run_paid.py", line 51, in generate
+    raise RuntimeError('API call failed; inspect sanitized audit status') from None
+RuntimeError: API call failed; inspect sanitized audit status
+��ʵ�˲�ʧ��
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\agents\fact_check_agent.py", line 13, in fact_check_agent
+    checks = fact_checker.check_once(state['answer'], state['context'])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 47, in check_once
+    raw = self.llm_client.generate([{'role': 'user', 'content':
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\evaluations\20260925_horus\run_paid.py", line 51, in generate
+    raise RuntimeError('API call failed; inspect sanitized audit status') from None
+RuntimeError: API call failed; inspect sanitized audit status
+��ʵ�˲�ʧ��
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\agents\fact_check_agent.py", line 13, in fact_check_agent
+    checks = fact_checker.check_once(state['answer'], state['context'])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 47, in check_once
+    raw = self.llm_client.generate([{'role': 'user', 'content':
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\evaluations\20260925_horus\run_paid.py", line 51, in generate
+    raise RuntimeError('API call failed; inspect sanitized audit status') from None
+RuntimeError: API call failed; inspect sanitized audit status
+��ʵ�˲�ʧ��
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\agents\fact_check_agent.py", line 13, in fact_check_agent
+    checks = fact_checker.check_once(state['answer'], state['context'])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 47, in check_once
+    raw = self.llm_client.generate([{'role': 'user', 'content':
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\evaluations\20260925_horus\run_paid.py", line 51, in generate
+    raise RuntimeError('API call failed; inspect sanitized audit status') from None
+RuntimeError: API call failed; inspect sanitized audit status
+��ʵ�˲�ʧ��
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 24, in _parse_json_response
+    parsed = json.loads(raw)
+             ^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\agents\fact_check_agent.py", line 13, in fact_check_agent
+    checks = fact_checker.check_once(state['answer'], state['context'])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 49, in check_once
+    return [self._validate_log_entry(entry, context) for entry in self._parse_json_response(raw)]
+                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 26, in _parse_json_response
+    raise VerificationError('�˲���������Ч JSON') from error
+src.verifiers.fact_checker.VerificationError: �˲���������Ч JSON
+��ʵ�˲�ʧ��
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 24, in _parse_json_response
+    parsed = json.loads(raw)
+             ^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 354, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ^^^^^^^^^^^^^^^^^^^^^^
+json.decoder.JSONDecodeError: Invalid \escape: line 4 column 70 (char 391)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\agents\fact_check_agent.py", line 13, in fact_check_agent
+    checks = fact_checker.check_once(state['answer'], state['context'])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 49, in check_once
+    return [self._validate_log_entry(entry, context) for entry in self._parse_json_response(raw)]
+                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 26, in _parse_json_response
+    raise VerificationError('�˲���������Ч JSON') from error
+src.verifiers.fact_checker.VerificationError: �˲���������Ч JSON
+��ʵ�˲�ʧ��
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 24, in _parse_json_response
+    parsed = json.loads(raw)
+             ^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\agents\fact_check_agent.py", line 13, in fact_check_agent
+    checks = fact_checker.check_once(state['answer'], state['context'])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 49, in check_once
+    return [self._validate_log_entry(entry, context) for entry in self._parse_json_response(raw)]
+                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 26, in _parse_json_response
+    raise VerificationError('�˲���������Ч JSON') from error
+src.verifiers.fact_checker.VerificationError: �˲���������Ч JSON
+��ʵ�˲�ʧ��
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\agents\fact_check_agent.py", line 13, in fact_check_agent
+    checks = fact_checker.check_once(state['answer'], state['context'])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 47, in check_once
+    raw = self.llm_client.generate([{'role': 'user', 'content':
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\evaluations\20260925_horus\run_paid.py", line 51, in generate
+    raise RuntimeError('API call failed; inspect sanitized audit status') from None
+RuntimeError: API call failed; inspect sanitized audit status
+��ʵ�˲�ʧ��
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\agents\fact_check_agent.py", line 13, in fact_check_agent
+    checks = fact_checker.check_once(state['answer'], state['context'])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 47, in check_once
+    raw = self.llm_client.generate([{'role': 'user', 'content':
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\evaluations\20260925_horus\run_paid.py", line 51, in generate
+    raise RuntimeError('API call failed; inspect sanitized audit status') from None
+RuntimeError: API call failed; inspect sanitized audit status
+��ʵ�˲�ʧ��
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\agents\fact_check_agent.py", line 13, in fact_check_agent
+    checks = fact_checker.check_once(state['answer'], state['context'])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 47, in check_once
+    raw = self.llm_client.generate([{'role': 'user', 'content':
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\evaluations\20260925_horus\run_paid.py", line 51, in generate
+    raise RuntimeError('API call failed; inspect sanitized audit status') from None
+RuntimeError: API call failed; inspect sanitized audit status
+��ʵ�˲�ʧ��
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 24, in _parse_json_response
+    parsed = json.loads(raw)
+             ^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\agents\fact_check_agent.py", line 13, in fact_check_agent
+    checks = fact_checker.check_once(state['answer'], state['context'])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 49, in check_once
+    return [self._validate_log_entry(entry, context) for entry in self._parse_json_response(raw)]
+                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 26, in _parse_json_response
+    raise VerificationError('�˲���������Ч JSON') from error
+src.verifiers.fact_checker.VerificationError: �˲���������Ч JSON
+��ʵ�˲�ʧ��
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 24, in _parse_json_response
+    parsed = json.loads(raw)
+             ^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\agents\fact_check_agent.py", line 13, in fact_check_agent
+    checks = fact_checker.check_once(state['answer'], state['context'])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 49, in check_once
+    return [self._validate_log_entry(entry, context) for entry in self._parse_json_response(raw)]
+                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 26, in _parse_json_response
+    raise VerificationError('�˲���������Ч JSON') from error
+src.verifiers.fact_checker.VerificationError: �˲���������Ч JSON
+��ʵ�˲�ʧ��
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 24, in _parse_json_response
+    parsed = json.loads(raw)
+             ^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\agents\fact_check_agent.py", line 13, in fact_check_agent
+    checks = fact_checker.check_once(state['answer'], state['context'])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 49, in check_once
+    return [self._validate_log_entry(entry, context) for entry in self._parse_json_response(raw)]
+                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 26, in _parse_json_response
+    raise VerificationError('�˲���������Ч JSON') from error
+src.verifiers.fact_checker.VerificationError: �˲���������Ч JSON
+��ʵ�˲�ʧ��
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 24, in _parse_json_response
+    parsed = json.loads(raw)
+             ^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\agents\fact_check_agent.py", line 13, in fact_check_agent
+    checks = fact_checker.check_once(state['answer'], state['context'])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 49, in check_once
+    return [self._validate_log_entry(entry, context) for entry in self._parse_json_response(raw)]
+                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 26, in _parse_json_response
+    raise VerificationError('�˲���������Ч JSON') from error
+src.verifiers.fact_checker.VerificationError: �˲���������Ч JSON
+��ʵ�˲�ʧ��
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 24, in _parse_json_response
+    parsed = json.loads(raw)
+             ^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\agents\fact_check_agent.py", line 13, in fact_check_agent
+    checks = fact_checker.check_once(state['answer'], state['context'])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 49, in check_once
+    return [self._validate_log_entry(entry, context) for entry in self._parse_json_response(raw)]
+                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 26, in _parse_json_response
+    raise VerificationError('�˲���������Ч JSON') from error
+src.verifiers.fact_checker.VerificationError: �˲���������Ч JSON
+��ʵ�˲�ʧ��
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 24, in _parse_json_response
+    parsed = json.loads(raw)
+             ^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\agents\fact_check_agent.py", line 13, in fact_check_agent
+    checks = fact_checker.check_once(state['answer'], state['context'])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 49, in check_once
+    return [self._validate_log_entry(entry, context) for entry in self._parse_json_response(raw)]
+                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 26, in _parse_json_response
+    raise VerificationError('�˲���������Ч JSON') from error
+src.verifiers.fact_checker.VerificationError: �˲���������Ч JSON
+��ʵ�˲�ʧ��
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 24, in _parse_json_response
+    parsed = json.loads(raw)
+             ^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\agents\fact_check_agent.py", line 13, in fact_check_agent
+    checks = fact_checker.check_once(state['answer'], state['context'])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 49, in check_once
+    return [self._validate_log_entry(entry, context) for entry in self._parse_json_response(raw)]
+                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 26, in _parse_json_response
+    raise VerificationError('�˲���������Ч JSON') from error
+src.verifiers.fact_checker.VerificationError: �˲���������Ч JSON
+��ʵ�˲�ʧ��
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 24, in _parse_json_response
+    parsed = json.loads(raw)
+             ^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\agents\fact_check_agent.py", line 13, in fact_check_agent
+    checks = fact_checker.check_once(state['answer'], state['context'])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 49, in check_once
+    return [self._validate_log_entry(entry, context) for entry in self._parse_json_response(raw)]
+                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 26, in _parse_json_response
+    raise VerificationError('�˲���������Ч JSON') from error
+src.verifiers.fact_checker.VerificationError: �˲���������Ч JSON
+��ʵ�˲�ʧ��
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 24, in _parse_json_response
+    parsed = json.loads(raw)
+             ^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\Lib\json\decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\����\agent-project\rag-2.0-self-correction\src\agents\fact_check_agent.py", line 13, in fact_check_agent
+    checks = fact_checker.check_once(state['answer'], state['context'])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 49, in check_once
+    return [self._validate_log_entry(entry, context) for entry in self._parse_json_response(raw)]
+                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\����\agent-project\rag-2.0-self-correction\src\verifiers\fact_checker.py", line 26, in _parse_json_response
+    raise VerificationError('�˲���������Ч JSON') from error
+src.verifiers.fact_checker.VerificationError: �˲���������Ч JSON
+{"calls": 223, "input_tokens_known": 95452, "output_tokens_known": 20382, "max_calls": 290, "split": "test", "stopped": false, "currency_cost": null, "scoring_status": "pending independent blind scoring and human review", "full_UI_E2E_measured": false}

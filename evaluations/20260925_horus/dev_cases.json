@@ -1,0 +1,87 @@
+[
+  {
+    "question_id": "dev_1",
+    "split": "dev",
+    "question_type": "single",
+    "question": "测试灯塔的颜色是什么？",
+    "answerable": true,
+    "reference_answer": "蓝色",
+    "evidence": [
+      {
+        "source": "dev_0.txt",
+        "quote": "测试灯塔的颜色为蓝色。"
+      }
+    ],
+    "origin": "synthetic_dev"
+  },
+  {
+    "question_id": "dev_2",
+    "split": "dev",
+    "question_type": "integration",
+    "question": "测试列车从哪里出发、在哪里终到？",
+    "answerable": true,
+    "reference_answer": "甲站出发乙站终到",
+    "evidence": [
+      {
+        "source": "dev_1.txt",
+        "quote": "测试列车从甲站出发。测试列车在乙站终到。"
+      }
+    ],
+    "origin": "synthetic_dev"
+  },
+  {
+    "question_id": "dev_3",
+    "split": "dev",
+    "question_type": "constraint",
+    "question": "测试图书馆周日几点开放？",
+    "answerable": true,
+    "reference_answer": "上午9点",
+    "evidence": [
+      {
+        "source": "dev_2.txt",
+        "quote": "测试图书馆周日上午9点开放。"
+      }
+    ],
+    "origin": "synthetic_dev"
+  },
+  {
+    "question_id": "dev_4",
+    "split": "dev",
+    "question_type": "unanswerable",
+    "question": "测试灯塔的建造者是谁？",
+    "answerable": false,
+    "reference_answer": "没有资料",
+    "evidence": [],
+    "origin": "synthetic_dev"
+  },
+  {
+    "question_id": "dev_5",
+    "split": "dev",
+    "question_type": "conflict",
+    "question": "测试展厅的票价到底是多少？",
+    "answerable": true,
+    "reference_answer": "两份资料20元和30元，无优先级无法确定",
+    "evidence": [
+      {
+        "source": "dev_4.txt",
+        "quote": "测试展厅资料甲票价20元。测试展厅资料乙票价30元。两者无优先级。"
+      }
+    ],
+    "origin": "synthetic_dev"
+  },
+  {
+    "question_id": "dev_6",
+    "split": "dev",
+    "question_type": "false_premise",
+    "question": "测试湖泊既然是咸水湖，它的盐度是多少？",
+    "answerable": true,
+    "reference_answer": "前提错，淡水湖",
+    "evidence": [
+      {
+        "source": "dev_5.txt",
+        "quote": "测试湖泊是淡水湖。"
+      }
+    ],
+    "origin": "synthetic_dev"
+  }
+]

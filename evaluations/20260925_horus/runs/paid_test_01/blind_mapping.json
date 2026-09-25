@@ -1,0 +1,902 @@
+[
+  {
+    "answer_id": "anon_001",
+    "question_id": "single_02",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_002",
+    "question_id": "single_10",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_002",
+    "question_id": "single_10",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_003",
+    "question_id": "unanswerable_02",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_004",
+    "question_id": "integration_08",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_005",
+    "question_id": "conflict_10",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_006",
+    "question_id": "false_premise_08",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_006",
+    "question_id": "false_premise_08",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_007",
+    "question_id": "single_05",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_008",
+    "question_id": "integration_09",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_009",
+    "question_id": "integration_07",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_010",
+    "question_id": "conflict_07",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_010",
+    "question_id": "conflict_07",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_011",
+    "question_id": "integration_04",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_011",
+    "question_id": "integration_04",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_012",
+    "question_id": "constraint_04",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_012",
+    "question_id": "constraint_04",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_013",
+    "question_id": "unanswerable_07",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_013",
+    "question_id": "unanswerable_07",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_014",
+    "question_id": "conflict_10",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_015",
+    "question_id": "conflict_04",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_016",
+    "question_id": "conflict_06",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_017",
+    "question_id": "conflict_02",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_018",
+    "question_id": "integration_09",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_018",
+    "question_id": "integration_09",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_019",
+    "question_id": "integration_06",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_020",
+    "question_id": "false_premise_05",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_021",
+    "question_id": "unanswerable_03",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_022",
+    "question_id": "unanswerable_08",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_023",
+    "question_id": "single_06",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_023",
+    "question_id": "single_06",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_024",
+    "question_id": "integration_01",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_025",
+    "question_id": "conflict_03",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_025",
+    "question_id": "conflict_03",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_026",
+    "question_id": "conflict_02",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_027",
+    "question_id": "single_07",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_028",
+    "question_id": "single_08",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_029",
+    "question_id": "single_03",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_030",
+    "question_id": "unanswerable_09",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_030",
+    "question_id": "unanswerable_09",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_031",
+    "question_id": "conflict_01",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_032",
+    "question_id": "constraint_05",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_032",
+    "question_id": "constraint_05",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_033",
+    "question_id": "conflict_08",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_034",
+    "question_id": "single_02",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_034",
+    "question_id": "single_02",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_035",
+    "question_id": "single_09",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_036",
+    "question_id": "unanswerable_03",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_036",
+    "question_id": "unanswerable_03",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_037",
+    "question_id": "integration_10",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_037",
+    "question_id": "integration_10",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_038",
+    "question_id": "unanswerable_05",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_039",
+    "question_id": "single_04",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_040",
+    "question_id": "conflict_08",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_041",
+    "question_id": "constraint_06",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_041",
+    "question_id": "constraint_06",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_042",
+    "question_id": "single_09",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_042",
+    "question_id": "single_09",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_043",
+    "question_id": "single_05",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_044",
+    "question_id": "single_05",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_045",
+    "question_id": "conflict_01",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_046",
+    "question_id": "constraint_03",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_047",
+    "question_id": "constraint_01",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_048",
+    "question_id": "false_premise_04",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_049",
+    "question_id": "unanswerable_04",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_050",
+    "question_id": "constraint_01",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_051",
+    "question_id": "false_premise_02",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_052",
+    "question_id": "false_premise_09",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_053",
+    "question_id": "unanswerable_05",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_053",
+    "question_id": "unanswerable_05",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_054",
+    "question_id": "unanswerable_04",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_055",
+    "question_id": "single_04",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_056",
+    "question_id": "constraint_07",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_057",
+    "question_id": "false_premise_10",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_058",
+    "question_id": "false_premise_06",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_058",
+    "question_id": "false_premise_06",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_059",
+    "question_id": "conflict_10",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_060",
+    "question_id": "constraint_09",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_061",
+    "question_id": "conflict_06",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_062",
+    "question_id": "false_premise_02",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_062",
+    "question_id": "false_premise_02",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_063",
+    "question_id": "constraint_10",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_064",
+    "question_id": "unanswerable_10",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_065",
+    "question_id": "conflict_09",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_066",
+    "question_id": "integration_03",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_067",
+    "question_id": "single_08",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_067",
+    "question_id": "single_08",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_068",
+    "question_id": "conflict_05",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_068",
+    "question_id": "conflict_05",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_069",
+    "question_id": "constraint_08",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_070",
+    "question_id": "constraint_09",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_071",
+    "question_id": "false_premise_10",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_071",
+    "question_id": "false_premise_10",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_072",
+    "question_id": "conflict_05",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_073",
+    "question_id": "conflict_03",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_074",
+    "question_id": "unanswerable_08",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_075",
+    "question_id": "false_premise_06",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_076",
+    "question_id": "conflict_09",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_077",
+    "question_id": "constraint_02",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_077",
+    "question_id": "constraint_02",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_078",
+    "question_id": "unanswerable_01",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_079",
+    "question_id": "single_03",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_079",
+    "question_id": "single_03",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_080",
+    "question_id": "false_premise_08",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_081",
+    "question_id": "constraint_10",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_081",
+    "question_id": "constraint_10",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_082",
+    "question_id": "integration_04",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_083",
+    "question_id": "integration_07",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_084",
+    "question_id": "conflict_09",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_085",
+    "question_id": "single_01",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_086",
+    "question_id": "unanswerable_08",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_087",
+    "question_id": "integration_10",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_088",
+    "question_id": "unanswerable_04",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_089",
+    "question_id": "conflict_06",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_090",
+    "question_id": "constraint_04",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_091",
+    "question_id": "integration_01",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_091",
+    "question_id": "integration_01",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_092",
+    "question_id": "constraint_01",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_093",
+    "question_id": "integration_07",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_094",
+    "question_id": "false_premise_07",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_094",
+    "question_id": "false_premise_07",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_095",
+    "question_id": "conflict_04",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_096",
+    "question_id": "conflict_07",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_097",
+    "question_id": "false_premise_05",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_097",
+    "question_id": "false_premise_05",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_098",
+    "question_id": "conflict_04",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_099",
+    "question_id": "unanswerable_02",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_100",
+    "question_id": "false_premise_07",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_101",
+    "question_id": "false_premise_03",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_102",
+    "question_id": "integration_03",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_102",
+    "question_id": "integration_03",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_103",
+    "question_id": "integration_05",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_103",
+    "question_id": "integration_05",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_104",
+    "question_id": "constraint_08",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_104",
+    "question_id": "constraint_08",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_105",
+    "question_id": "integration_08",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_105",
+    "question_id": "integration_08",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_106",
+    "question_id": "single_10",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_107",
+    "question_id": "integration_02",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_108",
+    "question_id": "unanswerable_01",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_109",
+    "question_id": "unanswerable_09",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_110",
+    "question_id": "single_01",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_110",
+    "question_id": "single_01",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_111",
+    "question_id": "constraint_07",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_111",
+    "question_id": "constraint_07",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_112",
+    "question_id": "false_premise_09",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_112",
+    "question_id": "false_premise_09",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_113",
+    "question_id": "integration_05",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_114",
+    "question_id": "unanswerable_06",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_114",
+    "question_id": "unanswerable_06",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_115",
+    "question_id": "constraint_02",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_116",
+    "question_id": "single_04",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_117",
+    "question_id": "unanswerable_10",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_118",
+    "question_id": "integration_06",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_118",
+    "question_id": "integration_06",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_119",
+    "question_id": "unanswerable_06",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_120",
+    "question_id": "constraint_09",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_121",
+    "question_id": "false_premise_01",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_121",
+    "question_id": "false_premise_01",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_122",
+    "question_id": "constraint_05",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_123",
+    "question_id": "unanswerable_02",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_124",
+    "question_id": "conflict_02",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_125",
+    "question_id": "false_premise_04",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_125",
+    "question_id": "false_premise_04",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_126",
+    "question_id": "single_06",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_127",
+    "question_id": "false_premise_03",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_127",
+    "question_id": "false_premise_03",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_128",
+    "question_id": "integration_02",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_128",
+    "question_id": "integration_02",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_129",
+    "question_id": "single_07",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_129",
+    "question_id": "single_07",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_130",
+    "question_id": "conflict_01",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_131",
+    "question_id": "constraint_06",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_132",
+    "question_id": "constraint_03",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_132",
+    "question_id": "constraint_03",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_133",
+    "question_id": "unanswerable_10",
+    "arm": "B"
+  },
+  {
+    "answer_id": "anon_134",
+    "question_id": "false_premise_01",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_135",
+    "question_id": "conflict_08",
+    "arm": "C"
+  },
+  {
+    "answer_id": "anon_136",
+    "question_id": "unanswerable_07",
+    "arm": "A"
+  },
+  {
+    "answer_id": "anon_137",
+    "question_id": "unanswerable_01",
+    "arm": "C"
+  }
+]

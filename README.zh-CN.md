@@ -147,33 +147,58 @@ Windows 未激活环境时也可使用：
 
 ## 验证与评测
 
+### 自动化回归测试
+
 ```bash
 python -m unittest discover -s tests -v
-python -m compileall -q src app.py scripts experiments tests
-python -m pip check
+python -m unittest discover -s evaluations/20260925_horus -p test_evaluation.py -v
 ```
 
-当前 36 项测试已在本机通过，覆盖检索、核查循环、索引隔离、查询前缀、超时、流式输出、纠偏记忆门槛和 Streamlit 请求流程。测试使用假网络/LLM，不消耗 API 额度。
+2026-09-25 本机运行：**36/36 项产品回归、6/6 项评估指标测试通过**。覆盖检索、核查循环、索引隔离、查询前缀、超时、流式输出、纠偏记忆门槛及 Streamlit 请求流程。回归测试使用替身网络/LLM，不消耗 API 额度；通过率不代表回答准确率。评估指标测试检查证据匹配、分母和失败样本处理。
 
-离线检索评测需复制并填写 [评测模板](experiments/retrieval_cases.example.json)，用正确的 `chunk_id` 或原文片段 `evidence_contains` 标注证据：
+### 固定知识库效果评估（2026-09-25）
+
+使用项目公开文档/源码及明确标注的合成资料，构建 **60 道正式题**，覆盖事实查找、跨段落整合、条件/数字约束、无答案、资料冲突和错误前提，每类 10 题。另设 6 道开发题和 30 条独立核查挑战。正式生成只运行一轮；本地检索三轮共 540 次请求。
+
+- **A：**纯向量 Top-5 检索＋生成。
+- **B：**向量/BM25 混合召回＋RRF＋重排过滤＋相同生成流程。
+- **C：**复用 B 的原始回答及证据，再执行核查和最多一次纠正，避免重新生成带来的随机差异。
+
+| 指标 | A 纯向量 | B 混合检索 | C 混合＋核查纠正 |
+|---|---:|---:|---:|
+| 回答完全正确（AI 评分，60 题） | 48/60（80.0%） | **53/60（88.3%）** | 52/60（86.7%） |
+| 关键信息完整性（50 道有答案题） | 80% | 86% | 84% |
+| 无答案题正确拒答 | 10/10 | 10/10 | 10/10 |
+| 有答案题误拒答 | 7/50 | 7/50 | 7/50 |
+| 工作流失败（含核查错误） | 1/60 | 0/60 | 24/60 |
+| 固定证据图耗时 P50 / P95（秒） | 1.72 / 2.28 | 1.13 / 1.69 | 9.79 / 16.13 |
+| API 调用数（C 包含 B 的首次生成） | 60 | 50 | 133 |
+
+**如何解读：**B 在本题集上表现更好，但完全正确率差的配对 bootstrap 95% 区间为 −3.33 至 +20.00 个百分点，不能宣称稳定或显著提升。A/B 的标注原文完整证据命中为 32/50 与 38/50；该对照同时改变融合、重排和过滤，不能全部归因于 BM25。控制相同重排/过滤的补充对照见报告。
+
+C 没有错变对案例；17 题尝试重写，其中 1 题因超时丢失原本正确的回答。独立简单核查挑战正确 28/30，不代表真实回答链路具有同等可靠性。当前证据支持继续完善核查模块，不支持“核查提高准确率”或“消除幻觉”的结论。
+
+**测量边界：**回答与引用语义由本次编程助手 AI 根据参考证据评分，评分者也参与数据准备，存在偏差，尚未人工复核。耗时是重放固定证据后的生成/核查图耗时，**不含检索，不是完整 UI 端到端耗时**。实际响应模型为 `deepseek-flash`（请求别名 `deepseek-chat`）及 `Qwen/Qwen2.5-7B-Instruct`；实验禁用备用切换和重试。未评估联网效果或生产流量。
+
+开发与正式实验合计 243 次 API 调用，已知输入 100,131、输出 21,061 Token；10 次超时缺少 usage，不能视为零计费。未确认单价，不报告货币成本。原始失败样本全部保留。
+
+[完整报告与案例](evaluations/20260925_horus/REPORT.md) · [评分汇总 CSV](evaluations/20260925_horus/runs/paid_test_01/answer_summary.csv) · [待人工复核表](evaluations/20260925_horus/human_review_sample.csv) · [方案、数据与复运行命令](evaluations/20260925_horus/README.md)
+
+### 复现与自定义检索评测
+
+本次评估目录包含固定语料、题目、证据、配置、依赖版本及调用日志；本地模型缓存和生成索引不随仓库发布。按上述复运行说明使用新的运行目录，避免覆盖旧记录。真实 API 重跑需要凭证和新的预算确认；本地检索无需 LLM API。
+
+使用自己的知识库时，可复制 [评测模板](experiments/retrieval_cases.example.json)，用有效 `chunk_id` 或原文片段 `evidence_contains` 标注证据：
 
 ```bash
 python -m experiments.evaluate_accuracy --config config.yaml --cases your_cases.json --output result.json
-# 对照关闭重排
+# 关闭重排的对照；输出到另一文件
 python -m experiments.evaluate_accuracy --config config.yaml --cases your_cases.json --output result_no_reranker.json --no-reranker
 ```
 
-输出 Precision@K、返回文档精度、Recall@K、MRR、无答案拒答率及检索 P50/P95。关键词命中率不再被当作“忠实度”或“幻觉率”。
+输出 Precision@K、返回文档精度、Recall@K、MRR、无答案检索返回空结果的比例及检索 P50/P95。检索命中不等于答案正确、忠实或无幻觉。
 
-中文模型切换时的本机小样本结果：
-
-| 指标 | 原 MiniLM | 中文 BGE |
-|---|---:|---:|
-| 相同文档上的纯向量 Top-5 证据命中 | 0/8 | 8/8 |
-| 完整混合链路证据命中 | 5/8 | 5/8 |
-| 混合链路无答案正确返回空结果 | 2/2 | 2/2 |
-
-**这些是小样本检索结果，不代表一般业务准确率或答案幻觉率。** 中文模型改善了纯向量召回，完整链路仍受融合及重排过滤影响。真实 LLM/API 的端到端耗时未实测。详见 [中文模型验证](docs/chinese_embedding.md)；其中本机数据、备份和 `.evaluation/` 文件不随仓库发布，复现需自行准备语料及标注。
+历史 Embedding 切换的 8 题/2 题小样本记录仍保留在 [中文模型验证](docs/chinese_embedding.md)，不与本次数据合并；历史 `.evaluation/` 本机语料和备份未随仓库发布。
 
 ## 纠偏记忆与迁移
 
@@ -213,6 +238,7 @@ src/verifiers/                 结构化证据核查
 src/memory/                    对话与持久化纠偏记忆
 scripts/                       索引迁移、记忆重编码、Embedding 对照
 experiments/                   检索评测脚本和标注模板
+evaluations/                   固定数据集、真实 API 评估与审计记录
 tests/                         离线回归测试
 docs/                          优化说明与本机验证记录
 ```

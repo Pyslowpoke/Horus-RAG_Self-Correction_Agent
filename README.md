@@ -147,33 +147,58 @@ Disabling reranking can reduce CPU cost but may reduce relevance. Calibrate thre
 
 ## Tests and evaluation
 
+### Automated regression tests
+
 ```bash
 python -m unittest discover -s tests -v
-python -m compileall -q src app.py scripts experiments tests
-python -m pip check
+python -m unittest discover -s evaluations/20260925_horus -p test_evaluation.py -v
 ```
 
-All 36 tests passed locally. Coverage includes retrieval, correction loops, index isolation, query prefixes, timeouts, streaming, correction-memory thresholds, and Streamlit request handling. Tests use fake network/LLM implementations and do not consume API credits.
+Local run on 2026-09-25: **36/36 product regression tests and 6/6 evaluation-metric tests passed**. Coverage includes retrieval, correction loops, index isolation, query prefixes, timeouts, streaming, correction memory, and Streamlit request handling. Regression tests use fake network/LLM implementations and consume no API credits; passing tests do not establish answer accuracy. Metric tests check evidence matching, denominators, and failure handling.
 
-For offline retrieval evaluation, copy and fill in the [case template](experiments/retrieval_cases.example.json). Identify evidence using valid `chunk_id` values or source-text snippets in `evidence_contains`:
+### Fixed-corpus effectiveness evaluation (2026-09-25)
+
+The corpus contains public repository documentation/code and explicitly labeled synthetic material. **60 formal questions** cover factual lookup, integration, conditions/numbers, unanswerable questions, conflicting sources, and false premises, with 10 questions per category. There are also 6 development questions and 30 independent checker challenges. Paid generation ran once; three local retrieval repetitions produced 540 requests.
+
+- **A:** vector Top-5 retrieval plus generation.
+- **B:** vector/BM25 retrieval, RRF, reranking/filtering, and the same generation procedure.
+- **C:** reuse B's exact initial answer and evidence, then verify and allow at most one rewrite, avoiding regeneration noise.
+
+| Metric | A Vector | B Hybrid | C Hybrid + verification/correction |
+|---|---:|---:|---:|
+| Fully correct answers (AI review, 60 questions) | 48/60 (80.0%) | **53/60 (88.3%)** | 52/60 (86.7%) |
+| Key-fact completeness (50 answerable questions) | 80% | 86% | 84% |
+| Correct refusals on unanswerable questions | 10/10 | 10/10 | 10/10 |
+| False refusals on answerable questions | 7/50 | 7/50 | 7/50 |
+| Workflow failures, including checker errors | 1/60 | 0/60 | 24/60 |
+| Fixed-evidence graph P50 / P95 (seconds) | 1.72 / 2.28 | 1.13 / 1.69 | 9.79 / 16.13 |
+| API calls (C includes B's initial generation) | 60 | 50 | 133 |
+
+**Interpretation:** B performed better on this dataset, but the paired bootstrap 95% interval for its fully-correct-rate difference versus A is −3.33 to +20.00 percentage points; this does not establish a reliable or statistically significant improvement. Complete annotated-quote evidence hits were 32/50 for A and 38/50 for B. This comparison changes fusion, reranking, and filtering together, so gains cannot be attributed solely to BM25. See the report for a supplementary comparison with matched reranking/filtering.
+
+C produced no wrong-to-correct transitions. It attempted 17 rewrites; one timeout lost an initially correct answer. The independent simple checker challenge scored 28/30, which does not establish equivalent reliability in the full answer workflow. These results motivate further checker development, not claims of improved accuracy or eliminated hallucinations.
+
+**Measurement limits:** semantic answer/citation judgments were made by the coding assistant AI against reference evidence. The reviewer also helped prepare the dataset, introducing bias; human review is pending. Timings measure the generation/verification graph with replayed evidence, **excluding retrieval; they are not full UI end-to-end latency**. Actual response models were `deepseek-flash` (requested alias `deepseek-chat`) and `Qwen/Qwen2.5-7B-Instruct`. Failover and retries were disabled for this experiment. Live web performance and production traffic were not evaluated.
+
+Development and formal runs used 243 API calls in total, with 100,131 known input and 21,061 known output tokens. Ten timed-out calls lack usage data and cannot be assumed free. No verified unit prices were available, so no currency cost is reported. Failed samples are retained.
+
+[Full report and cases (Chinese)](evaluations/20260925_horus/REPORT.md) · [Score summary CSV](evaluations/20260925_horus/runs/paid_test_01/answer_summary.csv) · [Pending human review](evaluations/20260925_horus/human_review_sample.csv) · [Protocol, data, and reproduction commands](evaluations/20260925_horus/README.md)
+
+### Reproduction and custom retrieval evaluation
+
+The evaluation directory includes frozen corpus material, questions, evidence, configuration, dependency versions, and API logs. Model caches and generated indexes are excluded. Follow the reproduction guide with a new run directory to preserve prior records. New paid runs require credentials and a new budget authorization; local retrieval requires no LLM API.
+
+For your own knowledge base, copy the [case template](experiments/retrieval_cases.example.json) and identify evidence using valid `chunk_id` values or source-text snippets in `evidence_contains`:
 
 ```bash
 python -m experiments.evaluate_accuracy --config config.yaml --cases your_cases.json --output result.json
-# Compare without reranking
+# Compare without reranking; use a separate output file
 python -m experiments.evaluate_accuracy --config config.yaml --cases your_cases.json --output result_no_reranker.json --no-reranker
 ```
 
-Reports include Precision@K, returned-document precision, Recall@K, MRR, unanswerable-query rejection, and retrieval P50/P95. Keyword matching is not treated as answer faithfulness or hallucination rate.
+Reports include Precision@K, returned-document precision, Recall@K, MRR, empty-retrieval rate for unanswerable queries, and retrieval P50/P95. Retrieval hits do not establish answer correctness, faithfulness, or absence of hallucinations.
 
-Local small-sample comparison when switching embeddings:
-
-| Metric | Previous MiniLM | Chinese BGE |
-|---|---:|---:|
-| Raw vector Top-5 evidence hits on identical passages | 0/8 | 8/8 |
-| Full hybrid pipeline evidence hits | 5/8 | 5/8 |
-| Correct empty results for unanswerable hybrid queries | 2/2 | 2/2 |
-
-**These are small-sample retrieval results, not general business accuracy or answer hallucination measurements.** Chinese embeddings improved raw vector recall; fusion and reranking still limit the full pipeline. End-to-end latency with real LLM APIs has not been measured. See the [Chinese embedding validation](docs/chinese_embedding.md). Its local datasets, backups, and `.evaluation/` artifacts are not distributed; reproduction requires your own corpus and labels.
+The historical 8-question/2-question embedding comparison remains in [Chinese embedding validation](docs/chinese_embedding.md), separate from this evaluation. Its local `.evaluation/` corpus and backups are not distributed.
 
 ## Correction memory and migration
 
@@ -213,6 +238,7 @@ src/verifiers/                  Structured evidence verification
 src/memory/                     Conversation and persistent correction memory
 scripts/                       Index migration, memory re-encoding, embedding comparison
 experiments/                   Retrieval evaluation and label template
+evaluations/                   Frozen datasets, real API evaluation, and audit records
 tests/                         Offline regression tests
 docs/                          Optimization notes and local validation records
 ```

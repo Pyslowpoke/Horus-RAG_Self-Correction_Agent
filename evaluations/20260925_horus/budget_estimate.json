@@ -1,0 +1,115 @@
+{
+  "basis": "18 real local dev retrievals, A/B prompts; cl100k_base surrogate, not DeepSeek/Qwen tokenizer; no remote pilot yet",
+  "dev_questions": 6,
+  "dev_actual_generation_eligible": 11,
+  "dev_B_eligible": 5,
+  "dev_estimated_max_calls": 26,
+  "dev_estimated_input_proxy_tokens": 17835,
+  "dev_output_token_cap": 13312,
+  "formal_60_extrapolated_input_proxy_tokens": 178350,
+  "formal_max_calls_without_judge": 330,
+  "formal_max_output_tokens_without_judge": 168960,
+  "independent_judge_optional_max_calls": 180,
+  "independent_judge_optional_output_cap": 184320,
+  "currency_cost": null,
+  "currency_reason": "No confirmed account billing rates; no paid call authorized",
+  "input_limit_note": "Input estimate scales dev only, may differ from formal questions; checker challenge prompts additional. Not a hard spend cap.",
+  "rows": [
+    {
+      "question_id": "dev_1",
+      "arm": "A",
+      "returned": 5,
+      "generation_prompt_proxy_tokens": 703,
+      "check_template_proxy_tokens": 712,
+      "rewrite_template_proxy_tokens": 683
+    },
+    {
+      "question_id": "dev_1",
+      "arm": "B",
+      "returned": 2,
+      "generation_prompt_proxy_tokens": 240,
+      "check_template_proxy_tokens": 249,
+      "rewrite_template_proxy_tokens": 220
+    },
+    {
+      "question_id": "dev_2",
+      "arm": "A",
+      "returned": 5,
+      "generation_prompt_proxy_tokens": 571,
+      "check_template_proxy_tokens": 576,
+      "rewrite_template_proxy_tokens": 547
+    },
+    {
+      "question_id": "dev_2",
+      "arm": "B",
+      "returned": 1,
+      "generation_prompt_proxy_tokens": 223,
+      "check_template_proxy_tokens": 228,
+      "rewrite_template_proxy_tokens": 199
+    },
+    {
+      "question_id": "dev_3",
+      "arm": "A",
+      "returned": 5,
+      "generation_prompt_proxy_tokens": 548,
+      "check_template_proxy_tokens": 558,
+      "rewrite_template_proxy_tokens": 529
+    },
+    {
+      "question_id": "dev_3",
+      "arm": "B",
+      "returned": 1,
+      "generation_prompt_proxy_tokens": 211,
+      "check_template_proxy_tokens": 221,
+      "rewrite_template_proxy_tokens": 192
+    },
+    {
+      "question_id": "dev_4",
+      "arm": "A",
+      "returned": 5,
+      "generation_prompt_proxy_tokens": 482,
+      "check_template_proxy_tokens": 492,
+      "rewrite_template_proxy_tokens": 463
+    },
+    {
+      "question_id": "dev_4",
+      "arm": "B",
+      "returned": 0,
+      "generation_prompt_proxy_tokens": 193,
+      "check_template_proxy_tokens": 203,
+      "rewrite_template_proxy_tokens": 174
+    },
+    {
+      "question_id": "dev_5",
+      "arm": "A",
+      "returned": 5,
+      "generation_prompt_proxy_tokens": 475,
+      "check_template_proxy_tokens": 484,
+      "rewrite_template_proxy_tokens": 455
+    },
+    {
+      "question_id": "dev_5",
+      "arm": "B",
+      "returned": 1,
+      "generation_prompt_proxy_tokens": 231,
+      "check_template_proxy_tokens": 240,
+      "rewrite_template_proxy_tokens": 211
+    },
+    {
+      "question_id": "dev_6",
+      "arm": "A",
+      "returned": 5,
+      "generation_prompt_proxy_tokens": 363,
+      "check_template_proxy_tokens": 360,
+      "rewrite_template_proxy_tokens": 331
+    },
+    {
+      "question_id": "dev_6",
+      "arm": "B",
+      "returned": 1,
+      "generation_prompt_proxy_tokens": 222,
+      "check_template_proxy_tokens": 219,
+      "rewrite_template_proxy_tokens": 190
+    }
+  ]
+}

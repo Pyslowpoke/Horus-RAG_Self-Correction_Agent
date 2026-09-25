@@ -1,0 +1,2526 @@
+[
+  {
+    "question_id": "single_01",
+    "split": "test",
+    "question_type": "single",
+    "question": "当前中文向量模型的名称是什么？",
+    "answerable": true,
+    "reference_answer": "BAAI/bge-small-zh-v1.5",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "`BAAI/bge-small-zh-v1.5`，512 维",
+            "line": 11
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "`BAAI/bge-small-zh-v1.5`，512 维",
+        "line": 11
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "answer_with_evidence",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "single_02",
+    "split": "test",
+    "question_type": "single",
+    "question": "Horus 的图流程用哪个框架编排？",
+    "answerable": true,
+    "reference_answer": "LangGraph",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "使用 Streamlit 与 LangGraph 编排检索",
+            "line": 7
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "使用 Streamlit 与 LangGraph 编排检索",
+        "line": 7
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "answer_with_evidence",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "single_03",
+    "split": "test",
+    "question_type": "single",
+    "question": "默认负责文档重排序的模型是什么？",
+    "answerable": true,
+    "reference_answer": "BAAI/bge-reranker-base",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "默认使用 `BAAI/bge-reranker-base`",
+            "line": 13
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "默认使用 `BAAI/bge-reranker-base`",
+        "line": 13
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "answer_with_evidence",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "single_04",
+    "split": "test",
+    "question_type": "single",
+    "question": "知识库支持哪些输入文件格式？",
+    "answerable": true,
+    "reference_answer": "UTF-8 TXT 和可提取文字的 PDF",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "支持 UTF-8 TXT 和可提取文字的 PDF",
+            "line": 16
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "支持 UTF-8 TXT 和可提取文字的 PDF",
+        "line": 16
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "answer_with_evidence",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "single_05",
+    "split": "test",
+    "question_type": "single",
+    "question": "用户的纠错文件应放在哪个目录？",
+    "answerable": true,
+    "reference_answer": "data/correction_inbox/",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "监听 `data/correction_inbox/`",
+            "line": 17
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "监听 `data/correction_inbox/`",
+        "line": 17
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "answer_with_evidence",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "single_06",
+    "split": "test",
+    "question_type": "single",
+    "question": "默认主生成模型的标识是什么？",
+    "answerable": true,
+    "reference_answer": "deepseek-chat",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "默认主生成模型是 `deepseek-chat`",
+            "line": 78
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "默认主生成模型是 `deepseek-chat`",
+        "line": 78
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "answer_with_evidence",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "single_07",
+    "split": "test",
+    "question_type": "single",
+    "question": "联网搜索接入哪家服务？",
+    "answerable": true,
+    "reference_answer": "百度千帆",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "联网：百度千帆搜索",
+            "line": 27
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "联网：百度千帆搜索",
+        "line": 27
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "answer_with_evidence",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "single_08",
+    "split": "test",
+    "question_type": "single",
+    "question": "构建知识库应该运行什么命令？",
+    "answerable": true,
+    "reference_answer": "python -m src.data_ingestion",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "python -m src.data_ingestion",
+            "line": 106
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "python -m src.data_ingestion",
+        "line": 106
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "answer_with_evidence",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "single_09",
+    "split": "test",
+    "question_type": "single",
+    "question": "本机验证使用的 Python 版本是什么？",
+    "answerable": true,
+    "reference_answer": "Python 3.12",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "本机验证环境为 **Python 3.12**",
+            "line": 39
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "本机验证环境为 **Python 3.12**",
+        "line": 39
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "answer_with_evidence",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "single_10",
+    "split": "test",
+    "question_type": "single",
+    "question": "项目采用什么开源许可证？",
+    "answerable": true,
+    "reference_answer": "MIT",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "[MIT](LICENSE)",
+            "line": 232
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "[MIT](LICENSE)",
+        "line": 232
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "answer_with_evidence",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "integration_01",
+    "split": "test",
+    "question_type": "integration",
+    "question": "新机器要运行本地问答，在启动前需要准备模型和知识库的哪些步骤？",
+    "answerable": true,
+    "reference_answer": "先下载 Embedding 和重排模型，再放入文档并入库。",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "**新机器必须先下载模型**",
+            "line": 84
+          }
+        ]
+      },
+      {
+        "fact_id": "f2",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "创建 `knowledge_base/`，放入自己的 `.txt` 或 `.pdf` 文件",
+            "line": 103
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "**新机器必须先下载模型**",
+        "line": 84
+      },
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "创建 `knowledge_base/`，放入自己的 `.txt` 或 `.pdf` 文件",
+        "line": 103
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "answer_with_evidence",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "integration_02",
+    "split": "test",
+    "question_type": "integration",
+    "question": "生成回答和事实核查为什么能使用一致的证据编号？",
+    "answerable": true,
+    "reference_answer": "合并阶段统一编号，生成和核查上下文保持一致。",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "统一证据编号与上下文",
+            "line": 30
+          }
+        ]
+      },
+      {
+        "fact_id": "f2",
+        "evidence": [
+          {
+            "source": "docs__optimization.md.txt",
+            "original_path": "docs/optimization.md",
+            "quote": "本地与联网结果的引用编号、显示顺序、核查上下文保持一致。",
+            "line": 9
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "统一证据编号与上下文",
+        "line": 30
+      },
+      {
+        "source": "docs__optimization.md.txt",
+        "original_path": "docs/optimization.md",
+        "quote": "本地与联网结果的引用编号、显示顺序、核查上下文保持一致。",
+        "line": 9
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "answer_with_evidence",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "integration_03",
+    "split": "test",
+    "question_type": "integration",
+    "question": "切换 Embedding 后，知识库和纠偏记忆各需要如何处理？",
+    "answerable": true,
+    "reference_answer": "原文重新入库；纠偏记忆重新向量化并按签名隔离。",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "应选择新索引目录并重新入库",
+            "line": 111
+          }
+        ]
+      },
+      {
+        "fact_id": "f2",
+        "evidence": [
+          {
+            "source": "docs__optimization.md.txt",
+            "original_path": "docs/optimization.md",
+            "quote": "纠偏记忆也必须重新向量化",
+            "line": 67
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "应选择新索引目录并重新入库",
+        "line": 111
+      },
+      {
+        "source": "docs__optimization.md.txt",
+        "original_path": "docs/optimization.md",
+        "quote": "纠偏记忆也必须重新向量化",
+        "line": 67
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "answer_with_evidence",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "integration_04",
+    "split": "test",
+    "question_type": "integration",
+    "question": "Horus 如何同时利用语义检索和关键词检索，并控制重复证据？",
+    "answerable": true,
+    "reference_answer": "向量和 BM25 召回，稳定 chunk_id 去重并 RRF 融合。",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "向量与 BM25 各召回最多 20 条",
+            "line": 12
+          }
+        ]
+      },
+      {
+        "fact_id": "f2",
+        "evidence": [
+          {
+            "source": "docs__optimization.md.txt",
+            "original_path": "docs/optimization.md",
+            "quote": "RRF 每条召回列表内先去重。",
+            "line": 5
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "向量与 BM25 各召回最多 20 条",
+        "line": 12
+      },
+      {
+        "source": "docs__optimization.md.txt",
+        "original_path": "docs/optimization.md",
+        "quote": "RRF 每条召回列表内先去重。",
+        "line": 5
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "answer_with_evidence",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "integration_05",
+    "split": "test",
+    "question_type": "integration",
+    "question": "如何同时控制外部 LLM 的重试开销和自纠正次数？",
+    "answerable": true,
+    "reference_answer": "SDK 重试关闭，应用控制重试；图默认只重写一次。",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "docs__optimization.md.txt",
+            "original_path": "docs/optimization.md",
+            "quote": "SDK 内置重试关闭；只由应用配置重试。",
+            "line": 13
+          }
+        ]
+      },
+      {
+        "fact_id": "f2",
+        "evidence": [
+          {
+            "source": "docs__optimization.md.txt",
+            "original_path": "docs/optimization.md",
+            "quote": "图统一控制核查循环，默认最多重写一次",
+            "line": 10
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "docs__optimization.md.txt",
+        "original_path": "docs/optimization.md",
+        "quote": "SDK 内置重试关闭；只由应用配置重试。",
+        "line": 13
+      },
+      {
+        "source": "docs__optimization.md.txt",
+        "original_path": "docs/optimization.md",
+        "quote": "图统一控制核查循环，默认最多重写一次",
+        "line": 10
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "answer_with_evidence",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "integration_06",
+    "split": "test",
+    "question_type": "integration",
+    "question": "本地纯离线评测和线上回答对 API Key 的要求有何区别？",
+    "answerable": true,
+    "reference_answer": "离线检索评测不需要远程 Key；生成至少配 DeepSeek 或 SiliconFlow。",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "TXT/PDF 入库和离线检索评测不调用远程 LLM",
+            "line": 80
+          }
+        ]
+      },
+      {
+        "fact_id": "f2",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "至少配置 DeepSeek 或 SiliconFlow 中的一路",
+            "line": 77
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "TXT/PDF 入库和离线检索评测不调用远程 LLM",
+        "line": 80
+      },
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "至少配置 DeepSeek 或 SiliconFlow 中的一路",
+        "line": 77
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "answer_with_evidence",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "integration_07",
+    "split": "test",
+    "question_type": "integration",
+    "question": "缓存如何避免把不同对话或旧索引的结果混用？",
+    "answerable": true,
+    "reference_answer": "缓存键含对话偏好索引版本配置，同时设 TTL 容量。",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "docs__optimization.md.txt",
+            "original_path": "docs/optimization.md",
+            "quote": "缓存键包含对话、偏好、索引版本和配置",
+            "line": 15
+          }
+        ]
+      },
+      {
+        "fact_id": "f2",
+        "evidence": [
+          {
+            "source": "docs__optimization.md.txt",
+            "original_path": "docs/optimization.md",
+            "quote": "结果有 TTL 和容量上限",
+            "line": 15
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "docs__optimization.md.txt",
+        "original_path": "docs/optimization.md",
+        "quote": "缓存键包含对话、偏好、索引版本和配置",
+        "line": 15
+      },
+      {
+        "source": "docs__optimization.md.txt",
+        "original_path": "docs/optimization.md",
+        "quote": "结果有 TTL 和容量上限",
+        "line": 15
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "answer_with_evidence",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "integration_08",
+    "split": "test",
+    "question_type": "integration",
+    "question": "为什么重复入库不会堆积重复文档，写入失败又如何保护旧块？",
+    "answerable": true,
+    "reference_answer": "稳定 ID；成功新增后才删旧块。",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "docs__optimization.md.txt",
+            "original_path": "docs/optimization.md",
+            "quote": "稳定 ID 使重复入库不增加记录",
+            "line": 16
+          }
+        ]
+      },
+      {
+        "fact_id": "f2",
+        "evidence": [
+          {
+            "source": "docs__optimization.md.txt",
+            "original_path": "docs/optimization.md",
+            "quote": "新增向量成功后才删除旧块。",
+            "line": 16
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "docs__optimization.md.txt",
+        "original_path": "docs/optimization.md",
+        "quote": "稳定 ID 使重复入库不增加记录",
+        "line": 16
+      },
+      {
+        "source": "docs__optimization.md.txt",
+        "original_path": "docs/optimization.md",
+        "quote": "新增向量成功后才删除旧块。",
+        "line": 16
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "answer_with_evidence",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "integration_09",
+    "split": "test",
+    "question_type": "integration",
+    "question": "如果原问题没有证据，默认会不会调用 HyDE 或强行生成答案？",
+    "answerable": true,
+    "reference_answer": "默认关闭 HyDE；无证据直接拒答。",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "docs__optimization.md.txt",
+            "original_path": "docs/optimization.md",
+            "quote": "默认禁用 HyDE 和外部查询改写。",
+            "line": 8
+          }
+        ]
+      },
+      {
+        "fact_id": "f2",
+        "evidence": [
+          {
+            "source": "docs__optimization.md.txt",
+            "original_path": "docs/optimization.md",
+            "quote": "无证据时直接拒答",
+            "line": 11
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "docs__optimization.md.txt",
+        "original_path": "docs/optimization.md",
+        "quote": "默认禁用 HyDE 和外部查询改写。",
+        "line": 8
+      },
+      {
+        "source": "docs__optimization.md.txt",
+        "original_path": "docs/optimization.md",
+        "quote": "无证据时直接拒答",
+        "line": 11
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "answer_with_evidence",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "integration_10",
+    "split": "test",
+    "question_type": "integration",
+    "question": "为何仅看关键词命中率和检索耗时不足以判断回答可靠？",
+    "answerable": true,
+    "reference_answer": "关键词命中不能当幻觉率；答案正确与忠实需独立评审。",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "docs__optimization.md.txt",
+            "original_path": "docs/optimization.md",
+            "quote": "关键词命中率不能充当幻觉率。",
+            "line": 90
+          }
+        ]
+      },
+      {
+        "fact_id": "f2",
+        "evidence": [
+          {
+            "source": "docs__optimization.md.txt",
+            "original_path": "docs/optimization.md",
+            "quote": "答案是否正确、是否忠实于证据，需要另行人工标注或独立评审",
+            "line": 90
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "docs__optimization.md.txt",
+        "original_path": "docs/optimization.md",
+        "quote": "关键词命中率不能充当幻觉率。",
+        "line": 90
+      },
+      {
+        "source": "docs__optimization.md.txt",
+        "original_path": "docs/optimization.md",
+        "quote": "答案是否正确、是否忠实于证据，需要另行人工标注或独立评审",
+        "line": 90
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "answer_with_evidence",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "constraint_01",
+    "split": "test",
+    "question_type": "constraint",
+    "question": "默认分块大小和重叠分别是多少，计量单位是什么？",
+    "answerable": true,
+    "reference_answer": "220 / 30 tokenizer tokens",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "默认 220 token、重叠 30 token",
+            "line": 16
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "默认 220 token、重叠 30 token",
+        "line": 16
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "answer_with_evidence",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "constraint_02",
+    "split": "test",
+    "question_type": "constraint",
+    "question": "混合检索每路候选、重排候选和最终证据上限分别是多少？",
+    "answerable": true,
+    "reference_answer": "20、10、5",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "各召回最多 20 条",
+            "line": 12
+          }
+        ]
+      },
+      {
+        "fact_id": "f2",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "最多重排 10 条",
+            "line": 12
+          }
+        ]
+      },
+      {
+        "fact_id": "f3",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "返回最多 5 条有效证据",
+            "line": 12
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "各召回最多 20 条",
+        "line": 12
+      },
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "最多重排 10 条",
+        "line": 12
+      },
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "返回最多 5 条有效证据",
+        "line": 12
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "answer_with_evidence",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "constraint_03",
+    "split": "test",
+    "question_type": "constraint",
+    "question": "请求时间预算是多少，是否包含初始化？",
+    "answerable": true,
+    "reference_answer": "60 秒，包含初始化",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "`60` 秒 | 包括初始化的请求时间预算",
+            "line": 142
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "`60` 秒 | 包括初始化的请求时间预算",
+        "line": 142
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "answer_with_evidence",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "constraint_04",
+    "split": "test",
+    "question_type": "constraint",
+    "question": "请求结果缓存的过期时间和容量上限是多少？",
+    "answerable": true,
+    "reference_answer": "300 秒和64项",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "`300` 秒 / `64` | 会话内结果缓存",
+            "line": 143
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "`300` 秒 / `64` | 会话内结果缓存",
+        "line": 143
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "answer_with_evidence",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "constraint_05",
+    "split": "test",
+    "question_type": "constraint",
+    "question": "什么条件下混合模式会转向联网搜索？",
+    "answerable": true,
+    "reference_answer": "无有效本地证据且已配置搜索服务",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "无有效证据且已配置搜索服务时联网",
+            "line": 28
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "无有效证据且已配置搜索服务时联网",
+        "line": 28
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "answer_with_evidence",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "constraint_06",
+    "split": "test",
+    "question_type": "constraint",
+    "question": "启用 HyDE 后什么时候才补充候选，又按什么问题重排？",
+    "answerable": true,
+    "reference_answer": "原问题无有效证据时；按原问题重排",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "仅在原问题没有有效证据时补充候选，仍按原问题重排",
+            "line": 35
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "仅在原问题没有有效证据时补充候选，仍按原问题重排",
+        "line": 35
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "answer_with_evidence",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "constraint_07",
+    "split": "test",
+    "question_type": "constraint",
+    "question": "重排器的默认分数门槛是多少，它是不是校准概率？",
+    "answerable": true,
+    "reference_answer": "0.3，不是校准概率",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "`0.3` | sigmoid 重排分数门槛，不是校准概率",
+            "line": 134
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "`0.3` | sigmoid 重排分数门槛，不是校准概率",
+        "line": 134
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "answer_with_evidence",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "constraint_08",
+    "split": "test",
+    "question_type": "constraint",
+    "question": "纠偏记忆的距离门槛和度量分别是什么？",
+    "answerable": true,
+    "reference_answer": "0.35，平方 L2",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "`0.35` | 纠偏记忆平方 L2 距离上限",
+            "line": 144
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "`0.35` | 纠偏记忆平方 L2 距离上限",
+        "line": 144
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "answer_with_evidence",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "constraint_09",
+    "split": "test",
+    "question_type": "constraint",
+    "question": "默认单次 LLM 输出的 token 上限是多少？",
+    "answerable": true,
+    "reference_answer": "512",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "`512` | 单次 LLM 输出上限",
+            "line": 139
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "`512` | 单次 LLM 输出上限",
+        "line": 139
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "answer_with_evidence",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "constraint_10",
+    "split": "test",
+    "question_type": "constraint",
+    "question": "没有 manifest 的旧索引迁移，对模型配置有什么限制？",
+    "answerable": true,
+    "reference_answer": "仅接受原项目 MiniLM 配置",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "docs__optimization.md.txt",
+            "original_path": "docs/optimization.md",
+            "quote": "旧索引没有 manifest 时，脚本仅接受原项目的 MiniLM 配置。",
+            "line": 57
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "docs__optimization.md.txt",
+        "original_path": "docs/optimization.md",
+        "quote": "旧索引没有 manifest 时，脚本仅接受原项目的 MiniLM 配置。",
+        "line": 57
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "answer_with_evidence",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "false_premise_01",
+    "split": "test",
+    "question_type": "false_premise",
+    "question": "Horus 既然自带 OCR，扫描 PDF 入库会自动识字吧？",
+    "answerable": true,
+    "reference_answer": "错误，需先 OCR，程序不包含 OCR。",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "当前入库程序不包含 OCR",
+            "line": 109
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "当前入库程序不包含 OCR",
+        "line": 109
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "explicitly_correct_false_premise",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "false_premise_02",
+    "split": "test",
+    "question_type": "false_premise",
+    "question": "核查输出不是合法 JSON 时也会算核查通过，对吗？",
+    "answerable": true,
+    "reference_answer": "错误，解析失败不算通过。",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "解析失败不算通过",
+            "line": 14
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "解析失败不算通过",
+        "line": 14
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "explicitly_correct_false_premise",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "false_premise_03",
+    "split": "test",
+    "question_type": "false_premise",
+    "question": "身份类问题也必须加载知识库、检索并核查吗？",
+    "answerable": true,
+    "reference_answer": "错误，身份问题跳过检索核查。",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "身份类问题直接生成并跳过检索和核查",
+            "line": 35
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "身份类问题直接生成并跳过检索和核查",
+        "line": 35
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "explicitly_correct_false_premise",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "false_premise_04",
+    "split": "test",
+    "question_type": "false_premise",
+    "question": "中文向量指令既加在问题上也加在每篇文档上，对吗？",
+    "answerable": true,
+    "reference_answer": "错误，仅查询加指令。",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "仅查询添加中文检索指令",
+            "line": 11
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "仅查询添加中文检索指令",
+        "line": 11
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "explicitly_correct_false_premise",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "false_premise_05",
+    "split": "test",
+    "question_type": "false_premise",
+    "question": "migrate_index.py 可以直接把 MiniLM 向量转换成中文 BGE 吗？",
+    "answerable": true,
+    "reference_answer": "错误，它只能用于相同模型配置的迁移。",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "不可用它更换 Embedding",
+            "line": 194
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "不可用它更换 Embedding",
+        "line": 194
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "explicitly_correct_false_premise",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "false_premise_06",
+    "split": "test",
+    "question_type": "false_premise",
+    "question": "重排器失效之后就不再做任何相关性筛选了，对吗？",
+    "answerable": true,
+    "reference_answer": "错误，退回词项覆盖过滤。",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "未启用或加载失败时使用词项覆盖过滤",
+            "line": 13
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "未启用或加载失败时使用词项覆盖过滤",
+        "line": 13
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "explicitly_correct_false_premise",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "false_premise_07",
+    "split": "test",
+    "question_type": "false_premise",
+    "question": "超时能立即杀掉正在运行的本地模型计算吗？",
+    "answerable": true,
+    "reference_answer": "错误，无法强制中断。",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "无法强制中断已在运行的本地模型计算",
+            "line": 224
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "无法强制中断已在运行的本地模型计算",
+        "line": 224
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "explicitly_correct_false_premise",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "false_premise_08",
+    "split": "test",
+    "question_type": "false_premise",
+    "question": "知识库更新已经是完整的数据库事务发布，对吗？",
+    "answerable": true,
+    "reference_answer": "错误，还不是事务发布。",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "当前入库不是完整的事务发布流程",
+            "line": 226
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "当前入库不是完整的事务发布流程",
+        "line": 226
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "explicitly_correct_false_premise",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "false_premise_09",
+    "split": "test",
+    "question_type": "false_premise",
+    "question": "联网回答的证据来自自动抓取的整篇网页吗？",
+    "answerable": true,
+    "reference_answer": "错误，使用搜索摘要。",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "搜索结果使用摘要，不包含自动抓取全文",
+            "line": 223
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "搜索结果使用摘要，不包含自动抓取全文",
+        "line": 223
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "explicitly_correct_false_premise",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "false_premise_10",
+    "split": "test",
+    "question_type": "false_premise",
+    "question": "这次仓库里的检索评测已经测过真实 LLM 的端到端耗时，对吗？",
+    "answerable": true,
+    "reference_answer": "错误，真实 API 端到端未实测。",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "README.zh-CN.md.txt",
+            "original_path": "README.zh-CN.md",
+            "quote": "真实 LLM/API 的端到端耗时未实测",
+            "line": 176
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "README.zh-CN.md.txt",
+        "original_path": "README.zh-CN.md",
+        "quote": "真实 LLM/API 的端到端耗时未实测",
+        "line": 176
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "explicitly_correct_false_premise",
+    "origin": "repository_natural",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "conflict_01",
+    "split": "test",
+    "question_type": "conflict",
+    "question": "青禾差旅的每日住宿报销上限究竟是多少？",
+    "answerable": true,
+    "reference_answer": "来源甲为600元，来源乙为800元；资料冲突且无优先级，无法确定唯一值。",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "synthetic__青禾差旅_甲.txt",
+            "original_path": "synthetic/青禾差旅_甲",
+            "quote": "每日住宿报销上限为600元",
+            "line": 2
+          }
+        ]
+      },
+      {
+        "fact_id": "f2",
+        "evidence": [
+          {
+            "source": "synthetic__青禾差旅_乙.txt",
+            "original_path": "synthetic/青禾差旅_乙",
+            "quote": "每日住宿报销上限为800元",
+            "line": 2
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "synthetic__青禾差旅_甲.txt",
+        "original_path": "synthetic/青禾差旅_甲",
+        "quote": "每日住宿报销上限为600元",
+        "line": 2
+      },
+      {
+        "source": "synthetic__青禾差旅_乙.txt",
+        "original_path": "synthetic/青禾差旅_乙",
+        "quote": "每日住宿报销上限为800元",
+        "line": 2
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "state_both_values_and_sources_then_uncertainty",
+    "origin": "synthetic_conflict",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "conflict_02",
+    "split": "test",
+    "question_type": "conflict",
+    "question": "白鹭请假的年假申请提前时间究竟是多少？",
+    "answerable": true,
+    "reference_answer": "来源甲为3个工作日，来源乙为5个工作日；资料冲突且无优先级，无法确定唯一值。",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "synthetic__白鹭请假_甲.txt",
+            "original_path": "synthetic/白鹭请假_甲",
+            "quote": "年假申请提前时间为3个工作日",
+            "line": 2
+          }
+        ]
+      },
+      {
+        "fact_id": "f2",
+        "evidence": [
+          {
+            "source": "synthetic__白鹭请假_乙.txt",
+            "original_path": "synthetic/白鹭请假_乙",
+            "quote": "年假申请提前时间为5个工作日",
+            "line": 2
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "synthetic__白鹭请假_甲.txt",
+        "original_path": "synthetic/白鹭请假_甲",
+        "quote": "年假申请提前时间为3个工作日",
+        "line": 2
+      },
+      {
+        "source": "synthetic__白鹭请假_乙.txt",
+        "original_path": "synthetic/白鹭请假_乙",
+        "quote": "年假申请提前时间为5个工作日",
+        "line": 2
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "state_both_values_and_sources_then_uncertainty",
+    "origin": "synthetic_conflict",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "conflict_03",
+    "split": "test",
+    "question_type": "conflict",
+    "question": "北辰运维的完整备份间隔究竟是多少？",
+    "answerable": true,
+    "reference_answer": "来源甲为12小时，来源乙为24小时；资料冲突且无优先级，无法确定唯一值。",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "synthetic__北辰运维_甲.txt",
+            "original_path": "synthetic/北辰运维_甲",
+            "quote": "完整备份间隔为12小时",
+            "line": 2
+          }
+        ]
+      },
+      {
+        "fact_id": "f2",
+        "evidence": [
+          {
+            "source": "synthetic__北辰运维_乙.txt",
+            "original_path": "synthetic/北辰运维_乙",
+            "quote": "完整备份间隔为24小时",
+            "line": 2
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "synthetic__北辰运维_甲.txt",
+        "original_path": "synthetic/北辰运维_甲",
+        "quote": "完整备份间隔为12小时",
+        "line": 2
+      },
+      {
+        "source": "synthetic__北辰运维_乙.txt",
+        "original_path": "synthetic/北辰运维_乙",
+        "quote": "完整备份间隔为24小时",
+        "line": 2
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "state_both_values_and_sources_then_uncertainty",
+    "origin": "synthetic_conflict",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "conflict_04",
+    "split": "test",
+    "question_type": "conflict",
+    "question": "云帆采购的免审批采购金额上限究竟是多少？",
+    "answerable": true,
+    "reference_answer": "来源甲为2000元，来源乙为3000元；资料冲突且无优先级，无法确定唯一值。",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "synthetic__云帆采购_甲.txt",
+            "original_path": "synthetic/云帆采购_甲",
+            "quote": "免审批采购金额上限为2000元",
+            "line": 2
+          }
+        ]
+      },
+      {
+        "fact_id": "f2",
+        "evidence": [
+          {
+            "source": "synthetic__云帆采购_乙.txt",
+            "original_path": "synthetic/云帆采购_乙",
+            "quote": "免审批采购金额上限为3000元",
+            "line": 2
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "synthetic__云帆采购_甲.txt",
+        "original_path": "synthetic/云帆采购_甲",
+        "quote": "免审批采购金额上限为2000元",
+        "line": 2
+      },
+      {
+        "source": "synthetic__云帆采购_乙.txt",
+        "original_path": "synthetic/云帆采购_乙",
+        "quote": "免审批采购金额上限为3000元",
+        "line": 2
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "state_both_values_and_sources_then_uncertainty",
+    "origin": "synthetic_conflict",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "conflict_05",
+    "split": "test",
+    "question_type": "conflict",
+    "question": "松果客服的首次响应时限究竟是多少？",
+    "answerable": true,
+    "reference_answer": "来源甲为2小时，来源乙为4小时；资料冲突且无优先级，无法确定唯一值。",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "synthetic__松果客服_甲.txt",
+            "original_path": "synthetic/松果客服_甲",
+            "quote": "首次响应时限为2小时",
+            "line": 2
+          }
+        ]
+      },
+      {
+        "fact_id": "f2",
+        "evidence": [
+          {
+            "source": "synthetic__松果客服_乙.txt",
+            "original_path": "synthetic/松果客服_乙",
+            "quote": "首次响应时限为4小时",
+            "line": 2
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "synthetic__松果客服_甲.txt",
+        "original_path": "synthetic/松果客服_甲",
+        "quote": "首次响应时限为2小时",
+        "line": 2
+      },
+      {
+        "source": "synthetic__松果客服_乙.txt",
+        "original_path": "synthetic/松果客服_乙",
+        "quote": "首次响应时限为4小时",
+        "line": 2
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "state_both_values_and_sources_then_uncertainty",
+    "origin": "synthetic_conflict",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "conflict_06",
+    "split": "test",
+    "question_type": "conflict",
+    "question": "星桥仓储的库存盘点频次究竟是多少？",
+    "answerable": true,
+    "reference_answer": "来源甲为每周一次，来源乙为每月一次；资料冲突且无优先级，无法确定唯一值。",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "synthetic__星桥仓储_甲.txt",
+            "original_path": "synthetic/星桥仓储_甲",
+            "quote": "库存盘点频次为每周一次",
+            "line": 2
+          }
+        ]
+      },
+      {
+        "fact_id": "f2",
+        "evidence": [
+          {
+            "source": "synthetic__星桥仓储_乙.txt",
+            "original_path": "synthetic/星桥仓储_乙",
+            "quote": "库存盘点频次为每月一次",
+            "line": 2
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "synthetic__星桥仓储_甲.txt",
+        "original_path": "synthetic/星桥仓储_甲",
+        "quote": "库存盘点频次为每周一次",
+        "line": 2
+      },
+      {
+        "source": "synthetic__星桥仓储_乙.txt",
+        "original_path": "synthetic/星桥仓储_乙",
+        "quote": "库存盘点频次为每月一次",
+        "line": 2
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "state_both_values_and_sources_then_uncertainty",
+    "origin": "synthetic_conflict",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "conflict_07",
+    "split": "test",
+    "question_type": "conflict",
+    "question": "远山培训的年度必修课时究竟是多少？",
+    "answerable": true,
+    "reference_answer": "来源甲为16小时，来源乙为24小时；资料冲突且无优先级，无法确定唯一值。",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "synthetic__远山培训_甲.txt",
+            "original_path": "synthetic/远山培训_甲",
+            "quote": "年度必修课时为16小时",
+            "line": 2
+          }
+        ]
+      },
+      {
+        "fact_id": "f2",
+        "evidence": [
+          {
+            "source": "synthetic__远山培训_乙.txt",
+            "original_path": "synthetic/远山培训_乙",
+            "quote": "年度必修课时为24小时",
+            "line": 2
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "synthetic__远山培训_甲.txt",
+        "original_path": "synthetic/远山培训_甲",
+        "quote": "年度必修课时为16小时",
+        "line": 2
+      },
+      {
+        "source": "synthetic__远山培训_乙.txt",
+        "original_path": "synthetic/远山培训_乙",
+        "quote": "年度必修课时为24小时",
+        "line": 2
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "state_both_values_and_sources_then_uncertainty",
+    "origin": "synthetic_conflict",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "conflict_08",
+    "split": "test",
+    "question_type": "conflict",
+    "question": "清泉设备的借用最长期限究竟是多少？",
+    "answerable": true,
+    "reference_answer": "来源甲为7天，来源乙为14天；资料冲突且无优先级，无法确定唯一值。",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "synthetic__清泉设备_甲.txt",
+            "original_path": "synthetic/清泉设备_甲",
+            "quote": "借用最长期限为7天",
+            "line": 2
+          }
+        ]
+      },
+      {
+        "fact_id": "f2",
+        "evidence": [
+          {
+            "source": "synthetic__清泉设备_乙.txt",
+            "original_path": "synthetic/清泉设备_乙",
+            "quote": "借用最长期限为14天",
+            "line": 2
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "synthetic__清泉设备_甲.txt",
+        "original_path": "synthetic/清泉设备_甲",
+        "quote": "借用最长期限为7天",
+        "line": 2
+      },
+      {
+        "source": "synthetic__清泉设备_乙.txt",
+        "original_path": "synthetic/清泉设备_乙",
+        "quote": "借用最长期限为14天",
+        "line": 2
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "state_both_values_and_sources_then_uncertainty",
+    "origin": "synthetic_conflict",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "conflict_09",
+    "split": "test",
+    "question_type": "conflict",
+    "question": "海棠合同的档案保存期限究竟是多少？",
+    "answerable": true,
+    "reference_answer": "来源甲为3年，来源乙为5年；资料冲突且无优先级，无法确定唯一值。",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "synthetic__海棠合同_甲.txt",
+            "original_path": "synthetic/海棠合同_甲",
+            "quote": "档案保存期限为3年",
+            "line": 2
+          }
+        ]
+      },
+      {
+        "fact_id": "f2",
+        "evidence": [
+          {
+            "source": "synthetic__海棠合同_乙.txt",
+            "original_path": "synthetic/海棠合同_乙",
+            "quote": "档案保存期限为5年",
+            "line": 2
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "synthetic__海棠合同_甲.txt",
+        "original_path": "synthetic/海棠合同_甲",
+        "quote": "档案保存期限为3年",
+        "line": 2
+      },
+      {
+        "source": "synthetic__海棠合同_乙.txt",
+        "original_path": "synthetic/海棠合同_乙",
+        "quote": "档案保存期限为5年",
+        "line": 2
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "state_both_values_and_sources_then_uncertainty",
+    "origin": "synthetic_conflict",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "conflict_10",
+    "split": "test",
+    "question_type": "conflict",
+    "question": "银杉访客的来访预约提前时间究竟是多少？",
+    "answerable": true,
+    "reference_answer": "来源甲为1天，来源乙为2天；资料冲突且无优先级，无法确定唯一值。",
+    "key_facts": [
+      {
+        "fact_id": "f1",
+        "evidence": [
+          {
+            "source": "synthetic__银杉访客_甲.txt",
+            "original_path": "synthetic/银杉访客_甲",
+            "quote": "来访预约提前时间为1天",
+            "line": 2
+          }
+        ]
+      },
+      {
+        "fact_id": "f2",
+        "evidence": [
+          {
+            "source": "synthetic__银杉访客_乙.txt",
+            "original_path": "synthetic/银杉访客_乙",
+            "quote": "来访预约提前时间为2天",
+            "line": 2
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "source": "synthetic__银杉访客_甲.txt",
+        "original_path": "synthetic/银杉访客_甲",
+        "quote": "来访预约提前时间为1天",
+        "line": 2
+      },
+      {
+        "source": "synthetic__银杉访客_乙.txt",
+        "original_path": "synthetic/银杉访客_乙",
+        "quote": "来访预约提前时间为2天",
+        "line": 2
+      }
+    ],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "state_both_values_and_sources_then_uncertainty",
+    "origin": "synthetic_conflict",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "unanswerable_01",
+    "split": "test",
+    "question_type": "unanswerable",
+    "question": "青禾差旅的出差机票舱位标准是什么？",
+    "answerable": false,
+    "reference_answer": "现有资料没有该信息，无法回答。",
+    "key_facts": [],
+    "evidence": [],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "refuse_specific_missing_information_without_guessing",
+    "origin": "synthetic_missing_attribute",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "unanswerable_02",
+    "split": "test",
+    "question_type": "unanswerable",
+    "question": "白鹭请假的产假天数是什么？",
+    "answerable": false,
+    "reference_answer": "现有资料没有该信息，无法回答。",
+    "key_facts": [],
+    "evidence": [],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "refuse_specific_missing_information_without_guessing",
+    "origin": "synthetic_missing_attribute",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "unanswerable_03",
+    "split": "test",
+    "question_type": "unanswerable",
+    "question": "北辰运维的数据库管理员的姓名是什么？",
+    "answerable": false,
+    "reference_answer": "现有资料没有该信息，无法回答。",
+    "key_facts": [],
+    "evidence": [],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "refuse_specific_missing_information_without_guessing",
+    "origin": "synthetic_missing_attribute",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "unanswerable_04",
+    "split": "test",
+    "question_type": "unanswerable",
+    "question": "云帆采购的供应商税号是什么？",
+    "answerable": false,
+    "reference_answer": "现有资料没有该信息，无法回答。",
+    "key_facts": [],
+    "evidence": [],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "refuse_specific_missing_information_without_guessing",
+    "origin": "synthetic_missing_attribute",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "unanswerable_05",
+    "split": "test",
+    "question_type": "unanswerable",
+    "question": "松果客服的客户满意度得分是什么？",
+    "answerable": false,
+    "reference_answer": "现有资料没有该信息，无法回答。",
+    "key_facts": [],
+    "evidence": [],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "refuse_specific_missing_information_without_guessing",
+    "origin": "synthetic_missing_attribute",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "unanswerable_06",
+    "split": "test",
+    "question_type": "unanswerable",
+    "question": "星桥仓储的仓库街道地址是什么？",
+    "answerable": false,
+    "reference_answer": "现有资料没有该信息，无法回答。",
+    "key_facts": [],
+    "evidence": [],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "refuse_specific_missing_information_without_guessing",
+    "origin": "synthetic_missing_attribute",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "unanswerable_07",
+    "split": "test",
+    "question_type": "unanswerable",
+    "question": "远山培训的补考费用是什么？",
+    "answerable": false,
+    "reference_answer": "现有资料没有该信息，无法回答。",
+    "key_facts": [],
+    "evidence": [],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "refuse_specific_missing_information_without_guessing",
+    "origin": "synthetic_missing_attribute",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "unanswerable_08",
+    "split": "test",
+    "question_type": "unanswerable",
+    "question": "清泉设备的逾期罚款金额是什么？",
+    "answerable": false,
+    "reference_answer": "现有资料没有该信息，无法回答。",
+    "key_facts": [],
+    "evidence": [],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "refuse_specific_missing_information_without_guessing",
+    "origin": "synthetic_missing_attribute",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "unanswerable_09",
+    "split": "test",
+    "question_type": "unanswerable",
+    "question": "海棠合同的法务负责人电话是什么？",
+    "answerable": false,
+    "reference_answer": "现有资料没有该信息，无法回答。",
+    "key_facts": [],
+    "evidence": [],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "refuse_specific_missing_information_without_guessing",
+    "origin": "synthetic_missing_attribute",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  },
+  {
+    "question_id": "unanswerable_10",
+    "split": "test",
+    "question_type": "unanswerable",
+    "question": "银杉访客的停车收费标准是什么？",
+    "answerable": false,
+    "reference_answer": "现有资料没有该信息，无法回答。",
+    "key_facts": [],
+    "evidence": [],
+    "allowed_variants": [
+      "等义改写可接受；数值、单位、条件和来源关系必须一致"
+    ],
+    "expected_behavior": "refuse_specific_missing_information_without_guessing",
+    "origin": "synthetic_missing_attribute",
+    "review": {
+      "author": "AI assistant, evidence-grounded manual construction",
+      "programmatic": "exact quote and source line checked",
+      "human": "pending"
+    }
+  }
+]

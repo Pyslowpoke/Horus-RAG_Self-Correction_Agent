@@ -1,0 +1,5 @@
+Building prefix dict from the default dictionary ...
+Loading model from cache C:\Users\13788\AppData\Local\Temp\jieba.cache
+Loading model cost 0.567 seconds.
+Prefix dict has been built successfully.
+{"calls": 20, "input_tokens_known": 4679, "output_tokens_known": 679, "max_calls": 26, "split": "dev", "stopped": false, "currency_cost": null, "scoring_status": "pending independent blind scoring and human review", "full_UI_E2E_measured": false}

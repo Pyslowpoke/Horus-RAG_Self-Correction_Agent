@@ -1,0 +1,43 @@
+{
+  "paid_dev_01": {
+    "calls": 20,
+    "failed_calls": 0,
+    "input_tokens_known": 4679,
+    "output_tokens_known": 679,
+    "usage_missing_calls": 0,
+    "returned_models": {
+      "deepseek-flash": 11,
+      "Qwen/Qwen2.5-7B-Instruct": 9
+    },
+    "returned_fingerprints": {
+      "aeb56401ca74e127821c4f9126dcb669": 11,
+      "": 9
+    }
+  },
+  "paid_test_01": {
+    "calls": 223,
+    "failed_calls": 10,
+    "input_tokens_known": 95452,
+    "output_tokens_known": 20382,
+    "usage_missing_calls": 10,
+    "returned_models": {
+      "deepseek-flash": 109,
+      "Qwen/Qwen2.5-7B-Instruct": 104,
+      "no_response": 10
+    },
+    "returned_fingerprints": {
+      "aeb56401ca74e127821c4f9126dcb669": 109,
+      "": 104,
+      "None": 10
+    }
+  },
+  "total": {
+    "calls": 243,
+    "failed_calls": 10,
+    "input_tokens_known": 100131,
+    "output_tokens_known": 21061,
+    "currency_cost": null,
+    "retries": 0,
+    "usage_caveat": "Usage missing for timed-out calls; known totals are not a complete bill."
+  }
+}
