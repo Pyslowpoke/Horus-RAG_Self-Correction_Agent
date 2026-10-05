@@ -7,7 +7,7 @@ from src.agents.interfaces import AgentState
 from src.agents import (router_agent, make_retrieval_agent, make_web_search_agent,
                         make_generation_agent, make_fact_check_agent, make_memory_agent)
 from src.documents import unique_docs
-from src.runtime import timed
+from src.runtime import timed, checkpoint
 logger = logging.getLogger(__name__)
 
 
@@ -52,8 +52,16 @@ def build_multi_agent_rag_graph(heavy_llm, light_llm, hybrid_retriever, web_sear
         return {'context': '\n\n'.join(parts) if parts else '未找到相关文档。', 'all_docs': selected}
 
     def rewrite(state):
-        answer = fact_checker._rewrite(state['answer'], state['failed_claims'], state['context'])
-        return {'answer': answer, 'retry_count': state.get('retry_count', 0) + 1}
+        try:
+            answer = fact_checker._rewrite(state['answer'], state['failed_claims'], state['context'])
+            if not isinstance(answer, str) or not answer.strip():
+                raise ValueError('Empty rewrite')
+            return {'answer': answer, 'retry_count': state.get('retry_count', 0) + 1,
+                    'original_answer': state.get('original_answer', state['answer']),
+                    'original_verification_log': state.get('original_verification_log', state.get('verification_log', []))}
+        except Exception:
+            logger.exception('修正失败，保留已有回答')
+            return {'answer': state['answer'], 'rewrite_error': True, 'verification_status': 'error'}
 
     def memory(state):
         if state.get('search_mode') == 'self_aware':
@@ -71,6 +79,8 @@ def build_multi_agent_rag_graph(heavy_llm, light_llm, hybrid_retriever, web_sear
         return 'merge_context'
 
     def after_check(state):
+        if state.get('rewrite_rejected'):
+            return END
         if state.get('failed_claims') and state.get('retry_count', 0) < max_retries:
             return 'rewrite'
         return END
@@ -86,8 +96,14 @@ def build_multi_agent_rag_graph(heavy_llm, light_llm, hybrid_retriever, web_sear
         def measured(state, function=function, name=name):
             with timed('node.' + name):
                 result = function(state)
+                if name == 'fact_check' and state.get('original_answer') and result.get('verification_status') != 'passed':
+                    original_checks = state.get('original_verification_log', [])
+                    result.update(answer=state['original_answer'], verification_log=original_checks,
+                                  failed_claims=[entry for entry in original_checks if entry['verdict'] != '支持'],
+                                  verification_status='failed', rewrite_rejected=True)
                 if name == 'generation' and not verification_enabled:
                     result.setdefault('verification_status', 'disabled')
+                checkpoint({**state, **result})
                 return result
         graph.add_node(name, measured)
     graph.add_edge(START, 'router')
@@ -100,5 +116,5 @@ def build_multi_agent_rag_graph(heavy_llm, light_llm, hybrid_retriever, web_sear
     graph.add_edge('merge_context', 'generation')
     graph.add_edge('generation', 'fact_check' if verification_enabled else END)
     graph.add_conditional_edges('fact_check', after_check, {'rewrite': 'rewrite', END: END})
-    graph.add_edge('rewrite', 'fact_check')
+    graph.add_conditional_edges('rewrite', lambda state: END if state.get('rewrite_error') else 'fact_check', {'fact_check': 'fact_check', END: END})
     return graph.compile()

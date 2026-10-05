@@ -11,13 +11,13 @@ A retrieval-augmented question-answering application for Chinese knowledge bases
 - **Chinese embeddings:** `BAAI/bge-small-zh-v1.5`, 512 dimensions, normalized vectors, and a Chinese instruction applied only to queries.
 - **Hybrid retrieval:** vector search and BM25 each retrieve up to 20 candidates. Stable chunk IDs prevent duplicate voting in RRF fusion; up to 10 candidates are reranked and up to 5 accepted passages are returned.
 - **Relevance filtering:** `BAAI/bge-reranker-base` by default, with lexical coverage filtering when reranking is disabled or unavailable. Empty results are valid; requests without evidence receive an explicit refusal.
-- **Bounded correction:** the graph owns the verification loop, allowing one rewrite by default. Invalid verification JSON does not count as a pass; current results and historical failures are tracked separately.
+- **Quick answers and optional verification:** the UI defaults to retrieval and cited generation, explicitly marked unverified. Opt-in verification allows at most one rewrite. Verification or rewrite failures preserve an existing answer; malformed JSON never counts as a pass.
 - **Streaming and metrics:** an initial draft is streamed before the final verification result. Metrics include first-token latency, stage timings, model calls, and token usage.
 - **Incremental ingestion:** tokenizer-based chunks of 220 tokens with 30-token overlap. Supports UTF-8 TXT and text-based PDF files; repeated ingestion does not append duplicate passages.
 - **Correction memory:** user corrections persist across sessions, with a watched `data/correction_inbox/` directory. Embedding changes use isolated memory directories and require re-encoding.
 - **Controlled overhead:** HyDE and external query rewriting are disabled by default. Requests have a 60-second budget; result caching has a TTL and capacity limit.
 
-[config.yaml](config.yaml) is the source of truth. Restart the application after changing configuration.
+[config.yaml](config.yaml) defines graph defaults. The UI verification checkbox overrides `generation.verification_enabled` for each request and defaults to off. Restart the application after changing configuration.
 
 ## Request flow
 
@@ -27,7 +27,8 @@ Question → normalize dates / add relevant recent conversation → route / corr
   ├─ Web: Baidu Qianfan search → evidence filtering
   └─ Hybrid: local first; search the web if no evidence survives and search is configured
         ↓
-Shared evidence numbering and context → draft → verification
+Shared evidence numbering and context → cited draft → quick result (UI default)
+        ↓ optional evidence verification
         ↓ if verification fails and budget permits
 At most one rewrite → verify again → final answer and verification status
 ```
@@ -145,9 +146,19 @@ The first request loads models and is usually slower. Deployment also requires m
 
 Disabling reranking can reduce CPU cost but may reduce relevance. Calibrate thresholds using your own labeled questions.
 
+## Local retrieval and response time
+
+Local retrieval is useful for bounded document collections such as internal policies, product documentation and reusable writing guidance: it retrieves traceable passages and avoids sending the entire corpus to the model. Generation still uses a remote API; indexing quality, conflicting sources and verification errors remain relevant. It does not by itself provide automatic preference learning or guarantee consistent writing style.
+
+The UI defaults to quick cited answers. Enable evidence verification when the extra checking cost is appropriate. A rewritten answer replaces the initial answer only after verification passes; failed or inconclusive rewrites restore the initial answer and its verification record. Timeouts after generation preserve the checkpointed answer and evidence with an explicit status.
+
+Two questions from the public evaluation index were tested with DeepSeek: quick graph requests took approximately **1.99–5.96 s**, and verification requests **5.29–7.58 s**, excluding approximately 13 s of initial component loading. These are small-sample graph measurements, not Streamlit end-to-end latency or a P95 benchmark. The checker still falsely rejected a supported TXT/PDF answer; the guard preserved its initial answer without labeling it verified. See [live validation](docs/LIVE-VALIDATION.md).
+
 ## Tests and evaluation
 
 ### Automated regression tests
+
+Pre-push check on 2026-10-05: **39/39 product regression tests passed**, including failed/rejected rewrite handling and answer checkpoints. See [live validation](docs/LIVE-VALIDATION.md). The historical evaluation below was not rerun.
 
 ```bash
 python -m unittest discover -s tests -v

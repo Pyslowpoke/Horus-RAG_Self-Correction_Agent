@@ -54,9 +54,18 @@ class AppFlowTests(unittest.TestCase):
             app.session_state['page'] = 'processing'
             app.session_state['use_hybrid'] = False
             app.session_state['use_web_search'] = False
+            app.session_state['verify_request'] = True
             app.run(timeout=30)
             self.assertFalse(app.exception)
             self.assertEqual(app.session_state['result']['answer'], '测试回答 [1]')
             self.assertEqual(app.session_state['result']['verification_status'], 'passed')
             self.assertIn('metrics', app.session_state['result'])
+            checked_calls = light_client.generate.call_count
+            app.session_state['verify_request'] = False
+            app.session_state['query'] = '测试问题快速回答'
+            app.session_state['page'] = 'processing'
+            app.run(timeout=30)
+            self.assertFalse(app.exception)
+            self.assertEqual(app.session_state['result']['verification_status'], 'disabled')
+            self.assertEqual(light_client.generate.call_count, checked_calls)
         st.cache_resource.clear()

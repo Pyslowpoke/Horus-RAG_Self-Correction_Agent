@@ -160,7 +160,7 @@ def get_executor():
     return ThreadPoolExecutor(max_workers=2, thread_name_prefix='rag')
 
 @st.cache_resource
-def get_pipeline(search_mode='local', version=''):
+def get_pipeline(search_mode='local', version='', verification_enabled=True):
     heavy_llm, light_llm = load_llm(), load_light_llm()
     web = None
     if search_mode in ('web', 'hybrid'):
@@ -186,7 +186,7 @@ def get_pipeline(search_mode='local', version=''):
     checker = FactChecker(light_llm, max_retries=CONFIG['generation']['max_retries'])
     graph = build_multi_agent_rag_graph(heavy_llm, light_llm, retriever, web, checker, memory_bank,
         hyde_retriever=hyde, max_retries=CONFIG['generation']['max_retries'],
-        verification_enabled=CONFIG['generation']['verification_enabled'],
+        verification_enabled=verification_enabled,
         context_max_chars=CONFIG['generation']['context_max_chars'], top_k=CONFIG['retrieval']['top_k'],
         streaming=CONFIG['generation']['streaming'], web_min_lexical_score=CONFIG['retrieval']['min_lexical_score'])
     return graph, bool(retriever and retriever.reranker_model)
@@ -345,6 +345,8 @@ def show_input_page():
         ["📚 本地知识库", "🌐 互联网搜索", "🤖 智能混合模式"],
         horizontal=True
     )
+    verify_request = st.checkbox('回答后执行证据核查（耗时更长）', value=False,
+        help='默认先检索并生成带引用的回答，不代表已核查。需要逐条核验时开启；核查失败会保留已有回答。')
 
     use_web_search = search_mode == "🌐 互联网搜索"
     use_hybrid = search_mode == "🤖 智能混合模式"
@@ -363,6 +365,7 @@ def show_input_page():
                 st.session_state.query = query
                 st.session_state.use_web_search = use_web_search
                 st.session_state.use_hybrid = use_hybrid
+                st.session_state.verify_request = verify_request
                 st.session_state.timeout_counter = 0
                 st.session_state.page = "processing"
                 st.rerun()
@@ -400,11 +403,13 @@ def show_processing_page():
     memory = get_memory()
     history = memory.get_history()
     preferences = dict(get_preferences())
+    verification_enabled = bool(st.session_state.get('verify_request', False) and CONFIG['generation']['verification_enabled'])
+    request_config = {**CONFIG, 'generation': {**CONFIG['generation'], 'verification_enabled': verification_enabled}}
     version = index_version(CONFIG)
     from src.query import replace_relative_dates, contextual_query, cache_key_for
     query = replace_relative_dates(original_query)
     search_query = contextual_query(query, history)
-    key = cache_key_for(query, mode, history, preferences, version, CONFIG)
+    key = cache_key_for(query, mode, history, preferences, version, request_config)
     cache = st.session_state.query_cache
     cached = cache.get(key)
     if cached and time.time() - cached['timestamp'] < CONFIG['runtime']['query_cache_ttl']:
@@ -421,14 +426,14 @@ def show_processing_page():
                  'chat_history': history, 'preferences': preferences,
                  'enhanced_context': '最近对话（仅用于理解指代，不作为事实依据）：\n' + str(history[-4:])[:2000],
                  'top_k': CONFIG['retrieval']['top_k'], 'retry_count': 0,
-                 'verification_status': 'disabled' if not CONFIG['generation']['verification_enabled'] else 'pending'}
+                 'verification_status': 'pending' if verification_enabled else 'disabled'}
 
         def run_pipeline():
             with request_scope(budget):
                 with timed('initialization'):
                     from src.agents.router_agent import router_agent
                     effective_mode = router_agent(state).get('search_mode', mode)
-                    graph, reranker_active = get_pipeline(effective_mode, version)
+                    graph, reranker_active = get_pipeline(effective_mode, version, verification_enabled)
                 if CONFIG['web']['query_rewrite_enabled']:
                     from src.query import rewrite_query
                     state['optimized_query'] = rewrite_query(search_query, CONFIG['web']['timeout'])
@@ -471,12 +476,14 @@ def show_processing_page():
                 budget.cancelled.set()
                 future.cancel()
                 st.session_state.timeout_counter += 1
-                result = {'answer': '请求超时，请稍后重试。首次模型加载可能需要更长时间。',
-                          'verification_status': 'timeout', 'error': True}
+                result = {**budget.last_result,
+                          'answer': budget.last_result.get('answer', '请求超时，请稍后重试。首次模型加载可能需要更长时间。'),
+                          'verification_status': 'timeout', 'error': True, 'metrics': budget.metrics}
             except Exception:
                 logging.exception('RAG 请求失败')
-                result = {'answer': '请求处理失败，请检查模型、索引及 API 配置。',
-                          'verification_status': 'error', 'error': True}
+                result = {**budget.last_result,
+                          'answer': budget.last_result.get('answer', '请求处理失败，请检查模型、索引及 API 配置。'),
+                          'verification_status': 'error', 'error': True, 'metrics': budget.metrics}
         # Cache only successful, fully evaluated results, with a bounded lifetime/size.
         if not result.get('error') and not any(result.get(k) for k in ('generation_error', 'retrieval_error', 'web_error')) and result.get('verification_status') not in ('error', 'failed', 'pending'):
             cache[key] = {'result': result, 'timestamp': time.time()}
@@ -521,7 +528,7 @@ def show_result_page():
     labels = {'passed': '核查通过', 'failed': '仍有陈述缺少证据，请结合下方核查结果阅读',
               'error': '核查或请求失败，本次结果未验证', 'disabled': '本次未启用核查',
               'skipped': '本次未执行事实核查', 'no_claims': '未提取到可核查陈述',
-              'timeout': '请求已超时'}
+              'timeout': '请求已超时；如已有回答，已保留，但核查未完成'}
     if status == 'passed':
         st.success(labels[status])
     else:

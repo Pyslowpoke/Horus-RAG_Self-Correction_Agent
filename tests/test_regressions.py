@@ -116,6 +116,34 @@ def graph_for(heavy, light, max_retries=1, docs=True, **kwargs):
 
 
 class GraphTests(unittest.TestCase):
+    def test_unverified_rewrite_cannot_replace_initial_answer(self):
+        heavy = ScriptedLLM(['初始回答'])
+        light = ScriptedLLM([verdict('矛盾'), '根据现有资料无法回答', '[]'])
+        result = graph_for(heavy, light).invoke({'query': '数据库', 'search_mode': 'local'})
+        self.assertEqual(result['answer'], '初始回答')
+        self.assertTrue(result['rewrite_rejected'])
+        self.assertEqual(result['verification_status'], 'failed')
+        self.assertEqual(result['verification_log'][0]['verdict'], '矛盾')
+
+    def test_rewrite_failure_preserves_answer_and_does_not_check_again(self):
+        heavy = ScriptedLLM(['初始回答'])
+        light = Mock()
+        light.generate.side_effect = [verdict('矛盾'), RuntimeError('rewrite failed')]
+        result = graph_for(heavy, light).invoke({'query': '数据库', 'search_mode': 'local'})
+        self.assertEqual(result['answer'], '初始回答')
+        self.assertEqual(result['verification_status'], 'error')
+        self.assertEqual(light.generate.call_count, 2)
+
+    def test_verification_timeout_keeps_answer_and_evidence_checkpoint(self):
+        heavy = ScriptedLLM(['初始回答 [1]'])
+        light = Mock()
+        light.generate.side_effect = RequestTimeout('verification timeout')
+        budget = RequestBudget(10)
+        with self.assertRaises(RequestTimeout), request_scope(budget):
+            graph_for(heavy, light).invoke({'query': '数据库', 'search_mode': 'local'})
+        self.assertEqual(budget.last_result['answer'], '初始回答 [1]')
+        self.assertEqual(len(budget.last_result['all_docs']), 1)
+
     def test_cancellation_after_generation_prevents_verification(self):
         budget = RequestBudget(10)
         heavy = Mock()

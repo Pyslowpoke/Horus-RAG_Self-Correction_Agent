@@ -17,6 +17,7 @@ class RequestBudget:
     started: float = field(default_factory=time.monotonic)
     cancelled: Event = field(default_factory=Event)
     events: Queue = field(default_factory=Queue)
+    last_result: dict = field(default_factory=dict)
     metrics: dict = field(default_factory=lambda: {"timings": {}, "llm_calls": 0,
                                                   "input_tokens": 0, "output_tokens": 0})
 
@@ -67,6 +68,12 @@ def emit_event(kind, value=""):
         if kind == "token" and value and "first_token_seconds" not in budget.metrics:
             budget.metrics["first_token_seconds"] = time.monotonic() - budget.started
         budget.events.put((kind, value))
+
+
+def checkpoint(state):
+    budget = _budget.get()
+    if budget and state.get('answer') and not state.get('generation_error'):
+        budget.last_result = dict(state)
 
 
 @contextmanager

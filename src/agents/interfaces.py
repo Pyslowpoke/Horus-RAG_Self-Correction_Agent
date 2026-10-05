@@ -43,6 +43,10 @@ class AgentState(TypedDict, total=False):
     verification_status: str
     retrieval_error: str
     generation_error: str
+    rewrite_error: bool
+    rewrite_rejected: bool
+    original_answer: str
+    original_verification_log: List[Dict[str, str]]
     web_error: str
     failed_claims: List[Dict[str, str]]
     retry_count: int
