@@ -1,10 +1,50 @@
-# Horus — RAG Self-Correction Agent
+<div align="center">
 
-**English** | [中文](README.zh-CN.md)
+![Horus — Insight, not imagination](docs/assets/banner.svg)
 
-*Insight, not imagination.*
+# Horus
 
-A retrieval-augmented question-answering application for Chinese knowledge bases. Streamlit and LangGraph coordinate retrieval, answer generation, evidence verification, and bounded correction. Supports local knowledge, web search, and hybrid modes.
+**Evidence-grounded answers for Chinese knowledge bases.**
+
+![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=flat-square) ![Streamlit](https://img.shields.io/badge/UI-Streamlit-FF4B4B?style=flat-square) ![LangGraph](https://img.shields.io/badge/workflow-LangGraph-d8b16c?style=flat-square) [![MIT](https://img.shields.io/badge/license-MIT-d8b16c?style=flat-square)](LICENSE)
+
+[Quick start](#quick-start) · [Evaluation](#tests-and-evaluation) · [Live validation](docs/LIVE-VALIDATION.md) · [简体中文](README.zh-CN.md)
+
+</div>
+
+---
+
+Horus connects retrieval, answer generation, evidence verification and bounded correction. Use local knowledge, web search or hybrid retrieval for document questions where source traceability matters. Retrieval runs locally; answer generation uses configured remote models.
+
+## More than an answer: evidence you can inspect
+
+| Retrieve | Trace | Verify when needed |
+| :--- | :--- | :--- |
+| Chinese vectors, BM25 and reranking combine semantic and keyword matching. | Associate citations with passages; explicitly refuse when no evidence is found. | Quick answers by default, with optional checking and preserved answers on later failures. |
+
+**One question, two depths**
+
+```text
+Documents → Hybrid retrieval → Cited answer                 Quick mode (default)
+                                    └→ Check → Rewrite → Check   Opt-in verification
+```
+
+Correction memory, recent conversation, streamed drafts and stage timings help reduce repeated input and show where time is spent.
+
+> **Transparent evidence, explicit limits.** In the historical 60-question evaluation, hybrid retrieval produced 53/60 fully correct answers; adding verification did not improve that run. Model-based checking can still misjudge claims, and citations alone do not prove correctness. [Full evaluation](evaluations/20260925_horus/REPORT.md) · [Current live-call observations](docs/LIVE-VALIDATION.md)
+
+[Flow](#request-flow) · [Install](#quick-start) · [Latency](#local-retrieval-and-response-time) · [Evaluation](#tests-and-evaluation) · [Limitations](#known-limitations)
+
+---
+
+## Know the boundaries before you run
+
+| Concern | Behavior |
+| :--- | :--- |
+| Local vs. remote | Embeddings and reranking run locally; generation and verification use remote APIs. |
+| Unsupported claims | Retrieval may return no evidence; the answer should explicitly refuse or state the gap. |
+| Verification failures | Preserve the available answer and evidence with an explicit failed/error status. |
+| Reproducibility | Public evaluation corpus, protocols and results are checked into the repository. Historical scores are not claims about every future request. |
 
 ## Current version
 
@@ -267,3 +307,12 @@ More details: [optimization notes](docs/optimization.md) · [Chinese model valid
 ## License
 
 [MIT](LICENSE)
+
+
+---
+
+## Feedback & contributions
+
+[Report a reproducible issue](https://github.com/Pyslowpoke/Horus-RAG_Self-Correction_Agent/issues/new) or [propose a change](https://github.com/Pyslowpoke/Horus-RAG_Self-Correction_Agent/compare). Include environment versions, steps and expected/actual behavior. Remove credentials and private data from examples. Documentation fixes, synthetic fixtures and regression cases are welcome.
+
+If this is useful, a Star helps others discover it. Reproducible feedback helps improve it.

@@ -1,10 +1,49 @@
-# Horus — RAG Self-Correction Agent
+<div align="center">
 
-[English](README.md) | **中文**
+![Horus — Insight, not imagination](docs/assets/banner.svg)
 
-*Insight, not imagination.*
+# Horus
 
-面向中文知识库的检索增强问答应用，使用 Streamlit 与 LangGraph 编排检索、回答生成、证据核查和有限次数的修正。支持本地知识库、互联网搜索和智能混合三种模式。
+**面向中文资料的证据问答助手。看见回答，也看见依据。**
+
+![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=flat-square) ![Streamlit](https://img.shields.io/badge/UI-Streamlit-FF4B4B?style=flat-square) ![LangGraph](https://img.shields.io/badge/workflow-LangGraph-d8b16c?style=flat-square) [![MIT](https://img.shields.io/badge/license-MIT-d8b16c?style=flat-square)](LICENSE)
+
+[快速开始](#快速开始) · [评测结果](#验证与评测) · [真实验证](docs/LIVE-VALIDATION.md) · [English](README.md)
+
+</div>
+
+---
+
+Horus 将检索、回答生成、证据核查与有限修正连接起来，支持本地知识库、互联网搜索及混合模式。适合需要追溯资料依据的文档问答；本地检索与远程模型生成分别承担自己的工作。
+
+## 回答之外，提供判断依据
+
+| 检索资料 | 追溯回答 | 按需核查 |
+| :--- | :--- | :--- |
+| 中文向量、BM25 与重排结合，兼顾语义和关键词。 | 引用关联证据；缺少依据时明确说明无法回答。 | 默认快速回答，用户可开启额外核查；失败时保留已有回答与状态。 |
+
+**一条问题，两种处理深度**
+
+```text
+资料 → 混合检索 → 带引用的回答                  快速模式（默认）
+                     └→ 核查 → 有限修正 → 再核查   按需开启
+```
+
+纠偏记忆、近期对话、流式草稿和阶段耗时记录，帮助减少重复输入并定位等待发生在哪一步。
+
+> **透明的验证，明确的边界。** 历史 60 题评测中，混合检索方案为 53/60 完全正确；加入核查并未提高该次结果。核查依赖模型且仍可能误判，引用也不等于事实已被证明。[查看完整评测](evaluations/20260925_horus/REPORT.md) · [当前改动的真实调用记录](docs/LIVE-VALIDATION.md)
+
+[流程](#检索与回答流程) · [安装](#快速开始) · [响应时间](#本地检索的用途与响应时间) · [评测](#验证与评测) · [已知边界](#已知边界)
+
+---
+
+## 适合问什么
+
+- **制度与产品资料：**“这项政策适用于哪些条件？依据在哪份文件？”
+- **跨资料整合：**“把相关文档的要求整理到一起，并保留引用。”
+- **检查证据缺口：**“资料没有支持这个数字时，明确指出无法确定。”
+
+首次运行需要下载本地检索模型、建立 TXT/PDF 索引并配置生成模型。默认快速模式保留引用；需要额外检查时再勾选证据核查。[按步骤安装 →](#快速开始)
 
 ## 当前版本
 
@@ -267,3 +306,12 @@ docs/                          优化说明与本机验证记录
 ## 许可证
 
 [MIT](LICENSE)
+
+
+---
+
+## 反馈与参与
+
+使用中遇到问题？[提交 Issue](https://github.com/Pyslowpoke/Horus-RAG_Self-Correction_Agent/issues/new)，附上复现步骤、环境版本、预期与实际结果；请勿附带 API 密钥或私人数据。文档改进、合成示例和可复现的边界案例都很有帮助。
+
+如果项目对你有用，欢迎 Star 收藏；具体的使用反馈同样重要。
