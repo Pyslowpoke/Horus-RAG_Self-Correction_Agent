@@ -8,6 +8,7 @@ logger = logging.getLogger(__name__)
 
 
 class FaultTolerantLLM:
+    supports_json_mode = True
     def __init__(self, primary_config, fallback_config, max_retries=0, max_tokens=512, temperature=0.1):
         self.max_retries = max_retries
         self.max_tokens = max_tokens
@@ -19,12 +20,16 @@ class FaultTolerantLLM:
             if not config.get('api_key') or identity in seen:
                 continue
             seen.add(identity)
-            client = openai.OpenAI(api_key=config['api_key'], base_url=config['api_base'], max_retries=0)
+            if config['api_base'].rstrip('/') in ('https://api.deepseek.com', 'https://api.deepseek.com/v1', 'https://api.siliconflow.cn/v1'):
+                from .deepseek_transport import DeepSeekClient
+                client = DeepSeekClient(config)
+            else:
+                client = openai.OpenAI(api_key=config['api_key'], base_url=config['api_base'], max_retries=0)
             self.providers.append((client, config))
         if not self.providers:
             raise ValueError('未配置可用的 LLM API Key')
 
-    def generate(self, messages, temperature=None, timeout=None, max_tokens=None, stream=False):
+    def generate(self, messages, temperature=None, timeout=None, max_tokens=None, stream=False, response_format=None):
         last_error = None
         for client, config in self.providers:
             for attempt in range(self.max_retries + 1):
@@ -34,6 +39,10 @@ class FaultTolerantLLM:
                     if stream:
                         emit_event('draft_reset')
                     stream_options = {'stream': True, 'stream_options': {'include_usage': True}} if stream else {}
+                    if response_format is not None:
+                        stream_options['response_format'] = response_format
+                    if config['api_base'].rstrip('/') in ('https://api.deepseek.com', 'https://api.deepseek.com/v1'):
+                        stream_options['extra_body'] = {'thinking': {'type': 'disabled'}}
                     response = client.chat.completions.create(model=config['model'], messages=messages,
                         temperature=self.temperature if temperature is None else temperature,
                         max_tokens=max_tokens or self.max_tokens,

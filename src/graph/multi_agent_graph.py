@@ -34,7 +34,11 @@ def build_multi_agent_rag_graph(heavy_llm, light_llm, hybrid_retriever, web_sear
         local = state.get('retrieved_docs', [])
         web = state.get('web_docs', [])
         # Keep local evidence first in hybrid mode; web is a supplement.
-        docs = unique_docs(local + web)
+        if local and web:
+            local_limit = max(1, top_k // 2)
+            docs = unique_docs(local[:local_limit] + web[:top_k - local_limit] + local[local_limit:])
+        else:
+            docs = unique_docs(local + web)
         parts, selected, remaining = [], [], context_max_chars
         for doc in docs[:top_k]:
             source = doc.metadata.get('url') or doc.metadata.get('source', '未知')
@@ -74,7 +78,7 @@ def build_multi_agent_rag_graph(heavy_llm, light_llm, hybrid_retriever, web_sear
         return 'web_search' if state.get('search_mode') == 'web' else 'retrieval'
 
     def after_retrieval(state):
-        if state.get('search_mode') == 'hybrid' and not state.get('retrieved_docs') and web_search_retriever:
+        if state.get('search_mode') == 'hybrid' and web_search_retriever:
             return 'web_search'
         return 'merge_context'
 

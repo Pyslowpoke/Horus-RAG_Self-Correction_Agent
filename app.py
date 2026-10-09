@@ -14,6 +14,7 @@ load_dotenv(PROJECT_ROOT / ".env")
 import streamlit as st
 import time
 import json
+import html
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutureTimeoutError
 
@@ -33,7 +34,7 @@ import logging
 logging.basicConfig(level=getattr(logging, CONFIG["logging"]["level"], logging.INFO))
 
 # 用户偏好管理
-PREFERENCES_FILE = PROJECT_ROOT / "user_preferences.json"
+PREFERENCES_FILE = Path(os.getenv('HORUS_PREFERENCES_FILE', str(PROJECT_ROOT / "user_preferences.json")))
 
 DEFAULT_PREFERENCES = {
     "nickname": "",
@@ -83,7 +84,16 @@ def get_preferences():
 # 自定义 CSS
 st.markdown("""
 <style>
-    h1 { color: #D4A017; text-align: center; font-size: 2.5em; font-weight: 700; }
+    .stApp {background: #f7f5ef; color:#243834;}
+    h1 { color: #243834; text-align: left; font-family:Georgia,serif; font-size:2.7em; letter-spacing:-.04em; }
+    [data-testid="stSidebar"] {background:#edeae1; border-right:1px solid #d9d8cb;}
+    .welcome-icon {text-align:left!important;color:#17665d;font-size:2.2em!important;margin:8px 0!important;}
+    .stButton > button {background:#17665d!important;border-radius:6px!important;}
+    .stButton > button:hover {background:#104e46!important;}
+    hr {border-top:1px solid #d9d8cb!important;}
+    [data-testid="stMainBlockContainer"] {max-width:1320px;padding-top:2rem;}
+    h2,h3 {color:#243834!important;}
+    input,textarea {border-radius:6px!important;}
     h2 { color: #D4A017; font-size: 1.6em; font-weight: 600; }
 
     hr { border: none; border-top: 2px solid #D4A017; }
@@ -122,7 +132,7 @@ def load_embeddings():
     return components.load_embeddings(CONFIG)
 
 @st.cache_resource
-def load_chroma_db(_embeddings, version):
+def load_chroma_db(_embeddings, version, retrieval_mode='semantic'):
     return components.load_db(CONFIG, _embeddings)
 
 @st.cache_resource
@@ -160,7 +170,7 @@ def get_executor():
     return ThreadPoolExecutor(max_workers=2, thread_name_prefix='rag')
 
 @st.cache_resource
-def get_pipeline(search_mode='local', version='', verification_enabled=True):
+def get_pipeline(search_mode='local', version='', verification_enabled=True, fast_local=False):
     heavy_llm, light_llm = load_llm(), load_light_llm()
     web = None
     if search_mode in ('web', 'hybrid'):
@@ -171,24 +181,34 @@ def get_pipeline(search_mode='local', version='', verification_enabled=True):
                 raise
     retriever, memory_bank, hyde = None, None, None
     if search_mode not in ('web', 'self_aware'):
-        with timed('load_embeddings'):
-            embeddings = load_embeddings()
-        with timed('load_index'):
-            db = load_chroma_db(embeddings, version)
-            bm25, docs = build_bm25_index(db, version)
-        with timed('load_reranker'):
-            reranker = load_reranker()
-        retriever = components.make_retriever(CONFIG, db, bm25, docs, reranker)
-        with timed('load_memory'):
-            memory_bank = load_memory_bank(embeddings)
-        if CONFIG['retrieval']['hyde_enabled']:
-            hyde = HyDERetriever(light_llm, db, max_tokens=CONFIG['retrieval']['hyde_max_tokens'])
+        if fast_local:
+            with timed('load_index'):
+                db = load_chroma_db(None, version, 'keyword')
+                bm25, docs = build_bm25_index(db, version)
+            class KeywordOnlyStore:
+                def similarity_search_with_score(self, query, k):
+                    return []
+            retriever = components.make_retriever(CONFIG, KeywordOnlyStore(), bm25, docs, None)
+        else:
+            with timed('load_embeddings'):
+                embeddings = load_embeddings()
+            with timed('load_index'):
+                db = load_chroma_db(embeddings, version)
+                bm25, docs = build_bm25_index(db, version)
+            with timed('load_reranker'):
+                reranker = load_reranker()
+            retriever = components.make_retriever(CONFIG, db, bm25, docs, reranker)
+            with timed('load_memory'):
+                memory_bank = load_memory_bank(embeddings) if CONFIG.get('memory', {}).get('enabled', True) else None
+            if CONFIG['retrieval']['hyde_enabled']:
+                hyde = HyDERetriever(light_llm, db, max_tokens=CONFIG['retrieval']['hyde_max_tokens'])
     checker = FactChecker(light_llm, max_retries=CONFIG['generation']['max_retries'])
     graph = build_multi_agent_rag_graph(heavy_llm, light_llm, retriever, web, checker, memory_bank,
         hyde_retriever=hyde, max_retries=CONFIG['generation']['max_retries'],
         verification_enabled=verification_enabled,
         context_max_chars=CONFIG['generation']['context_max_chars'], top_k=CONFIG['retrieval']['top_k'],
-        streaming=CONFIG['generation']['streaming'], web_min_lexical_score=CONFIG['retrieval']['min_lexical_score'])
+        streaming=CONFIG['generation']['streaming'], web_min_lexical_score=CONFIG['retrieval']['min_lexical_score'],
+        system_identity=os.getenv('HORUS_SYSTEM_IDENTITY') or None)
     return graph, bool(retriever and retriever.reranker_model)
 
 # 加载系统身份
@@ -205,7 +225,7 @@ SYSTEM_IDENTITY = load_system_identity()
 st.set_page_config(
     page_title="Horus",
     page_icon="𓂀",
-    layout="centered",
+    layout="wide",
     initial_sidebar_state="expanded"
 )
 
@@ -254,29 +274,30 @@ with st.sidebar:
         index=["简洁回答", "详细回答", "分点列出", "表格形式", "代码示例"].index(prefs.get("output_format", "简洁回答"))
     )
 
-    age_range = st.selectbox(
-        "年龄段",
-        ["18岁以下", "18-22岁", "23-28岁", "29-35岁", "36-45岁", "45岁以上", "不想透露"],
-        index=["18岁以下", "18-22岁", "23-28岁", "29-35岁", "36-45岁", "45岁以上", "不想透露"].index(
-            prefs.get("age_range", "不想透露")
+    with st.expander('可选背景信息', expanded=False):
+        age_range = st.selectbox(
+            "年龄段",
+            ["18岁以下", "18-22岁", "23-28岁", "29-35岁", "36-45岁", "45岁以上", "不想透露"],
+            index=["18岁以下", "18-22岁", "23-28岁", "29-35岁", "36-45岁", "45岁以上", "不想透露"].index(
+                prefs.get("age_range", "不想透露")
+            )
         )
-    )
 
-    occupation = st.selectbox(
-        "职业/身份",
-        ["学生", "职场新人（1-3年）", "职场资深（3-10年）", "管理者", "自由职业", "科研/教育", "其他", "不想透露"],
-        index=["学生", "职场新人（1-3年）", "职场资深（3-10年）", "管理者", "自由职业", "科研/教育", "其他", "不想透露"].index(
-            prefs.get("occupation", "不想透露")
+        occupation = st.selectbox(
+            "职业/身份",
+            ["学生", "职场新人（1-3年）", "职场资深（3-10年）", "管理者", "自由职业", "科研/教育", "其他", "不想透露"],
+            index=["学生", "职场新人（1-3年）", "职场资深（3-10年）", "管理者", "自由职业", "科研/教育", "其他", "不想透露"].index(
+                prefs.get("occupation", "不想透露")
+            )
         )
-    )
 
-    education_level = st.selectbox(
-        "学历",
-        ["高中及以下", "本科在读", "本科毕业", "硕士在读", "硕士毕业", "博士及以上", "不想透露"],
-        index=["高中及以下", "本科在读", "本科毕业", "硕士在读", "硕士毕业", "博士及以上", "不想透露"].index(
-            prefs.get("education_level", "不想透露")
+        education_level = st.selectbox(
+            "学历",
+            ["高中及以下", "本科在读", "本科毕业", "硕士在读", "硕士毕业", "博士及以上", "不想透露"],
+            index=["高中及以下", "本科在读", "本科毕业", "硕士在读", "硕士毕业", "博士及以上", "不想透露"].index(
+                prefs.get("education_level", "不想透露")
+            )
         )
-    )
 
     if st.sidebar.button("💾 保存设置", width="stretch"):
         new_prefs = {
@@ -293,6 +314,27 @@ with st.sidebar:
         st.sidebar.success("设置已保存！")
 
     st.markdown("---")
+    st.markdown("### 对话备份")
+    st.caption('备份包含问题与回答，仅下载到你的设备。请勿公开上传业务对话。')
+    st.download_button('下载当前对话 JSON', json.dumps(get_memory().get_history(), ensure_ascii=False, indent=2), file_name='horus-conversation.json', mime='application/json')
+    conversation_file = st.file_uploader('恢复本地对话备份', type=['json'], key='conversation_restore')
+    if conversation_file is not None and st.button('恢复对话'):
+        try:
+            if conversation_file.size > 1024 * 1024:
+                raise ValueError('备份不能超过 1 MB')
+            history = json.load(conversation_file)
+            if not isinstance(history, list) or len(history) > 100:
+                raise ValueError('需要不超过 100 条消息的列表')
+            if any(not isinstance(m, dict) or m.get('role') not in ('user', 'assistant') or not isinstance(m.get('content'), str) for m in history):
+                raise ValueError('消息格式无效')
+            memory = get_memory(); memory.history.clear()
+            for message in history:
+                if message['role'] == 'user': memory.add_user_message(message['content'])
+                else: memory.add_assistant_message(message['content'])
+            st.session_state.query_cache = {}
+            st.success('对话已恢复；最多保留最近 20 条消息。')
+        except (ValueError, TypeError, UnicodeDecodeError) as error:
+            st.error(f'无法恢复：{error}')
     st.markdown("### 📚 知识库管理")
 
     if st.sidebar.button("🔄 重建知识库", width="stretch"):
@@ -312,8 +354,7 @@ with st.sidebar:
     st.markdown("---")
     st.markdown("""
     <div style="font-size:0.8em; color:#888; text-align:center; padding:10px;">
-        🔒 Horus 不会收集或泄露您的个人信息<br>
-        您的输入仅用于更好地回答您的问题
+        远程模型会接收问题、检索片段和所选偏好。<br>请勿输入未经授权的敏感资料。
     </div>
     """, unsafe_allow_html=True)
 
@@ -322,10 +363,10 @@ def show_input_page():
     greeting = get_time_greeting()
     prefs = get_preferences()
     nickname = prefs.get("nickname", "")
-    greeting_text = f"{greeting}，{nickname}！" if nickname else f"{greeting}！"
+    greeting_text = html.escape(f"{greeting}，{nickname}！" if nickname else f"{greeting}！")
 
     st.markdown('<div class="welcome-icon">𓂀</div>', unsafe_allow_html=True)
-    st.markdown("<h1>Horus</h1>", unsafe_allow_html=True)
+    st.markdown("<h1>Horus · 证据研究台</h1>", unsafe_allow_html=True)
     st.markdown(f"<p style='text-align:center; color:#D4A017; font-size:1.4em; font-weight:600;'>{greeting_text}</p>", unsafe_allow_html=True)
     st.markdown("<p style='text-align:center; color:#666; font-size:1.1em;'>Insight, not imagination.</p>", unsafe_allow_html=True)
 
@@ -333,10 +374,12 @@ def show_input_page():
 
     st.markdown("""
     <div style="text-align:center; margin:30px 0;">
-        <p style="font-size:1.1em; color:#555;">输入您的问题，Horus 将为您生成答案</p>
+        <p style="font-size:1.1em; color:#555;">提出问题，检查证据，再决定是否采纳答案</p>
     </div>
     """, unsafe_allow_html=True)
 
+    st.caption('首次请求需加载本地检索模型，可能等待几十秒；后续请求复用模型。对话保留在当前会话，刷新或重启可能丢失。')
+    st.link_button('反馈一次使用体验', 'https://github.com/Pyslowpoke/Horus-RAG_Self-Correction_Agent/issues/new?template=trial-feedback.yml')
     query = st.text_input("问题", placeholder="请输入您的问题...", label_visibility="collapsed")
 
     st.markdown("<br>", unsafe_allow_html=True)
@@ -350,9 +393,11 @@ def show_input_page():
 
     use_web_search = search_mode == "🌐 互联网搜索"
     use_hybrid = search_mode == "🤖 智能混合模式"
+    fast_local = st.checkbox('快速本地检索（关键词，不加载语义模型）', value=True, disabled=use_web_search,
+        help='适合明确关键词的资料查找；改述或语义问题可关闭此项，启用向量/BM25/重排。快速模式不使用向量纠偏记忆，但仍使用当前对话上下文。')
 
     if use_hybrid:
-        st.info("🤖 先查本地知识库，内容不足时自动联网补充")
+        st.info("同时检索本地资料与网页；来源会分别标注，网页搜索需要配置密钥。")
     elif use_web_search:
         st.info("🌐 使用互联网搜索获取最新信息")
     else:
@@ -366,6 +411,7 @@ def show_input_page():
                 st.session_state.use_web_search = use_web_search
                 st.session_state.use_hybrid = use_hybrid
                 st.session_state.verify_request = verify_request
+                st.session_state.fast_local = fast_local
                 st.session_state.timeout_counter = 0
                 st.session_state.page = "processing"
                 st.rerun()
@@ -376,8 +422,8 @@ def show_input_page():
     st.markdown("""
     <div style="text-align:center; margin-top:40px; padding:15px; background:#f0f4f8; border-radius:10px; border:1px solid #dfe6e9;">
         <p style="font-size:0.9em; color:#636e72; margin:0;">
-            🔒 Horus 不会收集或泄露您的个人信息。<br>
-            您的输入便于模型基于您的身份和角度理解您的提问，仅用于更好地回答您的问题。<br>
+            远程模型会接收问题、检索片段与所选偏好。<br>
+            请使用公开或经授权的资料；本地部署不代表推理数据留在本机。<br>
             若不愿填写，也可以在需要时向模型提供这些信息。
         </p>
     </div>
@@ -405,6 +451,8 @@ def show_processing_page():
     preferences = dict(get_preferences())
     verification_enabled = bool(st.session_state.get('verify_request', False) and CONFIG['generation']['verification_enabled'])
     request_config = {**CONFIG, 'generation': {**CONFIG['generation'], 'verification_enabled': verification_enabled}}
+    fast_local = bool(st.session_state.get('fast_local', False))
+    request_config['retrieval_profile'] = 'keyword' if fast_local else 'semantic'
     version = index_version(CONFIG)
     from src.query import replace_relative_dates, contextual_query, cache_key_for
     query = replace_relative_dates(original_query)
@@ -433,7 +481,7 @@ def show_processing_page():
                 with timed('initialization'):
                     from src.agents.router_agent import router_agent
                     effective_mode = router_agent(state).get('search_mode', mode)
-                    graph, reranker_active = get_pipeline(effective_mode, version, verification_enabled)
+                    graph, reranker_active = get_pipeline(effective_mode, version, verification_enabled, fast_local)
                 if CONFIG['web']['query_rewrite_enabled']:
                     from src.query import rewrite_query
                     state['optimized_query'] = rewrite_query(search_query, CONFIG['web']['timeout'])
@@ -512,123 +560,138 @@ def show_result_page():
         search_mode = "本地知识库"
 
     st.markdown(f"<h2>📊 研究结果</h2>", unsafe_allow_html=True)
-    st.markdown(f"<p style='color:#666;'>问题：{query}</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='color:#666;'>问题：{html.escape(query)}</p>", unsafe_allow_html=True)
     st.markdown(f"<p style='color:#999;'>搜索模式：{search_mode}</p>", unsafe_allow_html=True)
+    st.caption('检索：关键词快速模式' if st.session_state.get('fast_local') else '检索：向量 / BM25 / 重排')
+    if st.button('继续提问', key='next_question_top'):
+        st.session_state.page = 'input'
+        st.rerun()
     st.markdown("<hr>", unsafe_allow_html=True)
 
-    st.markdown("<h3>📝 最终回答</h3>", unsafe_allow_html=True)
-    answer = result.get("answer", "无结果")
-    st.markdown(f"""
-    <div class="result-card">
-        {answer}
-    </div>
-    """, unsafe_allow_html=True)
+    answer_lane, check_lane, evidence_lane = st.columns([1.25, 1, 1])
+    with answer_lane:
+        st.subheader('回答')
+        answer = result.get('answer', '无结果')
+        if result.get('generation_error'):
+            st.text(answer)
+        else:
+            st.markdown(answer)
+        if result.get('generation_error'):
+            st.warning(result['generation_error'])
+            if st.button('重试生成回答'):
+                st.session_state.query_cache = {}
+                st.session_state.page = 'processing'
+                st.rerun()
+        export = {'query': query, 'answer': answer, 'generation_error': result.get('generation_error'), 'verification_status': result.get('verification_status'),
+                  'verification_log': result.get('verification_log', []), 'metrics': result.get('metrics', {}),
+                  'evidence': [{'text': d.page_content, 'source': d.metadata.get('source'), 'url': d.metadata.get('url')} for d in result.get('all_docs', [])]}
+        st.download_button('下载回答与证据记录', json.dumps(export, ensure_ascii=False, indent=2), 'horus-evidence.json', 'application/json')
 
-    status = result.get('verification_status', 'skipped')
-    labels = {'passed': '核查通过', 'failed': '仍有陈述缺少证据，请结合下方核查结果阅读',
-              'error': '核查或请求失败，本次结果未验证', 'disabled': '本次未启用核查',
-              'skipped': '本次未执行事实核查', 'no_claims': '未提取到可核查陈述',
-              'timeout': '请求已超时；如已有回答，已保留，但核查未完成'}
-    if status == 'passed':
-        st.success(labels[status])
-    else:
-        st.info(labels.get(status, '核查状态未知'))
-    if result.get('retry_count'):
-        st.caption(f"已修正 {result['retry_count']} 次")
-    if not result.get('reranker_active') and search_mode != '互联网搜索' and result.get('search_mode') != 'self_aware':
-        st.caption('本地检索使用词项过滤；重排序未启用或加载失败。')
-    if result.get('metrics'):
-        with st.expander('耗时与调用统计'):
-            st.json(result['metrics'])
+        status = result.get('verification_status', 'skipped')
+        labels = {'passed': '核查通过', 'failed': '仍有陈述缺少证据，请结合下方核查结果阅读',
+                  'error': '核查或请求失败，本次结果未验证', 'disabled': '本次未启用核查',
+                  'unanswered': '未能回答问题：检索证据不足，核查不计为通过', 'skipped': '本次未执行事实核查', 'no_claims': '未提取到可核查陈述',
+                  'timeout': '请求已超时；如已有回答，已保留，但核查未完成'}
+        if status == 'passed':
+            st.info('模型认为已核查陈述有依据；仍需检查遗漏、引用对应关系和资料时效。')
+        else:
+            st.info(labels.get(status, '核查状态未知'))
+        if result.get('retry_count'):
+            st.caption(f"已修正 {result['retry_count']} 次")
+        if not result.get('reranker_active') and search_mode != '互联网搜索' and result.get('search_mode') != 'self_aware':
+            st.caption('本地检索使用词项过滤；重排序未启用或加载失败。')
+        if result.get('metrics'):
+            with st.expander('耗时与调用统计'):
+                st.json(result['metrics'])
 
-    # 显示查询改写信息（仅互联网搜索模式）
-    query_rewrite_info = st.session_state.get("query_rewrite_info", {})
-    if query_rewrite_info and (search_mode == "互联网搜索" or search_mode == "智能混合"):
-        original = query_rewrite_info.get("original_query", "")
-        rewritten = query_rewrite_info.get("rewritten_query", "")
-        optimized = query_rewrite_info.get("optimized_query", "")
+        # 显示查询改写信息（仅互联网搜索模式）
+        query_rewrite_info = st.session_state.get("query_rewrite_info", {})
+        if query_rewrite_info and (search_mode == "互联网搜索" or search_mode == "智能混合"):
+            original = html.escape(query_rewrite_info.get("original_query", ""))
+            rewritten = query_rewrite_info.get("rewritten_query", "")
+            optimized = query_rewrite_info.get("optimized_query", "")
 
-        # 只展示真正发生变化的查询
-        has_rewrite = rewritten != original
-        has_optimize = optimized and optimized != rewritten
+            # 只展示真正发生变化的查询
+            has_rewrite = rewritten != original
+            has_optimize = optimized and optimized != rewritten
 
-        if has_rewrite or has_optimize:
-            st.markdown("<hr>", unsafe_allow_html=True)
-            st.markdown("<h3>🔍 搜索关键词</h3>", unsafe_allow_html=True)
+            if has_rewrite or has_optimize:
+                st.markdown("<hr>", unsafe_allow_html=True)
+                st.markdown("<h3>🔍 搜索关键词</h3>", unsafe_allow_html=True)
 
-            # 确定最终用于搜索的词
-            final_query = optimized if has_optimize else rewritten
+                # 确定最终用于搜索的词
+                final_query = html.escape(optimized if has_optimize else rewritten)
 
-            st.markdown(f"""
-            <div style="background:#f0f4f8; padding:15px; border-radius:10px; border-left:4px solid #1B4D8C;">
-                <p style="margin:5px 0; color:#636e72;">💬 <strong>你问的：</strong>{original}</p>
-                <p style="margin:5px 0; color:#1B4D8C; font-weight:600;">🔍 <strong>实际搜索：</strong>{final_query}</p>
+                st.markdown(f"""
+                <div style="background:#f0f4f8; padding:15px; border-radius:10px; border-left:4px solid #1B4D8C;">
+                    <p style="margin:5px 0; color:#636e72;">💬 <strong>你问的：</strong>{original}</p>
+                    <p style="margin:5px 0; color:#1B4D8C; font-weight:600;">🔍 <strong>实际搜索：</strong>{final_query}</p>
+                </div>
+                """, unsafe_allow_html=True)
+
+        st.markdown("<hr>", unsafe_allow_html=True)
+
+    with check_lane:
+        st.markdown("<h3>🔍 核查日志</h3>", unsafe_allow_html=True)
+        verification_log = result.get("verification_log", [])
+
+        if verification_log:
+            for i, log in enumerate(verification_log):
+                claim = html.escape(log.get("claim", ""))
+                verdict = log.get("verdict", "")
+                evidence = html.escape(log.get("evidence", ""))
+
+                if verdict == "支持":
+                    st.markdown(f"""
+                    <div class="log-success">
+                        <strong>模型判断：支持</strong><br>
+                        <em>{claim}</em>
+                        {f'<br><small>证据：{evidence}</small>' if evidence else ''}
+                    </div>
+                    """, unsafe_allow_html=True)
+                elif verdict == "矛盾":
+                    st.markdown(f"""
+                    <div class="log-error">
+                        <strong>模型判断：矛盾</strong><br>
+                        <em>{claim}</em>
+                        {f'<br><small>矛盾：{evidence}</small>' if evidence else ''}
+                    </div>
+                    """, unsafe_allow_html=True)
+                else:
+                    st.markdown(f"""
+                    <div class="log-warning">
+                        <strong>模型判断：证据不足</strong><br>
+                        <em>{claim}</em>
+                    </div>
+                    """, unsafe_allow_html=True)
+        else:
+            st.markdown("""
+            <div style="text-align:center; padding:30px; color:#999;">
+                <p>📋 无核查日志（不代表核查通过）</p>
             </div>
             """, unsafe_allow_html=True)
 
-    st.markdown("<hr>", unsafe_allow_html=True)
+        st.markdown("<hr>", unsafe_allow_html=True)
+    with evidence_lane:
+        st.markdown(f"<h3>📚 检索到的文档（来源：{search_mode}）</h3>", unsafe_allow_html=True)
+        # 兼容本地检索和互联网搜索两种模式
+        docs = result.get("all_docs", [])
+        if docs:
+            for i, doc in enumerate(docs):
+                source = doc.metadata.get("source", "未知")
+                url = doc.metadata.get("url", "")
+                title = doc.metadata.get("title") or Path(str(source)).name
 
-    st.markdown("<h3>🔍 核查日志</h3>", unsafe_allow_html=True)
-    verification_log = result.get("verification_log", [])
+                with st.expander(f"[{i+1}] {title}", expanded=False):
+                    if url:
+                        st.markdown(f"**来源**: [{source}]({url})")
+                    else:
+                        st.markdown(f"**来源**: {source}")
+                    if doc.metadata.get('retrieval_role') == 'adjacent_context':
+                        st.caption('相邻段落补充上下文，未单独重排评分。')
+                    st.text(doc.page_content)
 
-    if verification_log:
-        for i, log in enumerate(verification_log):
-            claim = log.get("claim", "")
-            verdict = log.get("verdict", "")
-            evidence = log.get("evidence", "")
-
-            if verdict == "支持":
-                st.markdown(f"""
-                <div class="log-success">
-                    <strong>🟢 支持</strong><br>
-                    <em>{claim}</em>
-                    {f'<br><small>证据：{evidence}</small>' if evidence else ''}
-                </div>
-                """, unsafe_allow_html=True)
-            elif verdict == "矛盾":
-                st.markdown(f"""
-                <div class="log-error">
-                    <strong>🔴 矛盾</strong><br>
-                    <em>{claim}</em>
-                    {f'<br><small>矛盾：{evidence}</small>' if evidence else ''}
-                </div>
-                """, unsafe_allow_html=True)
-            else:
-                st.markdown(f"""
-                <div class="log-warning">
-                    <strong>🟡 证据不足</strong><br>
-                    <em>{claim}</em>
-                </div>
-                """, unsafe_allow_html=True)
-    else:
-        st.markdown("""
-        <div style="text-align:center; padding:30px; color:#999;">
-            <p>📋 无核查日志（不代表核查通过）</p>
-        </div>
-        """, unsafe_allow_html=True)
-
-    st.markdown("<hr>", unsafe_allow_html=True)
-    st.markdown(f"<h3>📚 检索到的文档（来源：{search_mode}）</h3>", unsafe_allow_html=True)
-    # 兼容本地检索和互联网搜索两种模式
-    docs = result.get("all_docs", [])
-    if docs:
-        for i, doc in enumerate(docs):
-            source = doc.metadata.get("source", "未知")
-            url = doc.metadata.get("url", "")
-            title = doc.metadata.get("title", f"文档 {i+1}")
-
-            with st.expander(f"📄 {title}", expanded=False):
-                if url:
-                    st.markdown(f"**来源**: [{source}]({url})")
-                else:
-                    st.markdown(f"**来源**: {source}")
-                st.markdown(f"""
-                <div class="step-card">
-                    {doc.page_content[:400]}
-                </div>
-                """, unsafe_allow_html=True)
-
-    st.markdown("<hr>", unsafe_allow_html=True)
+        st.markdown("<hr>", unsafe_allow_html=True)
     st.markdown("<h3>💬 对话历史</h3>", unsafe_allow_html=True)
     memory = get_memory()
     if len(memory) > 0:
@@ -638,7 +701,7 @@ def show_result_page():
             role_name = "用户" if msg["role"] == "user" else "助手"
             st.markdown(f"""
             <div style="padding:8px; margin:4px 0; border-radius:8px; background:#f8f9fa;">
-                {role_icon} <strong>{role_name}:</strong> {msg["content"][:150]}{"..." if len(msg["content"])>150 else ""}
+                {role_icon} <strong>{role_name}:</strong> {html.escape(msg["content"][:150])}{"..." if len(msg["content"])>150 else ""}
             </div>
             """, unsafe_allow_html=True)
     else:

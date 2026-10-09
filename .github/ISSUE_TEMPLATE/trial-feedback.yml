@@ -1,0 +1,34 @@
+name: Trial feedback / 使用反馈
+description: Describe one task and where it worked or failed. Do not share private data.
+title: "[Feedback] "
+body:
+  - type: markdown
+    attributes:
+      value: "Please remove keys, customer names and business data. / 请删除密钥、客户信息和业务数据。"
+  - type: textarea
+    id: task
+    attributes:
+      label: Task / 想完成什么
+      description: One concrete task and expected result / 一个具体任务及预期结果
+    validations:
+      required: true
+  - type: dropdown
+    id: outcome
+    attributes:
+      label: Outcome / 完成情况
+      options:
+        - Completed / 完成
+        - Partly completed / 部分完成
+        - Failed / 未完成
+        - Could not start / 无法开始
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps and obstacle / 操作及卡点
+      description: Include version, mode, wait time and sanitized errors / 版本、模式、等待时间和脱敏错误
+  - type: textarea
+    id: next
+    attributes:
+      label: Would you use it again? Why? / 会再次使用吗？为什么？

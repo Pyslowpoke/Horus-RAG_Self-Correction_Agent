@@ -8,6 +8,27 @@ from src.runtime import emit_event
 
 
 class AppFlowTests(unittest.TestCase):
+    def test_keyword_mode_does_not_load_semantic_models(self):
+        import streamlit as st
+        st.cache_resource.clear()
+        llm=Mock();llm.generate.return_value='支持 TXT/PDF [1]'
+        retriever=Mock();retriever.reranker_model=None
+        retriever.retrieve.return_value=[Document(page_content='支持 TXT/PDF',metadata={'source':'guide'})]
+        with patch('src.components.make_llm',return_value=llm), \
+             patch('src.components.load_embeddings',side_effect=AssertionError('semantic load forbidden')), \
+             patch('src.components.load_reranker',side_effect=AssertionError('reranker load forbidden')), \
+             patch('src.components.load_db',return_value=Mock()), \
+             patch('src.components.build_bm25',return_value=(None,[])), \
+             patch('src.components.make_retriever',return_value=retriever):
+            app=AppTest.from_file(str(Path(__file__).resolve().parents[1]/'app.py')).run(timeout=30)
+            app.session_state['query']='文件格式'
+            app.session_state['page']='processing'
+            app.session_state['fast_local']=True
+            app.run(timeout=30)
+            self.assertFalse(app.exception)
+            self.assertIn('TXT/PDF',app.session_state['result']['answer'])
+        st.cache_resource.clear()
+
     def test_identity_question_skips_local_model_loading(self):
         import streamlit as st
         st.cache_resource.clear()

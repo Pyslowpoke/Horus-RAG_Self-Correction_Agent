@@ -44,7 +44,7 @@ class HybridRetriever:
             terms = set(tokens)
             scores = self.bm25_index.get_scores(tokens) if self.bm25_index is not None else []
             # Match presence is separate from score: BM25 can produce zero/negative IDF.
-            matching = [i for i, words in enumerate(self.doc_terms) if terms.intersection(words)]
+            matching = [i for i, words in enumerate(self.doc_terms) if terms.intersection(words)] if self.bm25_index is not None else []
             matching.sort(key=lambda i: (-float(scores[i]), chunk_id(self.all_docs[i])))
             bm25_results = [Document(page_content=self.all_docs[i].page_content,
                 metadata={**self.all_docs[i].metadata, 'bm25_score': float(scores[i])})
@@ -66,7 +66,23 @@ class HybridRetriever:
                 doc = item['doc']
                 doc.metadata['rrf_score'] = item['score']
                 candidates.append(doc)
-        return self.rank_and_filter(query, candidates, top_k)
+        selected = self.rank_and_filter(query, candidates, top_k)
+        # Adjacent chunks retain the section omitted by short tokenizer splits.
+        # Reserve half the evidence budget for neighbors rather than replacing
+        # all independently matched passages with one long source.
+        anchors = selected[:max(1, top_k // 2)]
+        expanded = list(anchors)
+        for anchor in anchors:
+            index = anchor.metadata.get('chunk_index')
+            source = anchor.metadata.get('source')
+            if not isinstance(index, int) or not source:
+                continue
+            for neighbor in self.all_docs:
+                if (neighbor.metadata.get('source') == source
+                        and neighbor.metadata.get('chunk_index') in (index - 2, index - 1, index + 1, index + 2)):
+                    expanded.append(Document(page_content=neighbor.page_content,
+                        metadata={**neighbor.metadata, 'retrieval_role': 'adjacent_context'}))
+        return unique_docs(expanded + selected)[:top_k]
 
     def rank_and_filter(self, query, docs, top_k=5):
         docs = unique_docs(docs)

@@ -65,7 +65,7 @@ Correction memory, recent conversation, streamed drafts and stage timings help r
 Question → normalize dates / add relevant recent conversation → route / correction memory
   ├─ Local: vector + BM25 → deduplicate / RRF → rerank / filter
   ├─ Web: Baidu Qianfan search → evidence filtering
-  └─ Hybrid: local first; search the web if no evidence survives and search is configured
+  └─ Hybrid: local + configured web search; reserve evidence slots for both
         ↓
 Shared evidence numbering and context → cited draft → quick result (UI default)
         ↓ optional evidence verification
@@ -116,7 +116,7 @@ BAIDU_API_KEY=your_baidu_api_key
 ```
 
 - Configure at least DeepSeek or SiliconFlow; configure both for the full failover setup.
-- The primary generation model is `deepseek-chat`; the fallback and lightweight model is `Qwen/Qwen2.5-7B-Instruct`. The lightweight client uses DeepSeek as its fallback.
+- The primary generation model is `deepseek-v4-flash`; the fallback and lightweight model is `Qwen/Qwen2.5-7B-Instruct`. The lightweight client uses DeepSeek as its fallback.
 - Baidu is used for web search and optional external query rewriting. Local mode does not need it; hybrid mode stays local when search is not configured.
 - Ingestion and offline retrieval evaluation do not call remote LLMs and do not require these keys.
 
@@ -316,3 +316,17 @@ More details: [optimization notes](docs/optimization.md) · [Chinese model valid
 [Report a reproducible issue](https://github.com/Pyslowpoke/Horus-RAG_Self-Correction_Agent/issues/new) or [propose a change](https://github.com/Pyslowpoke/Horus-RAG_Self-Correction_Agent/compare). Include environment versions, steps and expected/actual behavior. Remove credentials and private data from examples. Documentation fixes, synthetic fixtures and regression cases are welcome.
 
 If this is useful, a Star helps others discover it. Reproducible feedback helps improve it.
+
+## Try one real task
+
+Use public or sanitized data and share where the workflow fails via the in-app feedback link. No star request, and no private data or keys in public issues. See [user-trial protocol](docs/USER-TRIAL.md).
+
+### Current behavior boundaries
+
+Retrieval adds up to two neighboring chunks; neighboring context is not independently reranked. Configured hybrid mode searches both local and web sources. Verification is a model opinion; unanswered requests are distinct from passed checks. Conversations are session-local: export/import JSON to restore the last 20 messages. Cold model initialization can take tens of seconds. Historical 53/60 results describe the previous implementation, not this revision.
+
+### Local retrieval modes
+
+The UI defaults to keyword retrieval with adjacent passages, avoiding embedding and reranker initialization. Use it for explicit terms; disable the fast-mode checkbox for semantic retrieval and compare paraphrased questions. Semantic mode has a model-loading cost. Fast mode does not use vector correction memory. The historical 53/60 evaluation belongs to the earlier semantic configuration, not the current default.
+
+[Validation scope / 本轮验证范围](docs/VALIDATION-2026-10-09.md)

@@ -9,7 +9,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 
 def load_config(path=None):
-    with Path(path or PROJECT_ROOT / "config.yaml").open(encoding="utf-8") as file:
+    with Path(path or os.getenv('HORUS_CONFIG') or PROJECT_ROOT / "config.yaml").open(encoding="utf-8") as file:
         config = yaml.safe_load(file)
     if not isinstance(config, dict):
         raise ValueError("config.yaml 必须是配置映射")
