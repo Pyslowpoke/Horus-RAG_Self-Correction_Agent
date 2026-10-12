@@ -12,6 +12,8 @@
 import os
 import uuid
 import time
+import csv
+from threading import RLock
 from pathlib import Path
 from typing import List, Dict, Set
 from dataclasses import dataclass
@@ -54,6 +56,7 @@ class GoldMemoryBank:
         )
         self.db = Chroma(persist_directory=self.persist_dir, embedding_function=self.embeddings)
         self.records_file = Path(persist_dir) / "records.csv"
+        self._record_lock = RLock()
         self._ensure_records_file()
         self._observer = None
 
@@ -63,18 +66,19 @@ class GoldMemoryBank:
             with open(self.records_file, "w", encoding="utf-8") as f:
                 f.write("mem_id,original_query,wrong_answer,correct_answer,user_id,category,source_file\n")
 
-    def _is_duplicate(self, source_file, original_query):
+    def _is_duplicate(self, source_file, original_query, correct_answer=None):
         if not self.records_file.exists():
             return False
-        with open(self.records_file, "r", encoding="utf-8") as f:
-            for line in f.readlines()[1:]:
-                if source_file in line and original_query[:20] in line:
+        with self._record_lock, self.records_file.open('r', encoding='utf-8', newline='') as f:
+            for row in csv.DictReader(f):
+                if (row['source_file'] == source_file and row['original_query'] == original_query
+                        and (correct_answer is None or row['correct_answer'] == correct_answer)):
                     return True
         return False
 
     def add_memory(self, original_query, wrong_answer, correct_answer,
                    user_id="default", category="correction", source_file="") -> str:
-        mem_id = str(uuid.uuid4())[:8]
+        mem_id = str(uuid.uuid4())
 
         query_doc = Document(
             page_content=original_query,
@@ -92,11 +96,8 @@ class GoldMemoryBank:
         self.db.add_documents([query_doc, answer_doc])
         self.db.persist()
 
-        with open(self.records_file, "a", encoding="utf-8") as f:
-            q = original_query.replace(",", "，").replace("\n", " ")
-            w = wrong_answer.replace(",", "，").replace("\n", " ")
-            c = correct_answer.replace(",", "，").replace("\n", " ")
-            f.write(f"{mem_id},{q},{w},{c},{user_id},{category},{source_file}\n")
+        with self._record_lock, self.records_file.open('a', encoding='utf-8', newline='') as f:
+            csv.writer(f).writerow([mem_id, original_query, wrong_answer, correct_answer, user_id, category, source_file])
 
         return mem_id
 
@@ -155,12 +156,17 @@ class GoldMemoryBank:
         return records
 
     def import_correction_file(self, file_path, force=False) -> int:
+        # Serialize watcher/manual imports within this single-user process.
+        with self._record_lock:
+            return self._import_correction_file(file_path, force)
+
+    def _import_correction_file(self, file_path, force=False) -> int:
         records = self.parse_correction_file(file_path)
         source_file = Path(file_path).name
         count = 0
         for record in records:
             query = record.get("query", "")
-            if not query or (not force and self._is_duplicate(source_file, query)):
+            if not query or (not force and self._is_duplicate(source_file, query, record.get('correct', ''))):
                 continue
             self.add_memory(
                 original_query=query, wrong_answer=record.get("wrong", ""),
@@ -171,8 +177,8 @@ class GoldMemoryBank:
 
     def get_memory_count(self) -> int:
         try:
-            with open(self.records_file, "r", encoding="utf-8") as f:
-                return max(0, sum(1 for _ in f) - 1)
+            with self._record_lock, self.records_file.open('r', encoding='utf-8', newline='') as f:
+                return sum(1 for _ in csv.DictReader(f))
         except Exception:
             return 0
 
@@ -215,6 +221,16 @@ class CorrectionFileHandler(FileSystemEventHandler):
             print(f"[GoldMemory] 导入失败: {e}")
         finally:
             self._processed_files.discard(file_path)
+
+    def on_modified(self, event):
+        # A created event may arrive before a producer finishes writing.
+        # Exact-record deduplication makes the later complete write safe to retry.
+        self.on_created(event)
+
+    def on_moved(self, event):
+        if not event.is_directory:
+            from watchdog.events import FileCreatedEvent
+            self.on_created(FileCreatedEvent(event.dest_path))
 
 
 def start_watcher(memory_bank, watch_dir=None):

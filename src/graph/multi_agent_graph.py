@@ -8,6 +8,7 @@ from src.agents import (router_agent, make_retrieval_agent, make_web_search_agen
                         make_generation_agent, make_fact_check_agent, make_memory_agent)
 from src.documents import unique_docs
 from src.runtime import timed, checkpoint
+from src.citations import audit_citations
 logger = logging.getLogger(__name__)
 
 
@@ -107,6 +108,13 @@ def build_multi_agent_rag_graph(heavy_llm, light_llm, hybrid_retriever, web_sear
                                   verification_status='failed', rewrite_rejected=True)
                 if name == 'generation' and not verification_enabled:
                     result.setdefault('verification_status', 'disabled')
+                combined = {**state, **result}
+                if name in ('generation', 'rewrite', 'fact_check') and combined.get('answer'):
+                    result['citation_audit'] = audit_citations(
+                        combined['answer'], len(combined.get('all_docs', [])),
+                        applicable=combined.get('search_mode') != 'self_aware' and not combined.get('generation_error'))
+                    if result['citation_audit']['status'] == 'invalid' and result.get('verification_status') == 'passed':
+                        result['verification_status'] = 'failed'
                 checkpoint({**state, **result})
                 return result
         graph.add_node(name, measured)

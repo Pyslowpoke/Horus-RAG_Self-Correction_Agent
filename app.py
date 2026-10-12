@@ -583,9 +583,17 @@ def show_result_page():
                 st.session_state.page = 'processing'
                 st.rerun()
         export = {'query': query, 'answer': answer, 'generation_error': result.get('generation_error'), 'verification_status': result.get('verification_status'),
-                  'verification_log': result.get('verification_log', []), 'metrics': result.get('metrics', {}),
+                  'verification_log': result.get('verification_log', []), 'citation_audit': result.get('citation_audit', {}), 'metrics': result.get('metrics', {}),
                   'evidence': [{'text': d.page_content, 'source': d.metadata.get('source'), 'url': d.metadata.get('url')} for d in result.get('all_docs', [])]}
         st.download_button('下载回答与证据记录', json.dumps(export, ensure_ascii=False, indent=2), 'horus-evidence.json', 'application/json')
+
+        audit = result.get('citation_audit', {})
+        if audit.get('status') == 'invalid':
+            st.warning('回答引用了不存在的证据编号：' + ', '.join(map(str, audit['invalid_ids'])) + '。请核对原文，勿直接采用。')
+        elif audit.get('status') == 'missing':
+            st.warning('回答没有识别到来源编号，请核对右侧证据。')
+        elif audit.get('status') == 'valid':
+            st.caption('引用编号可对应当前证据；这不代表引用支持结论或覆盖全部事实。')
 
         status = result.get('verification_status', 'skipped')
         labels = {'passed': '核查通过', 'failed': '仍有陈述缺少证据，请结合下方核查结果阅读',

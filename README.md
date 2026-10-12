@@ -4,7 +4,7 @@
 
 # Horus
 
-**Evidence-grounded answers for Chinese knowledge bases.**
+**Ask questions about Chinese documents. Inspect the sources behind the answer.**
 
 ![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=flat-square) ![Streamlit](https://img.shields.io/badge/UI-Streamlit-FF4B4B?style=flat-square) ![LangGraph](https://img.shields.io/badge/workflow-LangGraph-d8b16c?style=flat-square) [![MIT](https://img.shields.io/badge/license-MIT-d8b16c?style=flat-square)](LICENSE)
 
@@ -16,20 +16,29 @@
 
 Horus connects retrieval, answer generation, evidence verification and bounded correction. Use local knowledge, web search or hybrid retrieval for document questions where source traceability matters. Retrieval runs locally; answer generation uses configured remote models.
 
+## Try one useful task
+
+Use two public Chinese TXT files or text-based PDFs. Ask for one fact, follow its citation, then ask a question the documents do not answer. Check whether Horus finds the relevant passage and clearly exposes the evidence gap.
+
+**Status: local document Q&A prototype for individual use.** There is no hosted chat demo. First use requires Python, retrieval-model downloads, a document index and a generation API key. Retrieval runs locally; generation and optional checking call remote model APIs. [Install locally](#quick-start).
+
+Feedback I need: where did setup fail, did the references help you check the answer, and was this easier than searching the documents yourself? Reply where you found the project or [open an issue](https://github.com/Pyslowpoke/Horus-RAG_Self-Correction_Agent/issues/new) with public or sanitized examples.
+
 ## More than an answer: evidence you can inspect
 
 | Retrieve | Trace | Verify when needed |
 | :--- | :--- | :--- |
-| Chinese vectors, BM25 and reranking combine semantic and keyword matching. | Associate citations with passages; explicitly refuse when no evidence is found. | Quick answers by default, with optional checking and preserved answers on later failures. |
+| Default: keyword retrieval with adjacent passages. Optional semantic mode adds Chinese vectors and reranking. | Associate citations with passages; explicitly refuse when no evidence is found. | Quick answers by default, with optional checking and preserved answers on later failures. |
 
 **One question, two depths**
 
 ```text
-Documents → Hybrid retrieval → Cited answer                 Quick mode (default)
+Documents → Keyword retrieval → Cited answer                UI default
+             or opt-in semantic retrieval
                                     └→ Check → Rewrite → Check   Opt-in verification
 ```
 
-Correction memory, recent conversation, streamed drafts and stage timings help reduce repeated input and show where time is spent.
+Semantic mode can retrieve persistent user corrections; recent conversation supplies session context. These mechanisms do not train the model or provide a persistent task planner. Streamed drafts and stage timings expose where time is spent.
 
 > **Transparent evidence, explicit limits.** In the historical 60-question evaluation, hybrid retrieval produced 53/60 fully correct answers; adding verification did not improve that run. Model-based checking can still misjudge claims, and citations alone do not prove correctness. [Full evaluation](evaluations/20260925_horus/REPORT.md) · [Current live-call observations](docs/LIVE-VALIDATION.md)
 
@@ -46,9 +55,21 @@ Correction memory, recent conversation, streamed drafts and stage timings help r
 | Verification failures | Preserve the available answer and evidence with an explicit failed/error status. |
 | Reproducibility | Public evaluation corpus, protocols and results are checked into the repository. Historical scores are not claims about every future request. |
 
+## Reference integrity and failure handling
+
+- Citation IDs are checked against the evidence supplied to the answer, even when model verification is disabled. Invalid IDs surface a warning and cannot be labelled verification passed.
+- Reference-number validity does not establish semantic support or complete citation coverage.
+- Correction records preserve punctuation and line breaks; imports use full-record matching and can retry when a file finishes writing.
+- Empty or duplicate verification output does not count as a successful check. Rewrites that fail checking preserve the original answer.
+
+2026-10-12 validation: 53 tests passed in the initial full regression run; after follow-up changes, all 9 targeted integrity/UI tests passed. These use synthetic inputs and mocked services, not a new accuracy benchmark. [Change details and limits](docs/INTEGRITY-2026-10-12.md).
+
+Persistent task configuration, separate style-reference management, scheduled content production and semantic duplicate detection are not implemented.
+
 ## Current version
 
-- **Chinese embeddings:** `BAAI/bge-small-zh-v1.5`, 512 dimensions, normalized vectors, and a Chinese instruction applied only to queries.
+- **UI default:** fast keyword retrieval; semantic models and vector correction memory are not loaded for queries in this mode. Initial indexing still requires the retrieval model. Historical 53/60 results belong to the older semantic pipeline, not the current default.
+- **Chinese embeddings (semantic mode):** `BAAI/bge-small-zh-v1.5`, 512 dimensions, normalized vectors, and a Chinese instruction applied only to queries.
 - **Hybrid retrieval:** vector search and BM25 each retrieve up to 20 candidates. Stable chunk IDs prevent duplicate voting in RRF fusion; up to 10 candidates are reranked and up to 5 accepted passages are returned.
 - **Relevance filtering:** `BAAI/bge-reranker-base` by default, with lexical coverage filtering when reranking is disabled or unavailable. Empty results are valid; requests without evidence receive an explicit refusal.
 - **Quick answers and optional verification:** the UI defaults to retrieval and cited generation, explicitly marked unverified. Opt-in verification allows at most one rewrite. Verification or rewrite failures preserve an existing answer; malformed JSON never counts as a pass.

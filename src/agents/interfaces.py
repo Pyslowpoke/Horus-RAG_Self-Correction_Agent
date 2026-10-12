@@ -36,6 +36,7 @@ class AgentState(TypedDict, total=False):
     # 上下文与生成
     context: str
     answer: str
+    citation_audit: dict  # Number integrity only, not semantic support.
 
     # 事实核查与自纠正
     verification_log: List[Dict[str, str]]  # [{claim, verdict, evidence}]
